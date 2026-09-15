@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning - Grade X</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#4F46E5', secondary: '#10B981', accent: '#F59E0B' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F3F4F6; color: #1F2937; }
+        .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+        .section-card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 2rem; margin-bottom: 2rem; transition: transform 0.2s; border: 1px solid #E5E7EB; }
+        .section-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        
+        /* Custom Scrollbar for Sidebar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        /* Matching & Word Games */
+        .match-btn { transition: all 0.2s; }
+        .match-btn.selected { background-color: #DBEAFE; border-color: #3B82F6; color: #1D4ED8; }
+        .match-btn.matched { background-color: #D1FAE5; border-color: #10B981; color: #047857; opacity: 0.7; pointer-events: none; }
+        .match-btn.wrong { background-color: #FEE2E2; border-color: #EF4444; animation: shake 0.4s; }
+        
+        .word-btn { transition: all 0.2s; cursor: pointer; }
+        .word-btn:hover { transform: scale(1.05); }
+        
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <nav class="bg-indigo-900 text-white w-full md:w-72 md:h-screen flex-shrink-0 flex flex-col shadow-xl z-20 transition-all duration-300">
+        <div class="p-6 bg-indigo-950">
+            <h1 class="text-xl font-bold tracking-wider mb-1">ENGLISH GRADE X</h1>
+            <p class="text-indigo-300 text-xs uppercase font-semibold tracking-widest mb-1">SMA N 1 Banggai</p>
+            <p class="text-indigo-400 text-xs">Teacher: Mahfud S.P., M.Pd.</p>
+            
+            <!-- Lesson Switcher -->
+            <div class="mt-4 bg-indigo-900 rounded-lg p-1 border border-indigo-700 flex text-sm font-semibold overflow-x-auto">
+                <button id="tab-l1" onclick="switchLesson(1)" class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition">Lesson 1</button>
+                <button id="tab-l2" onclick="switchLesson(2)" class="flex-1 py-2 px-3 text-center rounded-md bg-indigo-600 text-white shadow transition">Lesson 2</button>
+                <button id="tab-l3" onclick="switchLesson(3)" class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition">Lesson 3</button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden p-4 border-t border-indigo-800 bg-indigo-900 flex justify-between items-center cursor-pointer" onclick="toggleMobileMenu()">
+            <span class="font-semibold">Lesson Modules</span>
+            <i class="fas fa-chevron-down" id="mobile-menu-icon"></i>
+        </div>
+
+        <div id="nav-menu" class="hidden md:flex flex-col overflow-y-auto p-4 space-y-1 h-full pb-20 md:pb-4">
+            <!-- Nav for Lesson 1 (Hidden initially in this view, but managed via JS) -->
+            <div id="nav-links-l1" class="hidden">
+                <a href="#overview" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-info-circle w-6"></i> Overview & Goals</a>
+                <a href="#warmup" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-fire w-6"></i> Warm-Up</a>
+                <a href="#greetings" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-hand-sparkles w-6"></i> Greetings</a>
+                <a href="#grammar" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-book w-6"></i> Grammar: To Be</a>
+                <a href="#classroom" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-chalkboard-teacher w-6"></i> Classroom English</a>
+                <a href="#dialogue" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-comments w-6"></i> Dialogue Practice</a>
+            </div>
+
+            <!-- Nav for Lesson 2 -->
+            <div id="nav-links-l2">
+                <a href="#l2-overview" class="nav-link flex items-center p-3 rounded-lg bg-indigo-800 font-medium transition-colors text-white"><i class="fas fa-map-signs w-6"></i> Overview & Goals</a>
+                <a href="#l2-warmup" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-brain w-6"></i> What Do You Know?</a>
+                <a href="#l2-vocab" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-id-card w-6"></i> Personal Identity</a>
+                <a href="#l2-grammar" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-question-circle w-6"></i> WH-Questions</a>
+                <a href="#l2-interactive" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-gamepad w-6"></i> Quizzes & Build</a>
+                <a href="#l2-dialogue" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-comments w-6"></i> Interview Friend</a>
+                <a href="#l2-safety" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-shield-alt w-6"></i> Digital Safety</a>
+                <a href="#l2-speaking" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-microphone-alt w-6"></i> Speaking & Reflection</a>
+            </div>
+
+            <!-- Nav for Lesson 3 -->
+            <div id="nav-links-l3" class="hidden">
+                <a href="#l3-overview" class="nav-link flex items-center p-3 rounded-lg bg-indigo-800 font-medium transition-colors text-white"><i class="fas fa-users w-6"></i> Overview & Goals</a>
+                <a href="#l3-vocab" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-sitemap w-6"></i> Family Vocabulary</a>
+                <a href="#l3-grammar" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-link w-6"></i> Possessive Adjectives</a>
+                <a href="#l3-interactive" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-puzzle-piece w-6"></i> Build Sentences</a>
+                <a href="#l3-reading" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-book-open w-6"></i> Reading Practice</a>
+                <a href="#l3-dialogue" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-comments w-6"></i> Family Interview</a>
+                <a href="#l3-creative" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-paint-brush w-6"></i> Creative Tasks</a>
+                <a href="#l3-speaking" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-microphone w-6"></i> AI Speaking</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 overflow-y-auto h-screen p-4 md:p-8 bg-gray-50 scroll-smooth" id="main-scroll">
+        <div class="max-w-4xl mx-auto pb-24">
+            
+            <!-- LESSON 1 CONTENT (Hidden by default to focus on Lesson 2) -->
+            <div id="lesson1-container" class="hidden">
+                <header class="text-center mb-10 animate-fade-in mt-4">
+                    <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Lesson 1</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-2">Introduction & Classroom English</h1>
+                </header>
+                <!-- Placeholder for L1 content to keep file clean. In a real app, L1 HTML remains here. -->
+                <div class="section-card text-center p-10"><p class="text-gray-500">Lesson 1 Content is loaded. Switch back to Lesson 2 to view new content.</p></div>
+            </div>
+
+            <!-- LESSON 2 CONTENT -->
+            <div id="lesson2-container" class="animate-fade-in">
+                <!-- Hero Header -->
+                <header class="text-center mb-10 mt-4">
+                    <span class="bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Lesson 2</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-2">Personal Information</h1>
+                    <p class="text-gray-500 text-lg">Master asking and giving personal info, WH-questions, and digital safety.</p>
+                </header>
+
+                <section id="l2-overview" class="section-card">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-map-signs text-primary mr-3"></i> 1. Lesson Overview</h2>
+                            <p class="text-sm text-gray-600 mb-4">Personal information is information about who we are, where we are from, what we like, and what we do.</p>
+                            <ul class="space-y-3 text-gray-600 text-sm">
+                                <li class="flex"><i class="fas fa-check text-secondary mt-1 mr-2"></i> ask for personal information</li>
+                                <li class="flex"><i class="fas fa-check text-secondary mt-1 mr-2"></i> give appropriate personal info</li>
+                                <li class="flex"><i class="fas fa-check text-secondary mt-1 mr-2"></i> use WH-questions</li>
+                                <li class="flex"><i class="fas fa-check text-secondary mt-1 mr-2"></i> conduct a simple interview</li>
+                            </ul>
+                            <div class="bg-blue-50 p-3 rounded-lg text-blue-800 mt-4 border border-blue-100 text-sm">
+                                <strong>Essential Understanding:</strong> Good communication begins with asking appropriate questions and listening respectfully.
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-flag-checkered text-accent mr-3"></i> 2. Learning Objectives</h2>
+                            <div class="grid grid-cols-1 gap-2 text-sm text-gray-700">
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> Identify common personal information</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> Understand the functions of WH-question words</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> Ask and answer questions about personal identity</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> Report information about a friend</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> Distinguish appropriate and sensitive info</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l2-warmup" class="section-card pt-10 border-l-4 border-l-indigo-500">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-brain text-indigo-500 mr-3"></i> 3. Deep Learning Starter</h2>
+                    <h3 class="font-bold text-lg text-gray-700 mb-2">WHAT DO YOU KNOW ABOUT ME?</h3>
+                    <p class="text-gray-600 mb-6">Imagine you meet a new student in your class. You want to know more about them. What would you ask?</p>
+                    
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="bg-gray-100 border px-3 py-1 rounded-full text-sm hover:bg-indigo-50 cursor-pointer">What is your name?</span>
+                        <span class="bg-gray-100 border px-3 py-1 rounded-full text-sm hover:bg-indigo-50 cursor-pointer">Where are you from?</span>
+                        <span class="bg-gray-100 border px-3 py-1 rounded-full text-sm hover:bg-indigo-50 cursor-pointer">What class are you in?</span>
+                        <span class="bg-gray-100 border px-3 py-1 rounded-full text-sm hover:bg-indigo-50 cursor-pointer">What is your hobby?</span>
+                        <span class="bg-gray-100 border px-3 py-1 rounded-full text-sm hover:bg-indigo-50 cursor-pointer">What is your favorite subject?</span>
+                        <span class="bg-gray-100 border px-3 py-1 rounded-full text-sm hover:bg-indigo-50 cursor-pointer">What do you want to be?</span>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-4 text-center">
+                        <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <i class="fas fa-lightbulb text-yellow-500 text-2xl mb-2"></i>
+                            <h4 class="font-bold">THINK</h4>
+                            <p class="text-xs text-gray-600 mt-1">Which questions are appropriate when meeting someone for the first time?</p>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <i class="fas fa-user-friends text-blue-500 text-2xl mb-2"></i>
+                            <h4 class="font-bold">PAIR</h4>
+                            <p class="text-xs text-gray-600 mt-1">Discuss your answers with a partner.</p>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                            <i class="fas fa-bullhorn text-green-500 text-2xl mb-2"></i>
+                            <h4 class="font-bold">SHARE</h4>
+                            <p class="text-xs text-gray-600 mt-1">Share one appropriate question with the class.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l2-vocab" class="section-card pt-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-id-card text-blue-500 mr-3"></i> 4 & 5. Personal Identity & Vocabulary</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 bg-gray-100 p-2 rounded text-center">Identity Profile Example</h3>
+                            <table class="w-full text-sm text-left border-collapse">
+                                <tbody>
+                                    <tr class="border-b"><th class="py-2 text-gray-600 w-1/3">Full name</th><td class="py-2 font-medium">Andi Pratama</td></tr>
+                                    <tr class="border-b"><th class="py-2 text-gray-600">Nickname</th><td class="py-2 font-medium">Andi</td></tr>
+                                    <tr class="border-b"><th class="py-2 text-gray-600">Age</th><td class="py-2 font-medium">15 years old</td></tr>
+                                    <tr class="border-b"><th class="py-2 text-gray-600">Hometown</th><td class="py-2 font-medium">Banggai</td></tr>
+                                    <tr class="border-b"><th class="py-2 text-gray-600">Class</th><td class="py-2 font-medium">X-B</td></tr>
+                                    <tr class="border-b"><th class="py-2 text-gray-600">School</th><td class="py-2 font-medium">SMA Negeri 1 Banggai</td></tr>
+                                    <tr class="border-b"><th class="py-2 text-gray-600">Hobby</th><td class="py-2 font-medium">Playing football</td></tr>
+                                    <tr class="border-b"><th class="py-2 text-gray-600">Dream</th><td class="py-2 font-medium">Becoming a teacher</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div>
+                            <div class="mb-4">
+                                <h3 class="font-bold text-sm uppercase text-gray-500 mb-2">Useful Nouns</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs font-medium">name</span>
+                                    <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs font-medium">age</span>
+                                    <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs font-medium">hometown</span>
+                                    <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs font-medium">favorite subject</span>
+                                    <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs font-medium">ambition</span>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h3 class="font-bold text-sm uppercase text-gray-500 mb-2">Useful Verbs</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">live</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">study</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">like</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">enjoy</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">want</span>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border">
+                                <h3 class="font-bold text-sm uppercase text-gray-500 mb-2">Example Sentences</h3>
+                                <ul class="text-sm space-y-1 text-gray-700">
+                                    <li>• I <strong class="text-green-600">live</strong> in Banggai.</li>
+                                    <li>• I <strong class="text-green-600">study</strong> at SMA Negeri 1 Banggai.</li>
+                                    <li>• I <strong class="text-green-600">want</strong> to become a teacher.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l2-grammar" class="section-card pt-10 bg-indigo-50 border-none">
+                    <div class="text-center mb-8">
+                        <span class="text-indigo-600 font-bold tracking-widest text-sm uppercase">6 to 14. Grammar Focus</span>
+                        <h2 class="text-3xl font-black text-gray-900 mt-2">WH-QUESTIONS</h2>
+                        <p class="text-gray-600 mt-2">WH-questions are used to get specific information.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        <!-- WHAT -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-500 hover:shadow-md transition">
+                            <h3 class="text-2xl font-black text-blue-600 mb-1">WHAT</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold mb-3">Things / Information</p>
+                            <p class="text-sm font-medium mb-1"><i class="fas fa-comment-dots text-gray-400 mr-2"></i>What is your name?</p>
+                            <p class="text-sm text-gray-600 ml-6">→ My name is Andi.</p>
+                        </div>
+                        <!-- WHERE -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-green-500 hover:shadow-md transition">
+                            <h3 class="text-2xl font-black text-green-600 mb-1">WHERE</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold mb-3">Place</p>
+                            <p class="text-sm font-medium mb-1"><i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>Where are you from?</p>
+                            <p class="text-sm text-gray-600 ml-6">→ I am from Banggai.</p>
+                        </div>
+                        <!-- WHEN -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-yellow-500 hover:shadow-md transition">
+                            <h3 class="text-2xl font-black text-yellow-600 mb-1">WHEN</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold mb-3">Time</p>
+                            <p class="text-sm font-medium mb-1"><i class="far fa-clock text-gray-400 mr-2"></i>When is your birthday?</p>
+                            <p class="text-sm text-gray-600 ml-6">→ It is in July.</p>
+                        </div>
+                        <!-- WHO -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-500 hover:shadow-md transition">
+                            <h3 class="text-2xl font-black text-purple-600 mb-1">WHO</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold mb-3">Person</p>
+                            <p class="text-sm font-medium mb-1"><i class="fas fa-user text-gray-400 mr-2"></i>Who is your best friend?</p>
+                            <p class="text-sm text-gray-600 ml-6">→ My best friend is Rina.</p>
+                        </div>
+                        <!-- WHY -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-red-500 hover:shadow-md transition">
+                            <h3 class="text-2xl font-black text-red-600 mb-1">WHY</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold mb-3">Reason</p>
+                            <p class="text-sm font-medium mb-1"><i class="fas fa-question text-gray-400 mr-2"></i>Why do you like English?</p>
+                            <p class="text-sm text-gray-600 ml-6">→ <strong>Because</strong> it is interesting.</p>
+                        </div>
+                        <!-- HOW -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-500 hover:shadow-md transition">
+                            <h3 class="text-2xl font-black text-teal-600 mb-1">HOW</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold mb-3">Manner / Condition</p>
+                            <p class="text-sm font-medium mb-1"><i class="fas fa-cog text-gray-400 mr-2"></i>How are you?</p>
+                            <p class="text-sm text-gray-600 ml-6">→ I'm fine.</p>
+                        </div>
+                    </div>
+
+                    <!-- Special Case -->
+                    <div class="bg-gradient-to-r from-orange-100 to-red-100 p-6 rounded-xl border border-orange-200 mt-6 shadow-inner text-center">
+                        <h3 class="font-bold text-orange-800 text-xl mb-2">⭐ SPECIAL QUESTION: HOW OLD...?</h3>
+                        <p class="text-gray-700 mb-4">We use <strong class="text-orange-600">How old are you?</strong> to ask about someone's age.</p>
+                        <div class="flex justify-center gap-8 text-sm md:text-base">
+                            <div class="bg-white px-4 py-2 rounded shadow-sm border-red-300 border text-red-600 font-medium">
+                                ❌ I have 15 years old.
+                            </div>
+                            <div class="bg-white px-4 py-2 rounded shadow-sm border-green-300 border text-green-600 font-medium">
+                                ✅ I am 15 years old.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l2-interactive" class="section-card pt-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-gamepad text-secondary mr-3"></i> 15 & 16. Interactive Practice</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Multiple Choice Quiz -->
+                        <div class="border rounded-xl p-5 bg-white shadow-sm">
+                            <h3 class="font-bold text-lg mb-4 text-primary"><i class="fas fa-crosshairs mr-2"></i> Choose the Correct Word</h3>
+                            
+                            <div class="space-y-6" id="wh-quiz-container">
+                                <!-- Q1 -->
+                                <div class="wh-q" data-ans="What">
+                                    <p class="font-medium mb-2">1. <span class="border-b-2 border-gray-400 w-10 inline-block"></span> is your name?</p>
+                                    <div class="flex gap-2">
+                                        <button onclick="checkWH(this, 'Where')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">Where</button>
+                                        <button onclick="checkWH(this, 'What')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">What</button>
+                                        <button onclick="checkWH(this, 'Who')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">Who</button>
+                                    </div>
+                                </div>
+                                <!-- Q2 -->
+                                <div class="wh-q" data-ans="Where">
+                                    <p class="font-medium mb-2">2. <span class="border-b-2 border-gray-400 w-10 inline-block"></span> are you from?</p>
+                                    <div class="flex gap-2">
+                                        <button onclick="checkWH(this, 'What')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">What</button>
+                                        <button onclick="checkWH(this, 'When')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">When</button>
+                                        <button onclick="checkWH(this, 'Where')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">Where</button>
+                                    </div>
+                                </div>
+                                <!-- Q3 -->
+                                <div class="wh-q" data-ans="Why">
+                                    <p class="font-medium mb-2">3. <span class="border-b-2 border-gray-400 w-10 inline-block"></span> do you like English?</p>
+                                    <div class="flex gap-2">
+                                        <button onclick="checkWH(this, 'Where')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">Where</button>
+                                        <button onclick="checkWH(this, 'Why')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">Why</button>
+                                        <button onclick="checkWH(this, 'Who')" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">Who</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="wh-feedback" class="mt-4 text-sm font-bold hidden p-3 rounded"></div>
+                        </div>
+
+                        <!-- Word Order Challenge -->
+                        <div class="bg-gray-800 text-white rounded-xl p-5 shadow-lg">
+                            <h3 class="font-bold text-lg mb-2 text-yellow-400"><i class="fas fa-puzzle-piece mr-2"></i> Build the Question</h3>
+                            <p class="text-xs text-gray-400 mb-4">Click the words in the correct order to form the question.</p>
+                            
+                            <!-- Build Q1 -->
+                            <div class="mb-6">
+                                <p class="text-sm font-bold text-gray-300 mb-2">Challenge 1</p>
+                                <div class="flex gap-2 mb-2" id="scramble-1">
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-1')">from</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-1')">Where</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-1')">are</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-1')">you</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-1')">?</button>
+                                </div>
+                                <div id="drop-1" class="min-h-[40px] border-2 border-dashed border-gray-600 p-2 flex gap-2 rounded bg-gray-900" data-target="Where are you from ?"></div>
+                                <div id="check-1" class="text-green-400 text-xs font-bold mt-1 hidden">✅ Correct!</div>
+                            </div>
+
+                            <!-- Build Q2 -->
+                            <div>
+                                <p class="text-sm font-bold text-gray-300 mb-2">Challenge 2</p>
+                                <div class="flex gap-2 mb-2" id="scramble-2">
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-2')">old</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-2')">you</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-2')">are</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-2')">How</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded" onclick="moveWord(this, 'drop-2')">?</button>
+                                </div>
+                                <div id="drop-2" class="min-h-[40px] border-2 border-dashed border-gray-600 p-2 flex gap-2 rounded bg-gray-900" data-target="How old are you ?"></div>
+                                <div id="check-2" class="text-green-400 text-xs font-bold mt-1 hidden">✅ Correct!</div>
+                            </div>
+                            
+                            <button onclick="resetBuilder()" class="mt-4 text-xs text-gray-400 hover:text-white underline">Reset Words</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l2-dialogue" class="section-card pt-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-comments text-blue-500 mr-3"></i> 17. Model Dialogue: Getting to Know You</h2>
+                    
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 relative shadow-inner mb-6">
+                        <button onclick="readDialogueL2()" id="btn-read-l2" class="absolute top-4 right-4 bg-primary text-white rounded-full p-3 shadow hover:bg-indigo-700 transition" title="Listen to Dialogue">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        
+                        <div class="space-y-4 max-w-lg mx-auto text-sm md:text-base">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-800 shrink-0">A</div>
+                                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-800 border">Hi! Nice to meet you. What's your name?</div>
+                            </div>
+                            <div class="flex items-start gap-3 flex-row-reverse">
+                                <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-800 shrink-0">R</div>
+                                <div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-sm">My name is Rina. What's your name?</div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-800 shrink-0">A</div>
+                                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-800 border">I'm Andi. Where are you from?</div>
+                            </div>
+                            <div class="flex items-start gap-3 flex-row-reverse">
+                                <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-800 shrink-0">R</div>
+                                <div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-sm">I am from Banggai. What class are you in?</div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-800 shrink-0">A</div>
+                                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-800 border">I am in Class X-B. What is your hobby?</div>
+                            </div>
+                            <div class="flex items-start gap-3 flex-row-reverse">
+                                <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-800 shrink-0">R</div>
+                                <div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-sm">I enjoy listening to music.</div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-800 shrink-0">A</div>
+                                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-800 border">Why do you like music?</div>
+                            </div>
+                            <div class="flex items-start gap-3 flex-row-reverse">
+                                <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-800 shrink-0">R</div>
+                                <div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-sm">Because it helps me relax.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200">
+                        <h3 class="font-bold text-yellow-800 mb-3"><i class="fas fa-search mr-2"></i> Dialogue Analysis</h3>
+                        <p class="text-sm text-gray-700 mb-2">Find the information from the text:</p>
+                        <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1 font-medium">
+                            <li>Andi's hometown: <span class="text-indigo-600">Banggai</span></li>
+                            <li>Rina's class: <span class="text-indigo-600">X-B</span></li>
+                            <li>Rina's hobby: <span class="text-indigo-600">Listening to music</span></li>
+                            <li>Why she likes it: <span class="text-indigo-600">Because it helps her relax.</span></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="l2-safety" class="section-card pt-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-shield-alt text-green-500 mr-3"></i> 21. Personal Information & Digital Safety</h2>
+                    <p class="text-gray-600 mb-6 font-medium">Not all personal information should be shared with everyone. Think before you share!</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-green-50 border-2 border-green-400 p-4 rounded-xl">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl mb-3 mx-auto shadow"><i class="fas fa-check"></i></div>
+                            <h3 class="font-bold text-green-800 text-center mb-2">Generally Appropriate</h3>
+                            <p class="text-xs text-center text-gray-600 mb-3">Safe for classroom introductions.</p>
+                            <ul class="text-sm text-green-900 space-y-1 pl-4 list-disc">
+                                <li>Name / Nickname</li>
+                                <li>Class & Hometown</li>
+                                <li>Hobbies & Interests</li>
+                                <li>Dreams</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 border-2 border-yellow-400 p-4 rounded-xl">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white text-2xl mb-3 mx-auto shadow"><i class="fas fa-exclamation"></i></div>
+                            <h3 class="font-bold text-yellow-800 text-center mb-2">Share Carefully</h3>
+                            <p class="text-xs text-center text-gray-600 mb-3">Only with people you trust.</p>
+                            <ul class="text-sm text-yellow-900 space-y-1 pl-4 list-disc">
+                                <li>Phone number</li>
+                                <li>Detailed home location</li>
+                                <li>Personal social-media account</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 border-2 border-red-400 p-4 rounded-xl">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white text-2xl mb-3 mx-auto shadow"><i class="fas fa-times"></i></div>
+                            <h3 class="font-bold text-red-800 text-center mb-2">Never Share Publicly</h3>
+                            <p class="text-xs text-center text-gray-600 mb-3">Keep this completely private.</p>
+                            <ul class="text-sm text-red-900 space-y-1 pl-4 list-disc">
+                                <li>Passwords & PINs</li>
+                                <li>OTP codes</li>
+                                <li>Banking information</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l2-speaking" class="section-card pt-10 border-2 border-primary">
+                    <div class="text-center">
+                        <div class="inline-block bg-primary text-white p-4 rounded-full mb-4 shadow-lg">
+                            <i class="fas fa-user-friends text-3xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">Introduce Your Friend</h2>
+                        <p class="text-gray-600 mb-6 max-w-xl mx-auto">25 & 26. Your mission: Introduce your partner to the class using the structure below. Speak confidently!</p>
+                    </div>
+
+                    <div class="bg-gray-50 border rounded-xl p-6 mb-6 max-w-2xl mx-auto text-left relative">
+                        <p class="font-mono text-gray-700 leading-loose">
+                            Good morning, everyone. <br>
+                            I would like to introduce my friend. <br>
+                            His/Her name is __________. <br>
+                            He/She is from __________. <br>
+                            He/She is in Class __________. <br>
+                            His/Her hobby is __________. <br>
+                            He/She wants to be __________. <br>
+                            Thank you.
+                        </p>
+                    </div>
+
+                    <div class="text-center bg-indigo-900 p-6 rounded-xl shadow-lg relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 text-7xl opacity-10"><i class="fas fa-robot text-white"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">🤖 AI Speaking Practice</h3>
+                        <p class="text-indigo-200 text-sm mb-4">Click start to record your voice. Our AI will grade your pronunciation!</p>
+                        
+                        <button id="btn-speak-l2" onclick="startSpeakingL2()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 flex items-center justify-center mx-auto text-lg relative z-10">
+                            <i class="fas fa-microphone mr-2 animate-pulse" id="record-icon-l2"></i> <span id="speak-text-l2">START SPEAKING</span>
+                        </button>
+                        
+                        <!-- Simulated AI Feedback -->
+                        <div id="ai-feedback-l2" class="hidden mt-6 p-4 bg-white rounded-lg text-left max-w-md mx-auto shadow-xl relative z-10">
+                            <h4 class="font-bold text-gray-800 mb-2 border-b pb-2">AI Feedback Results</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between"><span>Pronunciation</span> <span class="text-yellow-400">⭐⭐⭐⭐☆</span></div>
+                                <div class="flex justify-between"><span>Grammar</span> <span class="text-yellow-400">⭐⭐⭐⭐⭐</span></div>
+                                <div class="flex justify-between"><span>Fluency</span> <span class="text-yellow-400">⭐⭐⭐⭐☆</span></div>
+                            </div>
+                            <div class="mt-3 p-2 bg-green-50 text-green-800 rounded border border-green-200 text-xs font-medium">
+                                🌟 <strong>Great job!</strong> Your introduction is clear. Try to practice the pronunciation of "favorite".
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="l2-reflection" class="section-card pt-10 mb-20 bg-gradient-to-br from-white to-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-award text-yellow-500 mr-3"></i> 29. Self-Assessment & Completion</h2>
+                    
+                    <div class="mb-8 space-y-4 max-w-xl mx-auto text-gray-700">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span>I can introduce myself.</span>
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span>I can ask personal questions.</span>
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span>I can introduce my friend.</span>
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-2">
+                            <span>I can protect my personal information.</span>
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-8 border-t border-gray-200 mt-8">
+                        <p class="italic text-gray-600 mb-6 px-4">“Getting to know someone is not just about asking questions. It is about listening, respecting differences, and building meaningful connections.”</p>
+                        <button onclick="completeLesson2()" class="bg-gradient-to-r from-secondary to-green-600 hover:from-green-600 hover:to-secondary text-white font-black py-4 px-10 rounded-xl shadow-xl transition-all transform hover:scale-105 text-xl flex items-center justify-center mx-auto">
+                            <i class="fas fa-check-circle mr-3"></i> COMPLETE LESSON 2
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- LESSON 3 CONTENT -->
+            <div id="lesson3-container" class="hidden animate-fade-in">
+                <!-- Hero Header -->
+                <header class="text-center mb-10 mt-4">
+                    <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Lesson 3</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-2">Family Members 👨‍👩‍👧‍👦</h1>
+                    <p class="text-gray-500 text-lg">Master talking about family, relationships, and possessive adjectives.</p>
+                </header>
+
+                <section id="l3-overview" class="section-card">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-users text-green-600 mr-3"></i> 1. Lesson Overview</h2>
+                            <p class="text-sm text-gray-600 mb-4">Family is an important part of our lives. In this lesson, students learn how to talk about family members, describe relationships, and tell simple information about their families in English.</p>
+                            <p class="text-sm text-gray-600 mb-3 font-semibold">Students will learn to use:</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded font-bold">my</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded font-bold">your</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded font-bold">his</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded font-bold">her</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded font-bold">its</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded font-bold">our</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded font-bold">their</span>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg text-green-900 mt-4 border border-green-200 text-sm italic shadow-inner">
+                                <strong>Essential Understanding:</strong> "Every family is unique. Learning how to talk about our family helps us understand ourselves and appreciate other people's families."
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-bullseye text-accent mr-3"></i> 2. Learning Objectives</h2>
+                            <div class="grid grid-cols-1 gap-2 text-sm text-gray-700">
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Identify common family members</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Understand possessive adjectives functions</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Use my, your, his, her, etc. correctly</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Ask and answer questions about family</div>
+                                <div class="bg-gray-50 p-2 rounded border flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Create a simple family profile</div>
+                            </div>
+                            
+                            <h3 class="font-bold text-lg text-gray-700 mt-6 mb-2">3. Deep Learning Starter 🧠</h3>
+                            <p class="text-sm text-gray-600 mb-3">What does family mean to you? A family can include parents, siblings, grandparents, and relatives. But families can be different.</p>
+                            <div class="bg-white border-2 border-dashed border-indigo-200 p-4 rounded-xl text-center">
+                                <p class="text-indigo-800 font-semibold mb-2">Complete this sentence:</p>
+                                <p class="text-lg font-handwriting text-gray-700 italic border-b border-gray-300 inline-block pb-1">"My family is special because..."</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l3-vocab" class="section-card pt-10 border-t-4 border-t-green-500">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-sitemap text-green-500 mr-3"></i> 4 & 5. Vocabulary & Relationships</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 bg-green-100 text-green-800 p-2 rounded text-center">Immediate Family</h3>
+                            <table class="w-full text-sm text-left border-collapse bg-white shadow-sm rounded-lg overflow-hidden border">
+                                <thead class="bg-gray-50 text-gray-600 uppercase"><tr><th class="py-2 px-4 border-b">English</th><th class="py-2 px-4 border-b">Indonesian</th></tr></thead>
+                                <tbody>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-blue-600">father</td><td class="py-2 px-4 text-gray-600">ayah</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-pink-600">mother</td><td class="py-2 px-4 text-gray-600">ibu</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-purple-600">parents</td><td class="py-2 px-4 text-gray-600">orang tua</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-blue-500">son</td><td class="py-2 px-4 text-gray-600">anak laki-laki</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-pink-500">daughter</td><td class="py-2 px-4 text-gray-600">anak perempuan</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-blue-400">brother</td><td class="py-2 px-4 text-gray-600">saudara laki-laki</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-pink-400">sister</td><td class="py-2 px-4 text-gray-600">saudara perempuan</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-indigo-600">husband</td><td class="py-2 px-4 text-gray-600">suami</td></tr>
+                                    <tr class="hover:bg-gray-50"><td class="py-2 px-4 font-bold text-indigo-600">wife</td><td class="py-2 px-4 text-gray-600">istri</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 bg-yellow-100 text-yellow-800 p-2 rounded text-center">Extended Family</h3>
+                            <table class="w-full text-sm text-left border-collapse bg-white shadow-sm rounded-lg overflow-hidden border">
+                                <thead class="bg-gray-50 text-gray-600 uppercase"><tr><th class="py-2 px-4 border-b">English</th><th class="py-2 px-4 border-b">Indonesian</th></tr></thead>
+                                <tbody>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-blue-700">grandfather</td><td class="py-2 px-4 text-gray-600">kakek</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-pink-700">grandmother</td><td class="py-2 px-4 text-gray-600">nenek</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-purple-700">grandparents</td><td class="py-2 px-4 text-gray-600">kakek & nenek</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-blue-500">uncle</td><td class="py-2 px-4 text-gray-600">paman</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-pink-500">aunt</td><td class="py-2 px-4 text-gray-600">bibi</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-indigo-500">cousin</td><td class="py-2 px-4 text-gray-600">sepupu</td></tr>
+                                    <tr class="border-b hover:bg-gray-50"><td class="py-2 px-4 font-bold text-blue-400">nephew</td><td class="py-2 px-4 text-gray-600">keponakan (L)</td></tr>
+                                    <tr class="hover:bg-gray-50"><td class="py-2 px-4 font-bold text-pink-400">niece</td><td class="py-2 px-4 text-gray-600">keponakan (P)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="font-bold text-gray-700 mb-4 uppercase text-sm tracking-wider">How to Describe Relationships</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="flex items-center p-3 bg-white rounded shadow-sm border-l-4 border-blue-400">
+                                <span class="font-medium mr-2">My father's brother is my</span> <strong class="text-blue-600 ml-auto">uncle</strong>.
+                            </div>
+                            <div class="flex items-center p-3 bg-white rounded shadow-sm border-l-4 border-pink-400">
+                                <span class="font-medium mr-2">My mother's sister is my</span> <strong class="text-pink-600 ml-auto">aunt</strong>.
+                            </div>
+                            <div class="flex items-center p-3 bg-white rounded shadow-sm border-l-4 border-purple-400">
+                                <span class="font-medium mr-2">My mother's mother is my</span> <strong class="text-purple-600 ml-auto">grandmother</strong>.
+                            </div>
+                            <div class="flex items-center p-3 bg-white rounded shadow-sm border-l-4 border-green-400">
+                                <span class="font-medium mr-2">My uncle's son is my</span> <strong class="text-green-600 ml-auto">cousin</strong>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Quiz for Vocab -->
+                    <div class="mt-8 border-2 border-indigo-100 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-indigo-900 mb-4"><i class="fas fa-puzzle-piece text-indigo-500 mr-2"></i> 6. WHO IS IT? (Interactive Quiz)</h3>
+                        <div class="grid md:grid-cols-2 gap-6" id="vocab-quiz-container">
+                            <div class="quiz-q" data-ans="father">
+                                <p class="font-medium mb-3">1. My mother's husband is my...</p>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">brother</button>
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">father</button>
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">uncle</button>
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">cousin</button>
+                                </div>
+                            </div>
+                            <div class="quiz-q" data-ans="aunt">
+                                <p class="font-medium mb-3">2. My father's sister is my...</p>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">grandmother</button>
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">cousin</button>
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">aunt</button>
+                                    <button onclick="checkQuizBtn(this)" class="py-2 border rounded-lg hover:bg-indigo-50 text-sm font-medium transition">niece</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l3-grammar" class="section-card pt-10 bg-gradient-to-b from-white to-blue-50">
+                    <div class="text-center mb-8">
+                        <span class="text-blue-600 font-bold tracking-widest text-sm uppercase">7 to 10. Grammar Focus</span>
+                        <h2 class="text-3xl font-black text-gray-900 mt-2">POSSESSIVE ADJECTIVES</h2>
+                        <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Possessive adjectives are used to show ownership, relationship, or connection. <br><strong>Rule: Possessive Adjective + Noun</strong> (e.g., <em>my mother</em>).</p>
+                    </div>
+
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full max-w-3xl mx-auto text-center bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100">
+                            <thead class="bg-blue-600 text-white">
+                                <tr>
+                                    <th class="py-3 px-4 font-bold tracking-wider">Subject Pronoun</th>
+                                    <th class="py-3 px-4 font-bold tracking-wider">Possessive Adjective</th>
+                                    <th class="py-3 px-4 font-bold tracking-wider text-left">Example in a Sentence</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b"><td class="py-3 font-bold bg-gray-50">I</td><td class="py-3 font-black text-blue-600 text-lg">my</td><td class="py-3 text-left pl-6"><strong class="text-blue-600">My</strong> mother is a teacher.</td></tr>
+                                <tr class="border-b"><td class="py-3 font-bold bg-gray-50">You</td><td class="py-3 font-black text-blue-600 text-lg">your</td><td class="py-3 text-left pl-6">What is <strong class="text-blue-600">your</strong> brother's name?</td></tr>
+                                <tr class="border-b"><td class="py-3 font-bold bg-gray-50">He</td><td class="py-3 font-black text-blue-600 text-lg">his</td><td class="py-3 text-left pl-6"><strong class="text-blue-600">His</strong> father is a doctor.</td></tr>
+                                <tr class="border-b"><td class="py-3 font-bold bg-gray-50">She</td><td class="py-3 font-black text-blue-600 text-lg">her</td><td class="py-3 text-left pl-6"><strong class="text-blue-600">Her</strong> sister is a student.</td></tr>
+                                <tr class="border-b"><td class="py-3 font-bold bg-gray-50">It</td><td class="py-3 font-black text-blue-600 text-lg">its</td><td class="py-3 text-left pl-6">The cat is with <strong class="text-blue-600">its</strong> owner.</td></tr>
+                                <tr class="border-b"><td class="py-3 font-bold bg-gray-50">We</td><td class="py-3 font-black text-blue-600 text-lg">our</td><td class="py-3 text-left pl-6"><strong class="text-blue-600">Our</strong> family is happy.</td></tr>
+                                <tr><td class="py-3 font-bold bg-gray-50">They</td><td class="py-3 font-black text-blue-600 text-lg">their</td><td class="py-3 text-left pl-6"><strong class="text-blue-600">Their</strong> parents are teachers.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg max-w-3xl mx-auto mb-8 shadow-sm">
+                        <h3 class="font-bold text-red-700 text-lg mb-2"><i class="fas fa-exclamation-triangle mr-2"></i> DON'T CONFUSE THEM!</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <div class="bg-white p-3 rounded border border-red-100">
+                                <span class="font-bold text-gray-800 block mb-1">HE → HIS (Male)</span>
+                                <span class="text-gray-600">He is my brother.<br><strong class="text-red-500">His</strong> name is Andi.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded border border-red-100">
+                                <span class="font-bold text-gray-800 block mb-1">SHE → HER (Female)</span>
+                                <span class="text-gray-600">She is my sister.<br><strong class="text-red-500">Her</strong> name is Rina.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded border border-red-100">
+                                <span class="font-bold text-gray-800 block mb-1">THEY → THEIR (Plural)</span>
+                                <span class="text-gray-600">They are my parents.<br><strong class="text-red-500">Their</strong> house is in Banggai.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l3-interactive" class="section-card pt-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-magic text-yellow-500 mr-3"></i> 11 & 12. Grammar Practice</h2>
+                    
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Grammar Quiz -->
+                        <div class="bg-white border-2 border-blue-100 rounded-xl p-6 shadow-sm">
+                            <h3 class="font-bold text-lg mb-4 text-blue-800"><i class="fas fa-check-square mr-2"></i> 11. Choose the Correct Word</h3>
+                            <div class="space-y-4" id="grammar-quiz-container">
+                                <div class="quiz-q" data-ans="my">
+                                    <p class="font-medium mb-2">1. I love <span class="border-b-2 border-gray-400 w-12 inline-block"></span> family.</p>
+                                    <div class="flex gap-2">
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">his</button>
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">her</button>
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">my</button>
+                                    </div>
+                                </div>
+                                <div class="quiz-q" data-ans="her">
+                                    <p class="font-medium mb-2">2. She is talking to <span class="border-b-2 border-gray-400 w-12 inline-block"></span> mother.</p>
+                                    <div class="flex gap-2">
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">our</button>
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">her</button>
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">his</button>
+                                    </div>
+                                </div>
+                                <div class="quiz-q" data-ans="his">
+                                    <p class="font-medium mb-2">3. Andi is visiting <span class="border-b-2 border-gray-400 w-12 inline-block"></span> grandmother.</p>
+                                    <div class="flex gap-2">
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">her</button>
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">our</button>
+                                        <button onclick="checkQuizBtn(this)" class="flex-1 py-1 border rounded hover:bg-gray-50 text-sm">his</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sentence Builder -->
+                        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-lg">
+                            <h3 class="font-bold text-lg mb-2 text-yellow-400"><i class="fas fa-hammer mr-2"></i> 12. Build the Sentence</h3>
+                            <p class="text-xs text-gray-400 mb-4">Click words in order (Subject + Verb + Object/Complement).</p>
+                            
+                            <!-- Build 3 -->
+                            <div class="mb-5">
+                                <p class="text-sm font-bold text-gray-300 mb-2">Challenge 1</p>
+                                <div class="flex flex-wrap gap-2 mb-2" id="scramble-3">
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-3')">friendly</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-3')">is</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-3')">father</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-3')">My</button>
+                                </div>
+                                <div id="drop-3" class="min-h-[40px] border-2 border-dashed border-gray-600 p-2 flex gap-2 rounded bg-gray-800" data-target="My father is friendly"></div>
+                                <div id="check-3" class="text-green-400 text-xs font-bold mt-1 hidden">✅ Perfect!</div>
+                            </div>
+
+                            <!-- Build 4 -->
+                            <div class="mb-2">
+                                <p class="text-sm font-bold text-gray-300 mb-2">Challenge 2</p>
+                                <div class="flex flex-wrap gap-2 mb-2" id="scramble-4">
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-4')">sister</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-4')">student</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-4')">a</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-4')">her</button>
+                                    <button class="word-btn bg-gray-700 px-3 py-1 rounded text-sm" onclick="moveWord(this, 'drop-4')">is</button>
+                                </div>
+                                <div id="drop-4" class="min-h-[40px] border-2 border-dashed border-gray-600 p-2 flex gap-2 rounded bg-gray-800" data-target="her sister is a student"></div>
+                                <div id="check-4" class="text-green-400 text-xs font-bold mt-1 hidden">✅ Excellent!</div>
+                            </div>
+                            
+                            <button onclick="resetBuilder()" class="mt-4 text-xs text-gray-400 hover:text-white underline">Reset All Words</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l3-reading" class="section-card pt-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-book-open text-purple-600 mr-3"></i> 13 & 14. Reading: My Family</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-purple-50 p-6 rounded-xl border border-purple-100 shadow-inner">
+                            <h3 class="font-extrabold text-xl text-purple-900 mb-4 border-b-2 border-purple-200 pb-2">My Family</h3>
+                            <p class="text-gray-700 leading-relaxed text-sm mb-3">
+                                My name is Dika. I am a student of Class X-B at SMA Negeri 1 Banggai. I live with <strong class="text-purple-600">my</strong> family in Banggai.
+                            </p>
+                            <p class="text-gray-700 leading-relaxed text-sm mb-3">
+                                There are five people in <strong class="text-purple-600">my</strong> family. <strong class="text-purple-600">My</strong> father's name is Budi. He is a teacher. <strong class="text-purple-600">My</strong> mother's name is Sari. She is a nurse.
+                            </p>
+                            <p class="text-gray-700 leading-relaxed text-sm mb-3">
+                                I have one brother and one sister. <strong class="text-purple-600">My</strong> brother's name is Rian. He is a student. <strong class="text-purple-600">My</strong> sister's name is Dina. She likes reading books.
+                            </p>
+                            <p class="text-gray-700 leading-relaxed text-sm">
+                                We love <strong class="text-purple-600">our</strong> family very much. We usually have dinner together and talk about <strong class="text-purple-600">our</strong> day.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold text-lg mb-4 text-gray-800">14. Reading Check (Mental Check)</h3>
+                            <ul class="space-y-4 text-sm text-gray-600">
+                                <li>
+                                    <strong class="text-gray-800 block">1. Where does Dika live?</strong>
+                                    He lives in Banggai.
+                                </li>
+                                <li>
+                                    <strong class="text-gray-800 block">2. How many people are in his family?</strong>
+                                    There are five people.
+                                </li>
+                                <li>
+                                    <strong class="text-gray-800 block">3. What does his mother do?</strong>
+                                    She is a nurse.
+                                </li>
+                                <li class="bg-gray-100 p-3 rounded">
+                                    <strong class="text-gray-800 block"><i class="fas fa-search text-purple-500 mr-2"></i> 15. Deep Thinking: What do 'my' and 'our' tell us?</strong>
+                                    They show a relationship or connection between people and things (possession).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l3-dialogue" class="section-card pt-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-comments text-indigo-500 mr-3"></i> 16 & 19. Dialogue & Interview</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-xl border shadow-sm relative">
+                            <button onclick="readDialogueL3()" id="btn-read-l3" class="absolute top-4 right-4 bg-green-500 text-white rounded-full p-2 w-10 h-10 shadow hover:bg-green-600 transition flex items-center justify-center" title="Listen to Dialogue">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <h3 class="font-bold text-lg text-gray-800 mb-4">Talking About Family</h3>
+                            
+                            <div class="space-y-3 text-sm">
+                                <p><span class="font-bold text-blue-600">A:</span> Do you have a big family?</p>
+                                <p><span class="font-bold text-pink-600">B:</span> Yes, I do.</p>
+                                <p><span class="font-bold text-blue-600">A:</span> How many people are in your family?</p>
+                                <p><span class="font-bold text-pink-600">B:</span> There are five people in my family.</p>
+                                <p><span class="font-bold text-blue-600">A:</span> Who are they?</p>
+                                <p><span class="font-bold text-pink-600">B:</span> They are my father, my mother, my brother, my sister, and me.</p>
+                                <p><span class="font-bold text-blue-600">A:</span> What does your father do?</p>
+                                <p><span class="font-bold text-pink-600">B:</span> He is a teacher.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-6 rounded-xl shadow-lg transform rotate-1 hover:rotate-0 transition duration-300">
+                                <h3 class="font-black text-xl mb-2 flex items-center"><i class="fas fa-clipboard-list mr-2 text-yellow-300"></i> Family Interview Card</h3>
+                                <p class="text-indigo-100 text-xs mb-4">Use these questions to interview your partner.</p>
+                                <ul class="space-y-2 text-sm font-medium list-decimal pl-4">
+                                    <li>How many people are in your family?</li>
+                                    <li>Who are they?</li>
+                                    <li>Do you have any brothers or sisters?</li>
+                                    <li>What does your father/mother do?</li>
+                                    <li>What does your family usually do together?</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mt-6 bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                <h4 class="font-bold text-yellow-800 text-sm mb-1"><i class="fas fa-heart text-red-500 mr-2"></i> 25. Family & Respect</h4>
+                                <p class="text-xs text-gray-700">Families can be different (living with single parents, grandparents, etc.). There is no need to compare. <strong>Respect every family.</strong> Everyone deserves kindness.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l3-creative" class="section-card pt-10 border-l-4 border-l-yellow-500">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-paint-brush text-yellow-500 mr-3"></i> 20 & 21. Creative Tasks</h2>
+                    
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 bg-gray-50 border rounded-xl p-5 text-center">
+                            <i class="fas fa-tree text-green-500 text-3xl mb-3"></i>
+                            <h3 class="font-bold text-gray-800 mb-2">My Family Tree</h3>
+                            <p class="text-xs text-gray-600 mb-4">Create a simple map showing your grandparents, parents, and siblings.</p>
+                            <div class="inline-block bg-white border p-3 rounded text-sm text-gray-500 font-mono shadow-sm">
+                                Grandparents<br>↓<br>Parents<br>↓<br>Me + Siblings
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 bg-gray-50 border rounded-xl p-5 text-center">
+                            <i class="fas fa-id-badge text-blue-500 text-3xl mb-3"></i>
+                            <h3 class="font-bold text-gray-800 mb-2">Digital Family Profile</h3>
+                            <p class="text-xs text-gray-600 mb-4">Write a short paragraph filling in the blanks:</p>
+                            <div class="text-left bg-white border p-3 rounded text-xs text-gray-600 leading-relaxed shadow-sm">
+                                My name is ____. There are ____ people in my family. My father's name is ____. He is a ____. We live in ____. We usually ____ together.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Speaking Challenge -->
+                <section id="l3-speaking" class="section-card pt-10 border-2 border-green-500 mb-20 bg-green-50">
+                    <div class="text-center mb-8">
+                        <div class="inline-block bg-green-600 text-white p-4 rounded-full mb-4 shadow-lg">
+                            <i class="fas fa-microphone-alt text-3xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">26 & 27. Speak About Your Family</h2>
+                        <p class="text-gray-600 max-w-xl mx-auto">Speak for 45-60 seconds about your family members, their jobs, and what you do together.</p>
+                    </div>
+
+                    <div class="text-center bg-white p-8 rounded-2xl shadow-xl max-w-2xl mx-auto relative overflow-hidden border border-green-100">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">🤖 AI Speaking Practice</h3>
+                        <p class="text-gray-500 text-sm mb-6">Click start to record your voice telling the story of your family.</p>
+                        
+                        <button id="btn-speak-l3" onclick="startSpeakingL3()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-105 flex items-center justify-center mx-auto text-lg">
+                            <i class="fas fa-microphone mr-2" id="record-icon-l3"></i> <span id="speak-text-l3">START RECORDING</span>
+                        </button>
+                        
+                        <!-- Simulated AI Feedback -->
+                        <div id="ai-feedback-l3" class="hidden mt-8 text-left bg-gray-50 p-5 rounded-xl border">
+                            <h4 class="font-black text-gray-800 mb-3 border-b pb-2"><i class="fas fa-chart-bar text-green-500 mr-2"></i> AI Assessment</h4>
+                            <div class="grid grid-cols-2 gap-4 text-sm mb-4">
+                                <div class="flex justify-between bg-white p-2 rounded shadow-sm"><span>Pronunciation</span> <span class="text-yellow-400">⭐⭐⭐⭐☆</span></div>
+                                <div class="flex justify-between bg-white p-2 rounded shadow-sm"><span>Grammar</span> <span class="text-yellow-400">⭐⭐⭐⭐⭐</span></div>
+                                <div class="flex justify-between bg-white p-2 rounded shadow-sm"><span>Vocabulary</span> <span class="text-yellow-400">⭐⭐⭐⭐☆</span></div>
+                                <div class="flex justify-between bg-white p-2 rounded shadow-sm"><span>Confidence</span> <span class="text-yellow-400">⭐⭐⭐⭐⭐</span></div>
+                            </div>
+                            <div class="p-3 bg-blue-50 text-blue-800 rounded border border-blue-200 text-sm">
+                                🌟 <strong>Feedback:</strong> Your family description is clear and organized! Grammar tip: Great job remembering to use 'his' for a male and 'her' for a female person.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-10 mt-10">
+                        <button onclick="completeLesson3()" class="bg-gradient-to-r from-green-500 to-teal-600 hover:from-teal-600 hover:to-green-500 text-white font-black py-4 px-10 rounded-xl shadow-xl transition-all transform hover:scale-105 text-xl flex items-center justify-center mx-auto">
+                            <i class="fas fa-trophy mr-3 text-yellow-300"></i> COMPLETE LESSON 3
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal for Completion Lesson 2 -->
+    <div id="completion-modal-l2" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center transform scale-95 transition-transform" id="modal-content-l2">
+            <div class="text-6xl mb-4">🏆</div>
+            <h2 class="text-3xl font-black text-gray-800 mb-2">OUTSTANDING!</h2>
+            <p class="text-gray-600 mb-6">You have successfully completed Lesson 2: Personal Information.</p>
+            <div class="bg-gray-50 rounded-lg p-4 text-left text-sm mb-6 border">
+                <p class="font-bold mb-2">You mastered:</p>
+                <ul class="space-y-1 text-gray-600">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i> Asking WH-Questions</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i> Conducting a simple interview</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i> Digital Safety awareness</li>
+                </ul>
+            </div>
+            <button onclick="closeModalL2()" class="w-full bg-secondary text-white font-bold py-3 rounded-lg hover:bg-green-700 transition">
+                Return to Dashboard
+            </button>
+        </div>
+    </div>
+    
+    <!-- Modal for Completion Lesson 3 -->
+    <div id="completion-modal-l3" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center transform scale-95 transition-transform" id="modal-content-l3">
+            <div class="text-6xl mb-4">🏅</div>
+            <h2 class="text-3xl font-black text-gray-800 mb-2">FANTASTIC JOB!</h2>
+            <p class="text-gray-600 mb-6">You have successfully completed Lesson 3: Family Members.</p>
+            <div class="bg-green-50 rounded-lg p-4 text-left text-sm mb-6 border border-green-100">
+                <p class="font-bold text-green-900 mb-2">You mastered:</p>
+                <ul class="space-y-2 text-green-800">
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Family Vocabulary</li>
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Possessive Adjectives (my, his, our...)</li>
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Talking about your family confidently</li>
+                </ul>
+            </div>
+            <button onclick="closeModalL3()" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition shadow-md">
+                Return to Modules
+            </button>
+        </div>
+    </div>
+
+    <!-- Canvas for Confetti -->
+    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full hidden"></canvas>
+
+    <script>
+        // --- Navigation & Lesson Switching Logic ---
+        let currentLesson = 3; // Default to showing the newly added lesson
+
+        function switchLesson(lessonNum) {
+            currentLesson = lessonNum;
+            const l1Container = document.getElementById('lesson1-container');
+            const l2Container = document.getElementById('lesson2-container');
+            const l3Container = document.getElementById('lesson3-container'); // NEW
+            
+            const navL1 = document.getElementById('nav-links-l1');
+            const navL2 = document.getElementById('nav-links-l2');
+            const navL3 = document.getElementById('nav-links-l3'); // NEW
+            
+            const tabL1 = document.getElementById('tab-l1');
+            const tabL2 = document.getElementById('tab-l2');
+            const tabL3 = document.getElementById('tab-l3'); // NEW
+
+            window.scrollTo({ top: 0, behavior: 'auto' });
+
+            // Helper to reset tabs
+            [tabL1, tabL2, tabL3].forEach(tab => {
+                if(tab) {
+                    tab.classList.remove('bg-indigo-600', 'text-white', 'shadow');
+                    tab.classList.add('text-indigo-300');
+                }
+            });
+            // Helper to hide all containers and navs
+            [l1Container, l2Container, l3Container].forEach(c => c && c.classList.add('hidden'));
+            [navL1, navL2, navL3].forEach(n => n && n.classList.add('hidden'));
+
+            // Show selected
+            if(lessonNum === 1) {
+                l1Container.classList.remove('hidden');
+                navL1.classList.remove('hidden');
+                tabL1.classList.add('bg-indigo-600', 'text-white', 'shadow');
+                tabL1.classList.remove('text-indigo-300');
+            } else if(lessonNum === 2) {
+                l2Container.classList.remove('hidden');
+                navL2.classList.remove('hidden');
+                tabL2.classList.add('bg-indigo-600', 'text-white', 'shadow');
+                tabL2.classList.remove('text-indigo-300');
+            } else if(lessonNum === 3) {
+                l3Container.classList.remove('hidden');
+                navL3.classList.remove('hidden');
+                tabL3.classList.add('bg-indigo-600', 'text-white', 'shadow');
+                tabL3.classList.remove('text-indigo-300');
+            }
+        }
+
+        // Initialize display based on default
+        switchLesson(3); 
+
+        // Active Navigation Highlighting based on scroll
+        const mainScroll = document.getElementById('main-scroll');
+        mainScroll.addEventListener('scroll', () => {
+            let selector = '#lesson2-container section';
+            let navSelector = '#nav-links-l2 .nav-link';
+            
+            if(currentLesson === 1) { selector = '#lesson1-container section'; navSelector = '#nav-links-l1 .nav-link'; }
+            if(currentLesson === 3) { selector = '#lesson3-container section'; navSelector = '#nav-links-l3 .nav-link'; } // NEW
+
+            const sections = document.querySelectorAll(selector);
+            const navLinks = document.querySelectorAll(navSelector);
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (mainScroll.scrollTop >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('bg-indigo-800', 'font-medium', 'text-white');
+                link.classList.add('text-indigo-200');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('bg-indigo-800', 'font-medium', 'text-white');
+                    link.classList.remove('text-indigo-200');
+                }
+            });
+        });
+
+        // --- Lesson 2 Specific Interactive Logic ---
+
+        // WH-Question Quiz
+        function checkWH(btn, selectedAns) {
+            const parentDiv = btn.closest('.wh-q');
+            const correctAns = parentDiv.dataset.ans;
+            const feedback = document.getElementById('wh-feedback');
+            
+            // Reset siblings
+            parentDiv.querySelectorAll('button').forEach(b => {
+                b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500', 'bg-primary', 'text-white');
+                b.classList.add('hover:bg-gray-50');
+            });
+            
+            feedback.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            
+            if(selectedAns === correctAns) {
+                btn.classList.add('bg-green-500', 'text-white', 'border-green-600');
+                btn.classList.remove('hover:bg-gray-50');
+                feedback.classList.add('bg-green-100', 'text-green-800');
+                feedback.innerHTML = `✅ <strong>Correct!</strong> We use <em>${correctAns}</em> for this question.`;
+            } else {
+                btn.classList.add('bg-red-500', 'text-white', 'border-red-600');
+                btn.classList.remove('hover:bg-gray-50');
+                feedback.classList.add('bg-red-100', 'text-red-800');
+                feedback.innerHTML = `💡 <strong>Try again!</strong> Think about what kind of information is missing.`;
+            }
+        }
+
+        // Generic Quiz Logic for L3 (Vocab & Grammar)
+        function checkQuizBtn(btn) {
+            const parentDiv = btn.closest('.quiz-q');
+            const correctAns = parentDiv.dataset.ans.toLowerCase();
+            const selectedAns = btn.innerText.toLowerCase().trim();
+            
+            // Reset siblings
+            parentDiv.querySelectorAll('button').forEach(b => {
+                b.classList.remove('bg-green-500', 'border-green-600', 'bg-red-500', 'border-red-600', 'text-white');
+                b.classList.add('hover:bg-indigo-50', 'text-gray-800');
+            });
+            
+            if(selectedAns === correctAns) {
+                btn.classList.add('bg-green-500', 'text-white', 'border-green-600');
+                btn.classList.remove('hover:bg-indigo-50', 'text-gray-800');
+            } else {
+                btn.classList.add('bg-red-500', 'text-white', 'border-red-600');
+                btn.classList.remove('hover:bg-indigo-50', 'text-gray-800');
+            }
+        }
+
+        // Word Order Builder
+        // Store original states for reset
+        const originalScrambles = {};
+        document.querySelectorAll('[id^="scramble-"]').forEach(el => {
+            originalScrambles[el.id] = el.innerHTML;
+        });
+
+        function moveWord(btn, dropZoneId) {
+            const dropZone = document.getElementById(dropZoneId);
+            const sourceZoneId = dropZoneId.replace('drop', 'scramble');
+            const sourceZone = document.getElementById(sourceZoneId);
+            const checkId = dropZoneId.replace('drop', 'check');
+            
+            // Move logic
+            if(btn.parentElement.id === sourceZoneId) {
+                // Move to dropzone
+                dropZone.appendChild(btn);
+            } else {
+                // Move back to source
+                sourceZone.appendChild(btn);
+            }
+            
+            // Validation
+            const currentWords = Array.from(dropZone.children).map(b => b.innerText).join(' ');
+            const targetWords = dropZone.dataset.target;
+            
+            if(currentWords === targetWords) {
+                document.getElementById(checkId).classList.remove('hidden');
+                Array.from(dropZone.children).forEach(b => {
+                    b.classList.remove('bg-gray-700');
+                    b.classList.add('bg-green-600');
+                    b.style.pointerEvents = 'none'; // Lock when correct
+                });
+            } else {
+                document.getElementById(checkId).classList.add('hidden');
+            }
+        }
+
+        function resetBuilder() {
+            Object.keys(originalScrambles).forEach(key => {
+                const el = document.getElementById(key);
+                if(el) { // Added null check just in case
+                    el.innerHTML = originalScrambles[key];
+                    const dropId = key.replace('scramble', 'drop');
+                    document.getElementById(dropId).innerHTML = '';
+                    const checkId = key.replace('scramble', 'check');
+                    if(document.getElementById(checkId)) {
+                        document.getElementById(checkId).classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Lesson 2 TTS Dialogue
+        function readDialogueL2() {
+            const btn = document.getElementById('btn-read-l2');
+            if(!window.speechSynthesis) return alert("Browser doesn't support TTS.");
+            
+            const icon = btn.querySelector('i');
+            if(speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+                icon.classList.replace('fa-stop', 'fa-volume-up');
+                btn.classList.replace('bg-red-500', 'bg-primary');
+                return;
+            }
+
+            const text = "A says: Hi! Nice to meet you. What's your name? Rina says: My name is Rina. What's your name? A says: I'm Andi. Where are you from? Rina says: I am from Banggai. What class are you in? A says: I am in Class X-B. What is your hobby? Rina says: I enjoy listening to music. A says: Why do you like music? Rina says: Because it helps me relax.";
+            const utt = new SpeechSynthesisUtterance(text);
+            utt.rate = 0.9; 
+            
+            utt.onstart = () => {
+                icon.classList.replace('fa-volume-up', 'fa-stop');
+                btn.classList.replace('bg-primary', 'bg-red-500');
+            };
+            utt.onend = () => {
+                icon.classList.replace('fa-stop', 'fa-volume-up');
+                btn.classList.replace('bg-red-500', 'bg-primary');
+            };
+            speechSynthesis.speak(utt);
+        }
+
+        // AI Speaking Simulation L2
+        let isRecL2 = false;
+        let timerL2;
+        function startSpeakingL2() {
+            const btn = document.getElementById('btn-speak-l2');
+            const text = document.getElementById('speak-text-l2');
+            const feedback = document.getElementById('ai-feedback-l2');
+            
+            if(isRecL2) { stopRecL2(); return; }
+
+            isRecL2 = true;
+            btn.classList.replace('bg-red-500', 'bg-gray-700');
+            btn.classList.replace('hover:bg-red-600', 'hover:bg-gray-800');
+            text.innerText = "LISTENING... (15s)";
+            feedback.classList.add('hidden');
+            
+            let t = 15;
+            timerL2 = setInterval(() => {
+                t--;
+                text.innerText = `LISTENING... (${t}s)`;
+                if(t <= 0) stopRecL2();
+            }, 1000);
+        }
+        
+        function stopRecL2() {
+            clearInterval(timerL2);
+            isRecL2 = false;
+            const btn = document.getElementById('btn-speak-l2');
+            const text = document.getElementById('speak-text-l2');
+            
+            btn.classList.replace('bg-gray-700', 'bg-red-500');
+            btn.classList.replace('hover:bg-gray-800', 'hover:bg-red-600');
+            document.getElementById('record-icon-l2').classList.remove('text-red-300');
+            text.innerText = "TRY AGAIN";
+            
+            document.getElementById('ai-feedback-l2').classList.remove('hidden');
+        }
+
+        // Lesson 3 TTS Dialogue
+        function readDialogueL3() {
+            const btn = document.getElementById('btn-read-l3');
+            if(!window.speechSynthesis) return alert("Browser doesn't support TTS.");
+            
+            const icon = btn.querySelector('i');
+            if(speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+                icon.classList.replace('fa-stop', 'fa-volume-up');
+                return;
+            }
+
+            const text = "A says: Do you have a big family? B says: Yes, I do. A says: How many people are in your family? B says: There are five people in my family. A says: Who are they? B says: They are my father, my mother, my brother, my sister, and me. A says: What does your father do? B says: He is a teacher.";
+            const utt = new SpeechSynthesisUtterance(text);
+            utt.rate = 0.9; 
+            
+            utt.onstart = () => icon.classList.replace('fa-volume-up', 'fa-stop');
+            utt.onend = () => icon.classList.replace('fa-stop', 'fa-volume-up');
+            speechSynthesis.speak(utt);
+        }
+
+        // AI Speaking Simulation L3
+        let isRecL3 = false;
+        let timerL3;
+        function startSpeakingL3() {
+            const btn = document.getElementById('btn-speak-l3');
+            const text = document.getElementById('speak-text-l3');
+            const icon = document.getElementById('record-icon-l3');
+            const feedback = document.getElementById('ai-feedback-l3');
+            
+            if(isRecL3) { stopRecL3(); return; }
+
+            isRecL3 = true;
+            btn.classList.replace('bg-green-500', 'bg-gray-700');
+            btn.classList.replace('hover:bg-green-600', 'hover:bg-gray-800');
+            icon.classList.add('animate-pulse', 'text-red-400');
+            text.innerText = "LISTENING... (10s)";
+            feedback.classList.add('hidden');
+            
+            let t = 10;
+            timerL3 = setInterval(() => {
+                t--;
+                text.innerText = `LISTENING... (${t}s)`;
+                if(t <= 0) stopRecL3();
+            }, 1000);
+        }
+        
+        function stopRecL3() {
+            clearInterval(timerL3);
+            isRecL3 = false;
+            const btn = document.getElementById('btn-speak-l3');
+            const text = document.getElementById('speak-text-l3');
+            const icon = document.getElementById('record-icon-l3');
+            
+            btn.classList.replace('bg-gray-700', 'bg-green-500');
+            btn.classList.replace('hover:bg-gray-800', 'hover:bg-green-600');
+            icon.classList.remove('animate-pulse', 'text-red-400');
+            text.innerText = "TRY AGAIN";
+            
+            document.getElementById('ai-feedback-l3').classList.remove('hidden');
+        }
+
+        // Completion Logic
+        function completeLesson2() {
+            document.getElementById('completion-modal-l2').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('modal-content-l2').classList.replace('scale-95', 'scale-100');
+            }, 10);
+            triggerConfetti();
+        }
+
+        function closeModalL2() {
+            document.getElementById('completion-modal-l2').classList.add('hidden');
+            document.getElementById('modal-content-l2').classList.replace('scale-100', 'scale-95');
+            document.getElementById('confetti-canvas').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // L3 Completion Logic
+        function completeLesson3() {
+            document.getElementById('completion-modal-l3').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('modal-content-l3').classList.replace('scale-95', 'scale-100');
+            }, 10);
+            triggerConfetti();
+        }
+
+        function closeModalL3() {
+            document.getElementById('completion-modal-l3').classList.add('hidden');
+            document.getElementById('modal-content-l3').classList.replace('scale-100', 'scale-95');
+            document.getElementById('confetti-canvas').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Re-use Confetti from L1
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            canvas.classList.remove('hidden');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
+            
+            let particles = [];
+            const colors = ['#4F46E5', '#10B981', '#F59E0B', '#EF4444', '#3B82F6'];
+            
+            for(let i=0; i<100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    w: Math.random() * 10 + 5,
+                    h: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 3 + 2,
+                    angle: Math.random() * 360,
+                    rotSpeed: Math.random() * 5 - 2.5
+                });
+            }
+            
+            let animationId;
+            function drawConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let allOut = true;
+                
+                particles.forEach(p => {
+                    ctx.save();
+                    ctx.translate(p.x + p.w/2, p.y + p.h/2);
+                    ctx.rotate(p.angle * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+                    ctx.restore();
+                    
+                    p.y += p.speed;
+                    p.angle += p.rotSpeed;
+                    
+                    if(p.y < canvas.height) allOut = false;
+                });
+                
+                if(!allOut) animationId = requestAnimationFrame(drawConfetti);
+            }
+            drawConfetti();
+            setTimeout(() => { cancelAnimationFrame(animationId); canvas.classList.add('hidden'); }, 5000);
+        }
+    </script>
+</body>
+</html>
