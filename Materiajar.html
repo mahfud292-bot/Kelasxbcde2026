@@ -97,9 +97,7 @@
         .nav-link:hover{background:rgba(255,255,255,.075)!important;border-color:rgba(255,255,255,.07);transform:translateX(3px)}
         .nav-link.bg-indigo-800{background:linear-gradient(90deg,rgba(99,102,241,.30),rgba(79,70,229,.10))!important;border-color:rgba(129,140,248,.25)!important;color:#fff!important;box-shadow:inset 3px 0 #818cf8}
         .nav-link i{color:#a5b4fc!important;font-size:.82rem}
-        main#main-scroll{
-            background:transparent!important;padding:28px 28px 60px!important;
-        }
+        main#main-scroll{background:transparent!important;padding:28px 28px 60px!important;min-height:0!important;max-height:100vh!important;height:100vh!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
         main#main-scroll>div{max-width:1100px!important}
         .section-card{
             background:var(--ui-card)!important;
@@ -110,7 +108,7 @@
             padding:28px!important;margin-bottom:24px!important;
         }
         .section-card:hover{transform:translateY(-3px);box-shadow:0 20px 45px rgba(15,23,42,.10)!important}
-        #lesson1-container>header,#lesson2-container>header,#lesson3-container>header,#lesson4-container>header,#lesson5-container>header,#lesson6-container>header,#lesson7-container>header,#lesson8-container>header,#lesson9-container>header,#lesson10-container>header,#lesson11-container>header{
+        #lesson1-container>header,#lesson2-container>header,#lesson3-container>header,#lesson4-container>header,#lesson5-container>header,#lesson6-container>header,#lesson7-container>header,#lesson8-container>header,#lesson9-container>header,#lesson10-container>header,#lesson11-container>header,#lesson14-container>header{
             position:relative;overflow:hidden;text-align:left!important;padding:38px 40px!important;margin:4px 0 24px!important;
             border-radius:28px;background:linear-gradient(135deg,#312e81 0%,#4f46e5 48%,#0891b2 100%);
             color:white;box-shadow:0 22px 50px rgba(49,46,129,.22);
@@ -136,6 +134,53 @@
             #lesson1-container>header,#lesson2-container>header,#lesson3-container>header,#lesson4-container>header,#lesson5-container>header,#lesson10-container>header,#lesson11-container>header{padding:28px 24px!important;border-radius:22px}
             .section-card{padding:20px!important;border-radius:18px!important}
         }
+
+/* ===== SIDEBAR NAVIGATION FINAL POLISH ===== */
+body.flex.flex-col.md\:flex-row.h-screen.overflow-hidden{min-height:100vh;}
+body > nav{min-height:0!important;}
+body > nav > div#nav-menu{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain!important;
+    scrollbar-gutter:stable;
+}
+body > nav > div:first-child{flex:0 0 auto!important;}
+#nav-menu > div[id^="nav-links-l"]{scroll-margin-top:12px;}
+#nav-menu .nav-link{position:relative;}
+#nav-menu .nav-link.nav-current{
+    background:linear-gradient(90deg,rgba(99,102,241,.42),rgba(20,184,166,.14))!important;
+    border-color:rgba(165,180,252,.32)!important;
+    color:#fff!important;
+    font-weight:800!important;
+    box-shadow:inset 4px 0 #67e8f9,0 5px 16px rgba(15,23,42,.10)!important;
+}
+#nav-menu .nav-link.nav-current i{color:#67e8f9!important;}
+#nav-menu .nav-link.nav-current:after{
+    content:"";position:absolute;right:10px;top:50%;width:6px;height:6px;border-radius:999px;
+    background:#67e8f9;transform:translateY(-50%);box-shadow:0 0 10px rgba(103,232,249,.8);
+}
+#nav-menu > div[id^="nav-links-l"]{padding-bottom:10px;}
+#nav-menu::-webkit-scrollbar{width:7px;}
+#nav-menu::-webkit-scrollbar-track{background:rgba(255,255,255,.035);}
+#nav-menu::-webkit-scrollbar-thumb{background:rgba(165,180,252,.32);border-radius:999px;}
+#nav-menu::-webkit-scrollbar-thumb:hover{background:rgba(165,180,252,.55);}
+#tab-l1,#tab-l2,#tab-l3,#tab-l4,#tab-l5,#tab-l6,#tab-l7,#tab-l8,#tab-l9,#tab-l10,#tab-l11,#tab-l12,#tab-l13,#tab-l14,#tab-l15,#tab-l16,#tab-l17,#tab-l18,#tab-l19,#tab-l20{flex:0 0 auto!important;white-space:nowrap!important;}
+#nav-menu > div[id^="nav-links-l"]:not(.hidden){animation:sidebarLessonIn .18s ease-out;}
+@keyframes sidebarLessonIn{from{opacity:.55;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:768px){
+    body > nav{height:100vh!important;}
+    main#main-scroll{flex:1 1 auto!important;min-width:0!important;min-height:0!important;height:100vh!important;max-height:100vh!important;}
+}
+@media(max-width:767px){
+    body{height:100vh!important;min-height:100vh!important;}
+    body > nav{width:100%!important;flex:0 0 auto!important;min-height:0!important;max-height:46vh!important;}
+    body > nav > div#nav-menu{max-height:calc(46vh - 120px)!important;min-height:0!important;}
+    main#main-scroll{flex:1 1 auto!important;min-height:0!important;height:auto!important;max-height:none!important;overflow-y:auto!important;}
+}
+
         .lesson-hero{position:relative!important;isolation:isolate;overflow:hidden!important;text-align:left!important;padding:26px 34px 24px!important;margin:4px 0 26px!important;border-radius:24px!important;background:linear-gradient(135deg,#0f172a 0%,#172554 45%,#312e81 72%,#0f766e 100%)!important;color:#fff!important;box-shadow:0 24px 55px rgba(15,23,42,.20)!important;border:1px solid rgba(255,255,255,.12)!important}
         .lesson-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(129,140,248,.34),transparent 30%),radial-gradient(circle at 15% 100%,rgba(20,184,166,.20),transparent 28%);z-index:-2}
         .lesson-hero:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(255,255,255,.10);border-radius:50%;right:-170px;bottom:-230px;box-shadow:0 0 0 42px rgba(255,255,255,.025),0 0 0 84px rgba(255,255,255,.018);z-index:-1}
@@ -144,15 +189,60 @@
         .hero-content{display:flex;align-items:center;gap:20px;padding:24px 0 20px}.hero-icon{width:68px;height:68px;flex:0 0 68px;border-radius:19px;display:grid;place-items:center;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.17);box-shadow:inset 0 1px rgba(255,255,255,.15),0 12px 30px rgba(0,0,0,.14);font-size:1.65rem;color:#a5f3fc}.hero-label{display:inline-block;color:#a5b4fc;font-size:.72rem;font-weight:900;letter-spacing:.18em;margin-bottom:7px}.lesson-hero h1{margin:0!important;color:#fff!important;font-size:clamp(2rem,4vw,3.15rem)!important;line-height:1.05!important;letter-spacing:-.04em!important;font-weight:900!important}.lesson-hero p{margin:10px 0 0!important;color:rgba(255,255,255,.76)!important;font-size:1rem!important;line-height:1.65!important;max-width:760px}.hero-emoji{font-size:.72em;vertical-align:middle;margin-left:5px}.hero-meta{display:flex;flex-wrap:wrap;gap:8px}.hero-meta span{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.085);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.86);font-size:.72rem;font-weight:700;backdrop-filter:blur(8px)}.hero-meta i{color:#a5f3fc}
         @media(max-width:767px){.lesson-hero{padding:22px 20px 20px!important;border-radius:20px!important}.hero-topline{align-items:flex-start}.hero-content{gap:13px;padding:20px 0 18px}.hero-icon{width:54px;height:54px;flex-basis:54px;border-radius:15px;font-size:1.25rem}.lesson-hero h1{font-size:clamp(1.7rem,9vw,2.35rem)!important}.lesson-hero p{font-size:.9rem!important}.hero-meta span{font-size:.66rem;padding:7px 10px}}
 
-    </style>
+    
+/* FINAL NAVIGATION UX FIX v2 */
+html { height: 100%; }
+body {
+  height: 100dvh !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+body > nav {
+  min-height: 0 !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+}
+#nav-menu {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+main#main-scroll {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: 100dvh !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+#main-scroll > .max-w-4xl { width: 100%; min-height: max-content; }
+#nav-menu .nav-link { scroll-margin-top: 12px; }
+#nav-menu .nav-link.nav-current {
+  background: rgba(79,70,229,.9) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  box-shadow: inset 3px 0 0 rgba(255,255,255,.9);
+}
+@media (max-width: 767px) {
+  body { height: auto !important; min-height: 100dvh !important; overflow-y: auto !important; }
+  body > nav { height: auto !important; min-height: 0 !important; overflow: visible !important; }
+  #nav-menu { max-height: 55vh !important; overflow-y: auto !important; }
+  main#main-scroll { height: auto !important; min-height: calc(100dvh - 120px) !important; max-height: none !important; overflow-y: auto !important; }
+}
+</style>
 <style>
 /* Sidebar repair: all 20 lesson menus live inside the scrollable sidebar. */
-#nav-menu{
-    flex:1 1 auto !important;
-    min-height:0 !important;
-    overflow-y:auto !important;
-    overflow-x:hidden !important;
-}
+#nav-menu{flex:1 1 0!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
 #nav-menu > [id^="nav-links-l"]{
     width:100%;
     flex:0 0 auto;
@@ -165,7 +255,21 @@
 @media (min-width:768px){
     nav{height:100vh !important; min-height:0 !important;}
 }
-</style></head>
+</style>
+<style id="final-scroll-fix">
+html, body { width:100%; min-height:100%; }
+body { margin:0; height:100vh; overflow:hidden !important; }
+nav { flex:0 0 18rem; min-height:0 !important; height:100vh !important; overflow:hidden !important; }
+#nav-menu { flex:1 1 auto !important; min-height:0 !important; height:auto !important; max-height:none !important; overflow-y:auto !important; overflow-x:hidden !important; }
+main#main-scroll { flex:1 1 0% !important; min-width:0 !important; min-height:0 !important; height:100vh !important; max-height:100vh !important; overflow-y:auto !important; overflow-x:hidden !important; -webkit-overflow-scrolling:touch !important; }
+#main-scroll > .max-w-4xl { width:100%; min-height:100%; }
+@media (max-width:767px){
+  body { height:auto; min-height:100vh; overflow-y:auto !important; }
+  nav { width:100%; height:auto !important; min-height:0 !important; flex:0 0 auto; }
+  main#main-scroll { height:auto !important; max-height:none !important; overflow:visible !important; }
+}
+</style>
+</head>
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
 <nav class="bg-indigo-900 text-white w-full md:w-72 md:h-screen flex-shrink-0 flex flex-col shadow-xl z-20 transition-all duration-300">
 <div class="p-6 bg-indigo-950">
@@ -201,23 +305,7 @@
 <span class="font-semibold">Lesson Modules</span>
 <i class="fas fa-chevron-down" id="mobile-menu-icon"></i>
 </div>
-<div class="hidden md:flex flex-col overflow-y-auto p-4 space-y-1 h-full pb-20 md:pb-4" id="nav-menu">
-<!-- Nav for Lesson 1 (Hidden initially in this view, but managed via JS) -->
-
-<!-- Nav for Lesson 2 -->
-
-<!-- Nav for Lesson 3 -->
-
-<!-- Nav for Lesson 4 -->
-
-<!-- Nav for Lesson 5 -->
-
-<!-- Nav for Lesson 6 -->
-
-<!-- Nav for Lesson 7 -->
-
-<!-- Nav for Lesson 8 -->
-<div class="hidden" id="nav-links-l1">
+<div class="hidden md:flex flex-col overflow-y-auto p-4 space-y-1 h-full pb-20 md:pb-4" id="nav-menu"><div class="hidden" id="nav-links-l1">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#overview"><i class="fas fa-info-circle w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#warmup"><i class="fas fa-fire w-6"></i> Warm-Up</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#greetings"><i class="fas fa-hand-sparkles w-6"></i> Greetings</a>
@@ -226,7 +314,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#dialogue"><i class="fas fa-comments w-6"></i> Dialogue Practice</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l1-practice"><i class="fas fa-gamepad w-6"></i> Interactive Practice</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l1-reflection"><i class="fas fa-award w-6"></i> Reflection</a>
-</div><div class="" id="nav-links-l2">
+</div>
+<div class="hidden" id="nav-links-l2">
 <a class="nav-link flex items-center p-3 rounded-lg bg-indigo-800 font-medium transition-colors text-white" href="#l2-overview"><i class="fas fa-map-signs w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l2-warmup"><i class="fas fa-brain w-6"></i> What Do You Know?</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l2-vocab"><i class="fas fa-id-card w-6"></i> Personal Identity</a>
@@ -235,7 +324,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l2-dialogue"><i class="fas fa-comments w-6"></i> Interview Friend</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l2-safety"><i class="fas fa-shield-alt w-6"></i> Digital Safety</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l2-speaking"><i class="fas fa-microphone-alt w-6"></i> Speaking &amp; Reflection</a>
-</div><div class="hidden" id="nav-links-l3">
+</div>
+<div class="hidden" id="nav-links-l3">
 <a class="nav-link flex items-center p-3 rounded-lg bg-indigo-800 font-medium transition-colors text-white" href="#l3-overview"><i class="fas fa-users w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l3-vocab"><i class="fas fa-sitemap w-6"></i> Family Vocabulary</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l3-grammar"><i class="fas fa-link w-6"></i> Possessive Adjectives</a>
@@ -244,7 +334,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l3-dialogue"><i class="fas fa-comments w-6"></i> Family Interview</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l3-creative"><i class="fas fa-paint-brush w-6"></i> Creative Tasks</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l3-speaking"><i class="fas fa-microphone w-6"></i> AI Speaking</a>
-</div><div class="hidden" id="nav-links-l4">
+</div>
+<div class="hidden" id="nav-links-l4">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l4-overview"><i class="fas fa-clock w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l4-starter"><i class="fas fa-brain w-6"></i> Deep Learning Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l4-vocab"><i class="fas fa-list w-6"></i> Daily Activities</a>
@@ -258,7 +349,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l4-creative"><i class="fas fa-palette w-6"></i> Creative &amp; Games</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l4-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l4-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l5">
+</div>
+<div class="hidden" id="nav-links-l5">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l5-overview"><i class="fas fa-calendar-alt w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l5-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l5-days-months"><i class="fas fa-calendar-day w-6"></i> Days &amp; Months</a>
@@ -271,7 +363,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l5-creative"><i class="fas fa-palette w-6"></i> Creative Task</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l5-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l5-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l6">
+</div>
+<div class="hidden" id="nav-links-l6">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l6-overview"><i class="fas fa-briefcase w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l6-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l6-vocab"><i class="fas fa-id-badge w-6"></i> Jobs &amp; Occupations</a>
@@ -284,7 +377,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l6-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l6-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l6-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l7">
+</div>
+<div class="hidden" id="nav-links-l7">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l7-overview"><i class="fas fa-heart w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l7-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l7-vocab"><i class="fas fa-gamepad w-6"></i> Hobbies</a>
@@ -297,7 +391,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l7-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l7-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l7-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l8">
+</div>
+<div class="hidden" id="nav-links-l8">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l8-overview"><i class="fas fa-utensils w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l8-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l8-vocab"><i class="fas fa-apple-alt w-6"></i> Food Vocabulary</a>
@@ -312,6 +407,12 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l8-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l8-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
 <!-- Nav for Lesson 9 -->
+
+<!-- Nav for Lesson 10 -->
+
+<!-- Nav for Lesson 11 -->
+
+</div>
 <div class="hidden" id="nav-links-l9">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-overview"><i class="fas fa-shopping-bag w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
@@ -327,7 +428,6 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
 </div>
-<!-- Nav for Lesson 10 -->
 <div class="hidden" id="nav-links-l10">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-overview"><i class="fas fa-flag-checkered w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-review"><i class="fas fa-layer-group w-6"></i> Course Review</a>
@@ -340,7 +440,6 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-feedback"><i class="fas fa-comments-dollar w-6"></i> Feedback &amp; Score</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
 </div>
-<!-- Nav for Lesson 11 -->
 <div class="hidden" id="nav-links-l11">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-overview"><i class="fas fa-user-circle w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
@@ -355,6 +454,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
 <!-- Nav for Lesson 12 -->
+
+</div>
 <div class="hidden" id="nav-links-l12">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-overview"><i class="fas fa-map-marked-alt w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
@@ -370,76 +471,7 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
 </div>
-</div>
-</div><div class="hidden" id="nav-links-l9">
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-overview"><i class="fas fa-shopping-bag w-6"></i> Overview &amp; Goals</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-vocab"><i class="fas fa-tshirt w-6"></i> Clothes &amp; Shopping</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-prices"><i class="fas fa-tags w-6"></i> Prices &amp; Money</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-quantity"><i class="fas fa-calculator w-6"></i> How Much / How Many</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-dialogue"><i class="fas fa-comments w-6"></i> Shopping Dialogue</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-practice"><i class="fas fa-gamepad w-6"></i> Interactive Practice</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-reading"><i class="fas fa-book-open w-6"></i> Reading</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-speaking"><i class="fas fa-microphone w-6"></i> Speaking Role Play</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-creative"><i class="fas fa-palette w-6"></i> Creative Task</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l9-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l10">
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-overview"><i class="fas fa-flag-checkered w-6"></i> Overview &amp; Goals</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-review"><i class="fas fa-layer-group w-6"></i> Course Review</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-vocab"><i class="fas fa-spell-check w-6"></i> Vocabulary Review</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-grammar"><i class="fas fa-book w-6"></i> Grammar Review</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-conversation"><i class="fas fa-comments w-6"></i> Conversation Practice</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-challenge"><i class="fas fa-users w-6"></i> Pair &amp; Group Challenge</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-test"><i class="fas fa-clipboard-check w-6"></i> Mid-Course Test</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-speaking-test"><i class="fas fa-microphone w-6"></i> Speaking Test</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-feedback"><i class="fas fa-comments-dollar w-6"></i> Feedback &amp; Score</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l10-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l11">
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-overview"><i class="fas fa-user-circle w-6"></i> Overview &amp; Goals</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-vocab"><i class="fas fa-id-card w-6"></i> Appearance Vocabulary</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-personality"><i class="fas fa-heart w-6"></i> Personality Adjectives</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-grammar"><i class="fas fa-book w-6"></i> Grammar: Be + Adjective</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-practice"><i class="fas fa-gamepad w-6"></i> Interactive Practice</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-reading"><i class="fas fa-book-open w-6"></i> Reading</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-speaking"><i class="fas fa-comments w-6"></i> Speaking Practice</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-creative"><i class="fas fa-palette w-6"></i> Creative Task</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l11-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-<!-- Nav for Lesson 12 -->
-<div class="hidden" id="nav-links-l12">
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-overview"><i class="fas fa-map-marked-alt w-6"></i> Overview &amp; Goals</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-places"><i class="fas fa-building w-6"></i> Public Places</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-there"><i class="fas fa-layer-group w-6"></i> There Is / There Are</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-prepositions"><i class="fas fa-location-arrow w-6"></i> Places &amp; Position</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-directions"><i class="fas fa-route w-6"></i> Asking &amp; Giving Directions</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-practice"><i class="fas fa-gamepad w-6"></i> Interactive Practice</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-reading"><i class="fas fa-book-open w-6"></i> Reading</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-speaking"><i class="fas fa-comments w-6"></i> Speaking Role Play</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-creative"><i class="fas fa-map w-6"></i> Creative Town Map</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div>
-</div><div class="hidden" id="nav-links-l12">
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-overview"><i class="fas fa-map-marked-alt w-6"></i> Overview &amp; Goals</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-places"><i class="fas fa-building w-6"></i> Public Places</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-there"><i class="fas fa-layer-group w-6"></i> There Is / There Are</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-prepositions"><i class="fas fa-location-arrow w-6"></i> Places &amp; Position</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-directions"><i class="fas fa-route w-6"></i> Asking &amp; Giving Directions</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-practice"><i class="fas fa-gamepad w-6"></i> Interactive Practice</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-reading"><i class="fas fa-book-open w-6"></i> Reading</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-speaking"><i class="fas fa-comments w-6"></i> Speaking Role Play</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-creative"><i class="fas fa-map w-6"></i> Creative Town Map</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
-<a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l12-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l13">
+<div class="hidden" id="nav-links-l13">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l13-overview"><i class="fas fa-home w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l13-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l13-rooms"><i class="fas fa-couch w-6"></i> Rooms &amp; Furniture</a>
@@ -452,7 +484,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l13-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l13-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l13-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l14">
+</div>
+<div class="hidden" id="nav-links-l14">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l14-overview"><i class="fas fa-cloud-sun w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l14-mindful"><i class="fas fa-brain w-6"></i> Mindful Weather</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l14-vocab"><i class="fas fa-cloud w-6"></i> Weather Vocabulary</a>
@@ -466,7 +499,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l14-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l14-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l14-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l15">
+</div>
+<div class="hidden" id="nav-links-l15">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l15-overview"><i class="fas fa-plane w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l15-mindful"><i class="fas fa-brain w-6"></i> Mindful Travel</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l15-vocab"><i class="fas fa-suitcase-rolling w-6"></i> Travel Vocabulary</a>
@@ -480,7 +514,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l15-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l15-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l15-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l16">
+</div>
+<div class="hidden" id="nav-links-l16">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l16-overview"><i class="fas fa-heartbeat w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l16-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l16-body"><i class="fas fa-child w-6"></i> Body Parts</a>
@@ -494,7 +529,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l16-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l16-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l16-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l17">
+</div>
+<div class="hidden" id="nav-links-l17">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l17-overview"><i class="fas fa-history w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l17-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l17-vocab"><i class="fas fa-suitcase w-6"></i> Vacation Vocabulary</a>
@@ -508,7 +544,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l17-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l17-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l17-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l18">
+</div>
+<div class="hidden" id="nav-links-l18">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l18-overview"><i class="fas fa-star w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l18-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l18-events"><i class="fas fa-calendar-check w-6"></i> Special Events</a>
@@ -522,7 +559,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l18-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l18-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l18-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l19">
+</div>
+<div class="hidden" id="nav-links-l19">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l19-overview"><i class="fas fa-bullseye w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l19-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l19-plans"><i class="fas fa-calendar-check w-6"></i> Future Plans</a>
@@ -535,7 +573,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l19-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l19-assessment"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l19-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div><div class="hidden" id="nav-links-l20">
+</div>
+<div class="hidden" id="nav-links-l20">
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l20-overview"><i class="fas fa-bullseye w-6"></i> Overview &amp; Goals</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l20-mindful"><i class="fas fa-brain w-6"></i> Mindful Starter</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l20-review"><i class="fas fa-sync-alt w-6"></i> Course Review</a>
@@ -548,8 +587,8 @@
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l20-deep"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l20-assessment"><i class="fas fa-clipboard-check w-6"></i> Final Assessment</a>
 <a class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200" href="#l20-reflection"><i class="fas fa-seedling w-6"></i> Reflection</a>
-</div></div></nav>
-
+</div>
+</div></nav>
 <main class="flex-1 overflow-y-auto h-screen p-4 md:p-8 bg-gray-50 scroll-smooth" id="main-scroll">
 <div class="max-w-4xl mx-auto pb-24">
 <!-- LESSON 1 CONTENT (Hidden by default to focus on Lesson 2) -->
@@ -1521,7 +1560,7 @@
 <section class="section-card" id="l4-creative">
 <h2 class="text-2xl font-bold text-gray-800 mb-5">24–28. Creative Tasks &amp; Joyful Learning 🎮</h2>
 <div class="bg-green-50 border border-green-200 rounded-xl p-5 mb-5"><h3 class="font-bold">⏰ My 24-Hour Routine</h3><p class="text-sm mt-2">Create your own daily routine timeline.</p><div class="mt-4 grid grid-cols-2 md:grid-cols-5 gap-2 text-sm"><div class="p-3 bg-white rounded-lg border"><b>05:00 🌅</b><br/>Wake up</div><div class="p-3 bg-white rounded-lg border"><b>05:15</b><br/>Brush my teeth</div><div class="p-3 bg-white rounded-lg border"><b>05:30</b><br/>Take a shower</div><div class="p-3 bg-white rounded-lg border"><b>06:00</b><br/>Have breakfast</div><div class="p-3 bg-white rounded-lg border"><b>07:00 🏫</b><br/>Go to school</div><div class="p-3 bg-white rounded-lg border"><b>12:00</b><br/>Have lunch</div><div class="p-3 bg-white rounded-lg border"><b>15:00</b><br/>Go home</div><div class="p-3 bg-white rounded-lg border"><b>16:00</b><br/>Do homework</div><div class="p-3 bg-white rounded-lg border"><b>19:00</b><br/>Have dinner</div><div class="p-3 bg-white rounded-lg border"><b>20:00</b><br/>Study / Read</div><div class="p-3 bg-white rounded-lg border"><b>22:00 🌙</b><br/>Go to bed</div></div></div>
-<div class="grid md:grid-cols-2 gap-5"><div class="border rounded-xl p-5"><h3 class="font-bold">🎨 My Daily Routine Profile</h3><div class="text-sm space-y-2 mt-3">Wake-up time: <input class="border rounded p-1"><br/>Breakfast time: <input class="border rounded p-1"><br/>School time: <input class="border rounded p-1"><br/>Lunch time: <input class="border rounded p-1"><br/>Go-home time: <input class="border rounded p-1"><br/>Homework time: <input class="border rounded p-1"><br/>Dinner time: <input class="border rounded p-1"><br/>Bedtime: <input class="border rounded p-1"/></input></input></input></input></input></input></input></div><p class="text-sm mt-4 leading-7">My name is __________. I am a student of Class X. I usually wake up at __________. First, I __________. Then, I __________. After that, I __________. I go to school at __________. After school, I __________. In the evening, I __________. Finally, I go to bed at __________.</p></div><div class="border rounded-xl p-5"><h3 class="font-bold">🧩 Differentiated Learning</h3><div class="text-sm mt-3 space-y-4"><div><b>🟢 Level 1 — Beginner</b><p>I wake up at ____.<br/>I have breakfast at ____.<br/>I go to school at ____.<br/>I go home at ____.<br/>I do my homework at ____.<br/>I go to bed at ____.</p></div><div><b>🟡 Level 2 — Developing</b><p>Write 8–10 sentences. Use at least: usually; every day; first; then; after that; finally.</p></div><div><b>🔵 Level 3 — Advanced</b><p>Describe your daily routine and explain how it helps you achieve your goals.</p></div></div></div></div>
+<div class="grid md:grid-cols-2 gap-5"><div class="border rounded-xl p-5"><h3 class="font-bold">🎨 My Daily Routine Profile</h3><div class="text-sm space-y-2 mt-3">Wake-up time: <input class="border rounded p-1"/><br/>Breakfast time: <input class="border rounded p-1"/><br/>School time: <input class="border rounded p-1"/><br/>Lunch time: <input class="border rounded p-1"/><br/>Go-home time: <input class="border rounded p-1"/><br/>Homework time: <input class="border rounded p-1"/><br/>Dinner time: <input class="border rounded p-1"/><br/>Bedtime: <input class="border rounded p-1"/></div><p class="text-sm mt-4 leading-7">My name is __________. I am a student of Class X. I usually wake up at __________. First, I __________. Then, I __________. After that, I __________. I go to school at __________. After school, I __________. In the evening, I __________. Finally, I go to bed at __________.</p></div><div class="border rounded-xl p-5"><h3 class="font-bold">🧩 Differentiated Learning</h3><div class="text-sm mt-3 space-y-4"><div><b>🟢 Level 1 — Beginner</b><p>I wake up at ____.<br/>I have breakfast at ____.<br/>I go to school at ____.<br/>I go home at ____.<br/>I do my homework at ____.<br/>I go to bed at ____.</p></div><div><b>🟡 Level 2 — Developing</b><p>Write 8–10 sentences. Use at least: usually; every day; first; then; after that; finally.</p></div><div><b>🔵 Level 3 — Advanced</b><p>Describe your daily routine and explain how it helps you achieve your goals.</p></div></div></div></div>
 <div class="mt-5 grid md:grid-cols-2 gap-5"><div class="p-5 bg-pink-50 border border-pink-200 rounded-xl"><h3 class="font-bold">🎮 Routine Charades</h3><p class="text-sm mt-2">One student acts out a daily activity without speaking. Others guess: “Are you brushing your teeth?” The student answers: “Yes, I am!” or “No, I'm not!”</p><p class="text-sm mt-2">Activities: wake up; brush teeth; take a shower; eat breakfast; go to school; study; play football; do homework; sleep.</p></div><div class="p-5 bg-yellow-50 border border-yellow-200 rounded-xl"><h3 class="font-bold">⚡ Daily Routine Race</h3><p class="text-sm mt-2">Teacher gives a time. Students create a grammatically correct sentence. Example: 6:00 a.m. → I have breakfast at 6 a.m.</p><p class="text-sm mt-2">🏆 Score: Team A: 8 points • Team B: 7 points • Team C: 9 points</p></div></div>
 </section>
 <section class="section-card">
@@ -2377,13 +2416,23 @@
 </div>
 </section>
 </div>
-
-
-
-
-
-
-
+<!-- LESSON 14 CONTENT -->
+<div class="hidden animate-fade-in" id="lesson14-container">
+<header class="lesson-hero"><div class="hero-topline"><span class="hero-kicker">ENGLISH • GRADE X</span><span class="hero-status"><i class="fas fa-circle"></i> Learning Module</span></div><div class="hero-content"><div class="hero-icon"><i class="fas fa-cloud-sun"></i></div><div><span class="hero-label">LESSON 14</span><h1>Weather &amp; Seasons ☀️🌧️</h1><p>Talk about weather and seasons and use the Present Continuous to describe what is happening now.</p></div></div><div class="hero-meta"><span><i class="fas fa-user-tie"></i> Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</span><span><i class="fas fa-layer-group"></i> Pembelajaran Mendalam</span><span><i class="fas fa-sparkles"></i> Mindful • Meaningful • Joyful</span></div></header>
+<section class="section-card" id="l14-overview"><p class="text-xs uppercase tracking-widest font-black text-indigo-500">01 • Overview &amp; Goals</p><h2 class="text-2xl font-black text-gray-800 mt-1">Weather &amp; Seasons 🎯</h2><div class="grid md:grid-cols-2 gap-5 mt-5"><div class="p-5 rounded-2xl bg-indigo-50 border"><h3 class="font-bold text-indigo-800">Learning Goals</h3><ul class="mt-3 space-y-2 text-sm"><li>✓ Identify weather and season vocabulary.</li><li>✓ Describe weather using simple expressions.</li><li>✓ Use Present Continuous for actions happening now.</li><li>✓ Give a short weather report.</li></ul></div><div class="p-5 rounded-2xl bg-teal-50 border"><h3 class="font-bold text-teal-800">Key Language</h3><p class="mt-3 text-sm"><b>How's the weather?</b> — It's sunny.</p><p class="text-sm mt-2"><b>What's the weather like?</b> — It's cloudy.</p><p class="text-sm mt-2"><b>What is she doing?</b> — She is wearing a jacket.</p></div></div></section>
+<section class="section-card" id="l14-mindful"><h2 class="text-2xl font-bold text-gray-800 mb-5">2. Mindful Weather 🌿</h2><div class="p-6 rounded-2xl bg-gradient-to-br from-sky-50 to-indigo-50 border"><p class="text-gray-700">Pause and notice the weather around you. What can you see, hear, or feel? How does the weather affect activities, mood, safety, and plans?</p></div></section>
+<section class="section-card" id="l14-vocab"><h2 class="text-2xl font-bold text-gray-800 mb-5">3. Weather Vocabulary ☁️</h2><div class="grid md:grid-cols-3 gap-4 text-sm"><div class="p-4 rounded-xl bg-yellow-50 border"><b>Sunny</b><p>The sun is shining.</p></div><div class="p-4 rounded-xl bg-gray-50 border"><b>Cloudy</b><p>There are many clouds.</p></div><div class="p-4 rounded-xl bg-blue-50 border"><b>Rainy</b><p>Rain is falling.</p></div><div class="p-4 rounded-xl bg-sky-50 border"><b>Windy</b><p>The wind is strong.</p></div><div class="p-4 rounded-xl bg-indigo-50 border"><b>Stormy</b><p>There is a storm.</p></div><div class="p-4 rounded-xl bg-orange-50 border"><b>Hot / Cold</b><p>Temperature descriptions.</p></div></div></section>
+<section class="section-card" id="l14-seasons"><h2 class="text-2xl font-bold text-gray-800 mb-5">4. Seasons 🍃</h2><div class="grid md:grid-cols-4 gap-4 text-center text-sm"><div class="p-5 rounded-xl bg-green-50 border"><div class="text-3xl">🌱</div><b>Spring</b><p>Mild and fresh.</p></div><div class="p-5 rounded-xl bg-yellow-50 border"><div class="text-3xl">☀️</div><b>Summer</b><p>Usually hot and sunny.</p></div><div class="p-5 rounded-xl bg-orange-50 border"><div class="text-3xl">🍂</div><b>Autumn</b><p>Cooler weather.</p></div><div class="p-5 rounded-xl bg-blue-50 border"><div class="text-3xl">❄️</div><b>Winter</b><p>Cold in many countries.</p></div></div></section>
+<section class="section-card" id="l14-grammar"><h2 class="text-2xl font-bold text-gray-800 mb-5">5. Present Continuous</h2><div class="p-5 rounded-xl bg-indigo-50 border"><p class="font-bold">Subject + am/is/are + verb-ing</p><div class="grid md:grid-cols-3 gap-3 mt-4 text-sm"><div class="p-3 bg-white rounded-lg">I <b>am watching</b> the rain.</div><div class="p-3 bg-white rounded-lg">She <b>is wearing</b> a jacket.</div><div class="p-3 bg-white rounded-lg">They <b>are moving</b> inside.</div></div></div></section>
+<section class="section-card" id="l14-weather-talk"><h2 class="text-2xl font-bold text-gray-800 mb-5">6. Talking About Weather 💬</h2><div class="grid md:grid-cols-2 gap-5"><div class="p-5 rounded-xl bg-sky-50 border"><b>Questions</b><ul class="mt-3 text-sm space-y-2"><li>How's the weather?</li><li>What's the weather like?</li><li>Is it raining?</li></ul></div><div class="p-5 rounded-xl bg-teal-50 border"><b>Responses</b><ul class="mt-3 text-sm space-y-2"><li>It's sunny and warm.</li><li>It's raining heavily.</li><li>Yes, it is.</li></ul></div></div></section>
+<section class="section-card" id="l14-practice"><h2 class="text-2xl font-bold text-gray-800 mb-5">7. Interactive Practice 🎮</h2><p class="text-sm text-gray-600 mb-5">Choose the correct answer.</p><div class="space-y-4 text-sm"><label class="block">1. Look! It <select class="ml-2 p-2 border rounded" id="l14q1"><option value="">Choose...</option><option>is raining</option><option>rains</option></select>.</label><label class="block">2. The clouds <select class="ml-2 p-2 border rounded" id="l14q2"><option value="">Choose...</option><option>are moving</option><option>is moving</option></select> quickly.</label><label class="block">3. <select class="ml-2 p-2 border rounded" id="l14q3"><option value="">Choose...</option><option>Is</option><option>Are</option></select> it raining?</label><label class="block">4. She <select class="ml-2 p-2 border rounded" id="l14q4"><option value="">Choose...</option><option>is wearing</option><option>are wearing</option></select> a raincoat.</label><label class="block">5. The wind <select class="ml-2 p-2 border rounded" id="l14q5"><option value="">Choose...</option><option>is blowing</option><option>are blowing</option></select> strongly.</label><label class="block">6. It <select class="ml-2 p-2 border rounded" id="l14q6"><option value="">Choose...</option><option>is</option><option>are</option></select> cloudy today.</label></div><button class="mt-6 bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl" onclick="checkLesson14Practice()">Check Answers</button><div class="hidden" id="l14-practice-result"></div></section>
+<section class="section-card" id="l14-reading"><h2 class="text-2xl font-bold text-gray-800 mb-5">8. Reading 📖</h2><div class="p-6 rounded-xl bg-gray-50 border leading-7 text-gray-700"><h3 class="font-bold">A Rainy Morning</h3><p class="mt-3">This morning, the sky is dark and the rain is falling. Maya is staying at home because the weather is wet and windy. Her brother is reading a book while their mother is preparing breakfast. Outside, some people are carrying umbrellas.</p></div></section>
+<section class="section-card" id="l14-speaking"><h2 class="text-2xl font-bold text-gray-800 mb-5">9. Speaking Practice 🎤</h2><div class="grid md:grid-cols-2 gap-5"><div class="p-5 bg-teal-50 rounded-xl border"><b>Pair Work</b><p class="mt-2 text-sm">Ask and answer questions about today's weather.</p></div><div class="p-5 bg-purple-50 rounded-xl border"><b>Mini Weather Report</b><p class="mt-2 text-sm">Give a 30–60 second weather report using weather words and Present Continuous sentences.</p></div></div></section>
+<section class="section-card" id="l14-creative"><h2 class="text-2xl font-bold text-gray-800 mb-5">10. Creative Weather Card 🎨</h2><p class="text-sm text-gray-600">Create a weather card for your town. Include the weather condition, a suitable activity, and one Present Continuous sentence.</p></section>
+<section class="section-card" id="l14-deep"><h2 class="text-2xl font-bold text-gray-800 mb-5">11. Deep Thinking 💡</h2><div class="grid md:grid-cols-3 gap-4 text-sm"><div class="p-5 rounded-xl border"><b>Cause</b><p class="mt-2 text-gray-600">How can heavy rain affect daily activities?</p></div><div class="p-5 rounded-xl border"><b>Decision</b><p class="mt-2 text-gray-600">What should people do during unsafe weather?</p></div><div class="p-5 rounded-xl border"><b>Connection</b><p class="mt-2 text-gray-600">How does weather influence your plans?</p></div></div></section>
+<section class="section-card" id="l14-assessment"><h2 class="text-2xl font-bold text-gray-800 mb-5">12. Assessment ✅</h2><div class="space-y-3 text-sm"><label class="flex gap-2"><input type="checkbox"/> I can identify weather vocabulary.</label><label class="flex gap-2"><input type="checkbox"/> I can talk about seasons.</label><label class="flex gap-2"><input type="checkbox"/> I can use the Present Continuous.</label><label class="flex gap-2"><input type="checkbox"/> I can give a short weather report.</label></div></section>
+<section class="section-card mb-20" id="l14-reflection"><h2 class="text-2xl font-bold text-gray-800 mb-5">13. Reflection 🌱</h2><div class="grid md:grid-cols-3 gap-4 text-sm"><div class="p-5 rounded-xl bg-gray-50 border"><b>Before</b><p class="mt-2 text-gray-600">What weather words did I know?</p></div><div class="p-5 rounded-xl bg-indigo-50 border"><b>Now</b><p class="mt-2 text-gray-600">What can I describe in English?</p></div><div class="p-5 rounded-xl bg-teal-50 border"><b>Next</b><p class="mt-2 text-gray-600">What do I want to practice more?</p></div></div><div class="text-center pt-8 mt-8 border-t"><button class="bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-black py-4 px-10 rounded-xl shadow-xl" onclick="completeLesson14()">COMPLETE LESSON 14</button></div></section>
+</div>
 <div class="hidden animate-fade-in" id="lesson15-container">
 <header class="lesson-hero"><div class="hero-topline"><span class="hero-label">LESSON 15 • GRADE X</span></div><div class="hero-content"><div class="hero-icon"><i class="fas fa-plane-departure"></i></div><div><h1>Traveling <span class="hero-emoji">✈️</span></h1><p>Use can/can't, transportation vocabulary, and polite questions to ask for information while traveling.</p></div></div><div class="hero-meta"><span><i class="fas fa-user-tie"></i> Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</span><span><i class="fas fa-brain"></i> Pembelajaran Mendalam</span><span><i class="fas fa-heart"></i> Mindful • Meaningful • Joyful</span></div></header>
 <section class="mt-8 scroll-mt-6" id="l15-overview"><div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-indigo-100"><p class="text-xs uppercase tracking-widest font-black text-indigo-500">01 • Overview</p><h2 class="text-2xl font-black text-gray-800 mt-1">Learning Goals 🎯</h2><p class="text-gray-600 mt-4">By the end of this lesson, students can:</p><div class="grid md:grid-cols-2 gap-3 mt-5"><div class="p-4 rounded-xl bg-indigo-50">✈️ Identify common travel and transportation vocabulary.</div><div class="p-4 rounded-xl bg-teal-50">🚌 Talk about what people can and can't do while traveling.</div><div class="p-4 rounded-xl bg-blue-50">💬 Ask for travel information politely.</div><div class="p-4 rounded-xl bg-purple-50">🗣️ Use simple English in real travel situations.</div></div><div class="mt-6 p-5 rounded-2xl bg-indigo-50 border border-indigo-100"><b>Deep Learning Focus:</b> Notice → Understand → Connect → Communicate → Reflect</div></div></section>
@@ -2398,7 +2447,7 @@
 <section class="mt-8 scroll-mt-6" id="l15-creative"><div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-indigo-100"><p class="text-xs uppercase tracking-widest font-black text-orange-600">10 • Creative Task</p><h2 class="text-2xl font-black text-gray-800 mt-1">Design a Mini Travel Plan 🗺️</h2><p class="text-gray-600 mt-3">In pairs or small groups, create a one-day travel plan to a place you would like to visit.</p><div class="grid md:grid-cols-2 gap-4 mt-6"><div class="p-5 rounded-xl bg-orange-50"><b>Include:</b><ul class="mt-3 text-sm space-y-2"><li>✓ Destination</li><li>✓ Transportation</li><li>✓ Departure time</li><li>✓ Ticket price</li><li>✓ 3 things you can do</li><li>✓ 2 things you can't do</li></ul></div><div class="p-5 rounded-xl bg-indigo-50"><b>Communication challenge</b><p class="text-sm mt-3">Present your plan in 1–2 minutes and answer two questions from classmates.</p></div></div></div></section>
 <section class="mt-8 scroll-mt-6" id="l15-deep"><div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-indigo-100"><p class="text-xs uppercase tracking-widest font-black text-amber-600">11 • Deep Thinking</p><h2 class="text-2xl font-black text-gray-800 mt-1">Smart Travel, Safe Travel 💡</h2><div class="space-y-4 mt-6 text-sm text-gray-700"><div class="p-5 rounded-xl bg-amber-50 border border-amber-100"><b>Think:</b> What information do you need before using unfamiliar transportation?</div><div class="p-5 rounded-xl bg-indigo-50 border border-indigo-100"><b>Connect:</b> How can polite English help you when you do not understand a sign or schedule?</div><div class="p-5 rounded-xl bg-teal-50 border border-teal-100"><b>Problem solving:</b> Your bus is late and you are not sure where to wait. What can you ask?</div><div class="p-5 rounded-xl bg-rose-50 border border-rose-100"><b>Reflect:</b> Why should travelers respect local rules, people, and public spaces?</div></div></div></section>
 <section class="mt-8 scroll-mt-6" id="l15-assessment"><div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-indigo-100"><p class="text-xs uppercase tracking-widest font-black text-green-600">12 • Assessment</p><h2 class="text-2xl font-black text-gray-800 mt-1">Assessment &amp; Speaking Challenge 📝</h2><div class="grid md:grid-cols-2 gap-5 mt-6"><div class="p-5 rounded-2xl bg-gray-50 border"><h3 class="font-black">Knowledge</h3><ul class="mt-3 text-sm space-y-2"><li>• Travel vocabulary</li><li>• Transportation</li><li>• Can / can't</li><li>• Asking for information</li></ul></div><div class="p-5 rounded-2xl bg-indigo-50 border border-indigo-100"><h3 class="font-black">Speaking Rubric</h3><div class="mt-3 text-sm space-y-2"><p><b>4</b> — clear, accurate, polite, complete</p><p><b>3</b> — mostly clear with minor errors</p><p><b>2</b> — limited vocabulary; needs prompts</p><p><b>1</b> — needs significant support</p></div></div></div><div class="mt-6 p-6 rounded-2xl bg-gradient-to-r from-indigo-600 to-teal-600 text-white"><b>Final Challenge — 1–2 minutes:</b><p class="mt-2 text-sm leading-6">Imagine you are at a bus, train, airport, or ferry station. Ask for information, explain what you can/can't do, and respond politely to the information you receive.</p></div><button class="mt-6 w-full py-4 bg-indigo-600 text-white font-black rounded-xl hover:bg-indigo-700 transition shadow-lg" onclick="completeLesson15()"><i class="fas fa-trophy mr-2"></i>Complete Lesson 15</button></div></section>
-<section class="mt-8 scroll-mt-6" id="l15-reflection"><div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-indigo-100"><p class="text-xs uppercase tracking-widest font-black text-teal-600">13 • Reflection</p><h2 class="text-2xl font-black text-gray-800 mt-1">Reflect on Your Learning 🌱</h2><div class="grid md:grid-cols-2 gap-4 mt-6"><div class="p-5 rounded-xl border bg-gray-50"><b>Think about:</b><ul class="mt-3 text-sm space-y-2"><li>• Which travel words are easiest for you?</li><li>• Can you use can/can't confidently?</li><li>• Which question do you need to practice more?</li><li>• How can English help you when traveling?</li></ul></div><div class="p-5 rounded-xl border bg-teal-50"><b>Self-assessment</b><div class="mt-3 text-sm space-y-3"><label class="flex gap-2"><input type="checkbox"/> I can name common transportation.</label><label class="flex gap-2"><input type="checkbox"/> I can use can/can't.</label><label class="flex gap-2"><input type="checkbox"/> I can ask for travel information politely.</label><label class="flex gap-2"><input type="checkbox"/> I can respond clearly to a travel question.</label></div></div></div><div class="mt-6 p-5 rounded-2xl bg-indigo-50 border border-indigo-100"><b>Key Takeaway:</b> Traveling becomes easier when we know what to ask, listen carefully, and communicate politely.</div><p class="mt-5 text-center font-bold text-indigo-700">“Travel with curiosity, communicate with confidence, and respect every place and person you meet.”</p></div></section>
+<section class="mt-8 scroll-mt-6" id="l15-reflection"><div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-indigo-100"><p class="text-xs uppercase tracking-widest font-black text-teal-600">13 • Reflection</p><h2 class="text-2xl font-black text-gray-800 mt-1">Reflect on Your Learning 🌱</h2><div class="grid md:grid-cols-2 gap-4 mt-6"><div class="p-5 rounded-xl border bg-gray-50"><b>Think about:</b><ul class="mt-3 text-sm space-y-2"><li>• Which travel words are easiest for you?</li><li>• Can you use can/can't confidently?</li><li>• Which question do you need to practice more?</li><li>• How can English help you when traveling?</li></ul></div><div class="p-5 rounded-xl border bg-teal-50"><b>Self-assessment</b><div class="mt-3 text-sm space-y-3"><label class="flex gap-2"><input type="checkbox"> I can name common transportation.</input></label><label class="flex gap-2"><input type="checkbox"> I can use can/can't.</input></label><label class="flex gap-2"><input type="checkbox"> I can ask for travel information politely.</input></label><label class="flex gap-2"><input type="checkbox"> I can respond clearly to a travel question.</input></label></div></div></div><div class="mt-6 p-5 rounded-2xl bg-indigo-50 border border-indigo-100"><b>Key Takeaway:</b> Traveling becomes easier when we know what to ask, listen carefully, and communicate politely.</div><p class="mt-5 text-center font-bold text-indigo-700">“Travel with curiosity, communicate with confidence, and respect every place and person you meet.”</p></div></section>
 </div>
 <div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4" id="completion-modal-l15"><div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 text-center transform scale-95 transition-transform duration-300" id="modal-content-l15"><div class="text-6xl mb-4">✈️</div><h2 class="text-3xl font-black text-indigo-700">Lesson 15 Completed!</h2><p class="mt-4 text-gray-600">Excellent work! You can now talk about transportation, use can/can't, and ask for travel information politely.</p><div class="mt-5 p-4 bg-indigo-50 rounded-xl text-sm text-left"><b>Remember:</b><ul class="mt-2 space-y-1"><li>• I can travel by bus.</li><li>• You can't board without a ticket.</li><li>• Excuse me, where can I buy a ticket?</li><li>• What time does the bus leave?</li><li>• Thank you for the information.</li></ul></div><button class="mt-6 w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700" onclick="closeModalL15()">Continue</button></div></div>
 <!-- Modal for Completion Lesson 12 -->
@@ -2528,6 +2577,7 @@
 
         function switchLesson(lessonNum) {
             currentLesson = lessonNum;
+            const scroller=document.getElementById('main-scroll'); if(scroller) scroller.scrollTo({top:0,behavior:'auto'});
             const l1Container = document.getElementById('lesson1-container');
             const l2Container = document.getElementById('lesson2-container');
             const l3Container = document.getElementById('lesson3-container'); // NEW
@@ -2712,9 +2762,133 @@
                 tabL20.classList.add('bg-indigo-600', 'text-white', 'shadow');
                 tabL20.classList.remove('text-indigo-300');
             }
+            requestAnimationFrame(() => updateActiveSidebarLink());
         }
 
-        // Mobile navigation toggle
+        // ===== FINAL SIDEBAR / LESSON NAVIGATION CONTROLLER =====
+        let sidebarNavFrame = 0;
+        let lastActiveSection = '';
+
+        function getLessonParts(lessonNum) {
+            return {
+                container: document.getElementById('lesson' + lessonNum + '-container'),
+                nav: document.getElementById('nav-links-l' + lessonNum),
+                tab: document.getElementById('tab-l' + lessonNum)
+            };
+        }
+
+        function ensureSidebarLessonVisible(lessonNum) {
+            const parts = getLessonParts(lessonNum);
+            const navMenu = document.getElementById('nav-menu');
+            if (parts.tab) {
+                parts.tab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+            }
+            if (parts.nav && navMenu && !parts.nav.classList.contains('hidden')) {
+                const firstLink = parts.nav.querySelector('.nav-link');
+                if (firstLink) {
+                    const menuRect = navMenu.getBoundingClientRect();
+                    const linkRect = firstLink.getBoundingClientRect();
+                    if (linkRect.top < menuRect.top || linkRect.bottom > menuRect.bottom) {
+                        firstLink.scrollIntoView({behavior:'smooth', block:'nearest', inline:'nearest'});
+                    }
+                }
+            }
+        }
+
+        function clearActiveSidebarLinks() {
+            document.querySelectorAll('#nav-menu .nav-link').forEach(link => {
+                link.classList.remove('nav-current','bg-indigo-800','font-medium','text-white');
+                link.classList.add('text-indigo-200');
+            });
+        }
+
+        function setActiveSidebarLink(link, shouldScroll) {
+            if (!link) return;
+            clearActiveSidebarLinks();
+            link.classList.add('nav-current','bg-indigo-800','font-medium','text-white');
+            link.classList.remove('text-indigo-200');
+            if (shouldScroll) {
+                link.scrollIntoView({behavior:'smooth', block:'nearest', inline:'nearest'});
+            }
+            lastActiveSection = link.getAttribute('href') || '';
+        }
+
+        function updateActiveSidebarLink(force) {
+            const main = document.getElementById('main-scroll');
+            const parts = getLessonParts(currentLesson);
+            if (!main || !parts.nav || !parts.container || parts.container.classList.contains('hidden')) return;
+
+            const sections = Array.from(parts.container.querySelectorAll('section[id]'));
+            const links = Array.from(parts.nav.querySelectorAll('.nav-link'));
+            if (!sections.length || !links.length) return;
+
+            const mainRect = main.getBoundingClientRect();
+            const activationLine = mainRect.top + Math.min(190, main.clientHeight * 0.22);
+            let activeSection = sections[0];
+            let bestDistance = Infinity;
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const distance = Math.abs(rect.top - activationLine);
+                if (rect.top <= activationLine + 40 && distance < bestDistance) {
+                    bestDistance = distance;
+                    activeSection = section;
+                }
+            });
+
+            const targetHref = '#' + activeSection.id;
+            const activeLink = links.find(link => link.getAttribute('href') === targetHref);
+            if (!activeLink) return;
+
+            const changed = lastActiveSection !== targetHref || force;
+            if (changed) setActiveSidebarLink(activeLink, true);
+            else {
+                activeLink.classList.add('nav-current','bg-indigo-800','font-medium','text-white');
+                activeLink.classList.remove('text-indigo-200');
+            }
+        }
+
+        function switchLesson(lessonNum) {
+            currentLesson = Number(lessonNum);
+            const scroller = document.getElementById('main-scroll');
+            if (scroller) scroller.scrollTo({top:0, behavior:'auto'});
+
+            const containers = [];
+            const navs = [];
+            const tabs = [];
+            for (let n = 1; n <= 20; n++) {
+                const parts = getLessonParts(n);
+                containers.push(parts.container);
+                navs.push(parts.nav);
+                tabs.push(parts.tab);
+            }
+
+            tabs.forEach(tab => {
+                if (!tab) return;
+                tab.classList.remove('bg-indigo-600','text-white','shadow');
+                tab.classList.add('text-indigo-300');
+                tab.setAttribute('aria-current','false');
+            });
+            containers.forEach(el => el && el.classList.add('hidden'));
+            navs.forEach(el => el && el.classList.add('hidden'));
+            clearActiveSidebarLinks();
+            lastActiveSection = '';
+
+            const selected = getLessonParts(currentLesson);
+            if (selected.container) selected.container.classList.remove('hidden');
+            if (selected.nav) selected.nav.classList.remove('hidden');
+            if (selected.tab) {
+                selected.tab.classList.add('bg-indigo-600','text-white','shadow');
+                selected.tab.classList.remove('text-indigo-300');
+                selected.tab.setAttribute('aria-current','true');
+            }
+
+            requestAnimationFrame(() => {
+                ensureSidebarLessonVisible(currentLesson);
+                updateActiveSidebarLink(true);
+            });
+        }
+
         function toggleMobileMenu() {
             const menu = document.getElementById('nav-menu');
             const icon = document.getElementById('mobile-menu-icon');
@@ -2727,79 +2901,43 @@
             }
         }
 
-        // Initialize display based on default
-        switchLesson(1);
+        // Ensure all lesson containers live in the same scrolling content area.
+        (function repairLessonContainers(){
+            const main = document.getElementById('main-scroll');
+            const content = main ? main.querySelector('.max-w-4xl') : null;
+            if (!content) return;
+            for (let n = 1; n <= 20; n++) {
+                const el = document.getElementById('lesson' + n + '-container');
+                if (el && !content.contains(el)) content.appendChild(el);
+            }
+        })();
 
-        // Smooth, reliable section navigation inside the main scroll container
-        document.querySelectorAll('#nav-menu .nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (!targetId || !targetId.startsWith('#')) return;
-                const target = document.querySelector(targetId);
-                if (!target) return;
-                e.preventDefault();
-                const scroller = document.getElementById('main-scroll');
-                if (scroller) {
-                    const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - 20;
-                    scroller.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-                }
-                history.replaceState(null, '', targetId);
-            });
+        // One delegated handler: reliable even when lesson navigation is rebuilt/hidden.
+        document.getElementById('nav-menu')?.addEventListener('click', function(e) {
+            const link = e.target.closest('.nav-link');
+            if (!link) return;
+            const targetId = link.getAttribute('href');
+            if (!targetId || !targetId.startsWith('#')) return;
+            const target = document.querySelector(targetId);
+            const scroller = document.getElementById('main-scroll');
+            if (!target || !scroller) return;
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - 24;
+            scroller.scrollTo({top:Math.max(0, top), behavior:'smooth'});
+            history.replaceState(null, '', targetId);
+            setActiveSidebarLink(link, true);
         });
 
-        // Active Navigation Highlighting based on scroll
-        const mainScroll = document.getElementById('main-scroll');
-        if (mainScroll) {
-            mainScroll.addEventListener('scroll', () => {
-                let selector = '#lesson2-container section';
-                let navSelector = '#nav-links-l2 .nav-link';
-
-                if(currentLesson === 1) { selector = '#lesson1-container section'; navSelector = '#nav-links-l1 .nav-link'; }
-                if(currentLesson === 3) { selector = '#lesson3-container section'; navSelector = '#nav-links-l3 .nav-link'; }
-                if(currentLesson === 4) { selector = '#lesson4-container section'; navSelector = '#nav-links-l4 .nav-link'; }
-                if(currentLesson === 5) { selector = '#lesson5-container section'; navSelector = '#nav-links-l5 .nav-link'; }
-                if(currentLesson === 6) { selector = '#lesson6-container section'; navSelector = '#nav-links-l6 .nav-link'; }
-                if(currentLesson === 7) { selector = '#lesson7-container section'; navSelector = '#nav-links-l7 .nav-link'; }
-                if(currentLesson === 8) { selector = '#lesson8-container section'; navSelector = '#nav-links-l8 .nav-link'; }
-                if(currentLesson === 9) { selector = '#lesson9-container section'; navSelector = '#nav-links-l9 .nav-link'; }
-                if(currentLesson === 10) { selector = '#lesson10-container section'; navSelector = '#nav-links-l10 .nav-link'; }
-                if(currentLesson === 11) { selector = '#lesson11-container section'; navSelector = '#nav-links-l11 .nav-link'; }
-                if(currentLesson === 12) { selector = '#lesson12-container section'; navSelector = '#nav-links-l12 .nav-link'; }
-                if(currentLesson === 13) { selector = '#lesson13-container section'; navSelector = '#nav-links-l13 .nav-link'; }
-                if(currentLesson === 14) { selector = '#lesson14-container section'; navSelector = '#nav-links-l14 .nav-link'; }
-                if(currentLesson === 15) { selector = '#lesson15-container section'; navSelector = '#nav-links-l15 .nav-link'; }
-                if(currentLesson === 16) { selector = '#lesson16-container section'; navSelector = '#nav-links-l16 .nav-link'; }
-                if(currentLesson === 17) { selector = '#lesson17-container section'; navSelector = '#nav-links-l17 .nav-link'; }
-                if(currentLesson === 18) { selector = '#lesson18-container section'; navSelector = '#nav-links-l18 .nav-link'; }
-                if(currentLesson === 19) { selector = '#lesson19-container section'; navSelector = '#nav-links-l19 .nav-link'; }
-                if(currentLesson === 20) { selector = '#lesson20-container section'; navSelector = '#nav-links-l20 .nav-link'; }
-
-                const sections = document.querySelectorAll(selector);
-                const navLinks = document.querySelectorAll(navSelector);
-                const scrollTop = mainScroll.getBoundingClientRect().top;
-                const threshold = 170;
-                let current = '';
-                let closestDistance = Infinity;
-
-                sections.forEach(section => {
-                    const distance = section.getBoundingClientRect().top - scrollTop - threshold;
-                    if (distance <= 0 && Math.abs(distance) < closestDistance) {
-                        closestDistance = Math.abs(distance);
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                if (!current && sections.length) current = sections[0].getAttribute('id');
-
-                navLinks.forEach(link => {
-                    const active = link.getAttribute('href') === `#${current}`;
-                    link.classList.toggle('bg-indigo-800', active);
-                    link.classList.toggle('font-medium', active);
-                    link.classList.toggle('text-white', active);
-                    link.classList.toggle('text-indigo-200', !active);
-                });
-            });
+        const mainScrollController = document.getElementById('main-scroll');
+        if (mainScrollController) {
+            mainScrollController.addEventListener('scroll', function() {
+                cancelAnimationFrame(sidebarNavFrame);
+                sidebarNavFrame = requestAnimationFrame(() => updateActiveSidebarLink(false));
+            }, {passive:true});
         }
+
+        // Initialize with Lesson 1 and keep the selected lesson tab visible.
+        switchLesson(1);
 
         // --- Lesson 2 Specific Interactive Logic ---
 
