@@ -45,6 +45,106 @@
         .word-btn:hover { transform: scale(1.05); }
         
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+        /* ===== MODERN PROFESSIONAL UI — ENGLISH WITH MAHFUD ===== */
+        :root{
+            --ui-primary:#4f46e5;
+            --ui-primary-dark:#312e81;
+            --ui-accent:#06b6d4;
+            --ui-bg:#f6f7fb;
+            --ui-card:rgba(255,255,255,.88);
+            --ui-border:rgba(148,163,184,.20);
+            --ui-text:#172033;
+            --ui-muted:#64748b;
+        }
+        html{scroll-behavior:smooth}
+        body{
+            background:
+              radial-gradient(circle at 15% 10%,rgba(99,102,241,.10),transparent 28%),
+              radial-gradient(circle at 85% 20%,rgba(6,182,212,.08),transparent 24%),
+              linear-gradient(135deg,#f8fafc 0%,#eef2ff 48%,#f8fafc 100%);
+            color:var(--ui-text);
+        }
+        body:before{
+            content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;z-index:-1;
+            background-image:linear-gradient(rgba(79,70,229,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(79,70,229,.025) 1px,transparent 1px);
+            background-size:28px 28px;
+        }
+        nav{
+            width:300px!important;
+            background:linear-gradient(180deg,#111936 0%,#171d46 52%,#11152f 100%)!important;
+            border-right:1px solid rgba(255,255,255,.09);
+            box-shadow:18px 0 45px rgba(15,23,42,.14)!important;
+        }
+        nav>div:first-child{
+            background:linear-gradient(145deg,rgba(79,70,229,.40),rgba(17,24,39,.10))!important;
+            border-bottom:1px solid rgba(255,255,255,.08);
+            padding:24px!important;
+        }
+        nav h1{font-size:1.05rem!important;letter-spacing:.12em!important}
+        nav .mt-4{
+            background:rgba(255,255,255,.07)!important;
+            border:1px solid rgba(255,255,255,.10)!important;
+            border-radius:14px!important;padding:5px!important;
+        }
+        nav .mt-4 button{border-radius:10px!important;font-size:.72rem!important;font-weight:700!important}
+        nav .mt-4 button.bg-indigo-600{background:linear-gradient(135deg,#6366f1,#4f46e5)!important;box-shadow:0 5px 18px rgba(79,70,229,.38)!important}
+        #nav-menu{padding:16px!important}
+        .nav-link{
+            margin:3px 0;border:1px solid transparent;
+            color:#c7d2fe!important;border-radius:12px!important;
+            font-size:.78rem;line-height:1.25;
+        }
+        .nav-link:hover{background:rgba(255,255,255,.075)!important;border-color:rgba(255,255,255,.07);transform:translateX(3px)}
+        .nav-link.bg-indigo-800{background:linear-gradient(90deg,rgba(99,102,241,.30),rgba(79,70,229,.10))!important;border-color:rgba(129,140,248,.25)!important;color:#fff!important;box-shadow:inset 3px 0 #818cf8}
+        .nav-link i{color:#a5b4fc!important;font-size:.82rem}
+        main#main-scroll{
+            background:transparent!important;padding:28px 28px 60px!important;
+        }
+        main#main-scroll>div{max-width:1100px!important}
+        .section-card{
+            background:var(--ui-card)!important;
+            backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+            border:1px solid var(--ui-border)!important;
+            border-radius:22px!important;
+            box-shadow:0 14px 40px rgba(15,23,42,.07)!important;
+            padding:28px!important;margin-bottom:24px!important;
+        }
+        .section-card:hover{transform:translateY(-3px);box-shadow:0 20px 45px rgba(15,23,42,.10)!important}
+        #lesson1-container>header,#lesson2-container>header,#lesson3-container>header,#lesson4-container>header{
+            position:relative;overflow:hidden;text-align:left!important;padding:38px 40px!important;margin:4px 0 24px!important;
+            border-radius:28px;background:linear-gradient(135deg,#312e81 0%,#4f46e5 48%,#0891b2 100%);
+            color:white;box-shadow:0 22px 50px rgba(49,46,129,.22);
+        }
+        #lesson1-container>header:after,#lesson2-container>header:after,#lesson3-container>header:after,#lesson4-container>header:after{
+            content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-100px;top:-150px;background:rgba(255,255,255,.10);box-shadow:-130px 170px 0 -50px rgba(255,255,255,.07)
+        }
+        #lesson1-container>header h1,#lesson2-container>header h1,#lesson3-container>header h1,#lesson4-container>header h1{position:relative;z-index:1;color:#fff!important;font-size:clamp(2rem,4vw,3.25rem)!important;line-height:1.08!important;margin-top:14px!important}
+        #lesson1-container>header p,#lesson2-container>header p,#lesson3-container>header p,#lesson4-container>header p{position:relative;z-index:1;color:rgba(255,255,255,.82)!important;max-width:760px}
+        #lesson1-container>header span,#lesson2-container>header span,#lesson3-container>header span,#lesson4-container>header span{position:relative;z-index:1;background:rgba(255,255,255,.15)!important;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px)}
+        .section-card h2{letter-spacing:-.02em}
+        .section-card h3{letter-spacing:-.01em}
+        .section-card table{border-radius:14px;overflow:hidden}
+        .section-card button:not(.word-btn):not(.match-btn){border-radius:12px}
+        input,textarea,select{border-radius:12px!important;border-color:#dbe2ef!important}
+        .bg-indigo-50{background:linear-gradient(135deg,#eef2ff,#f0fdfa)!important}
+        .shadow-xl{box-shadow:0 20px 45px rgba(15,23,42,.12)!important}
+        .shadow-md{box-shadow:0 10px 25px rgba(15,23,42,.10)!important}
+        @media(max-width:767px){
+            nav{width:100%!important;height:auto!important;max-height:46vh}
+            nav>div:first-child{padding:18px!important}
+            main#main-scroll{padding:14px!important}
+            #lesson1-container>header,#lesson2-container>header,#lesson3-container>header,#lesson4-container>header{padding:28px 24px!important;border-radius:22px}
+            .section-card{padding:20px!important;border-radius:18px!important}
+        }
+        .lesson-hero{position:relative!important;isolation:isolate;overflow:hidden!important;text-align:left!important;padding:26px 34px 24px!important;margin:4px 0 26px!important;border-radius:24px!important;background:linear-gradient(135deg,#0f172a 0%,#172554 45%,#312e81 72%,#0f766e 100%)!important;color:#fff!important;box-shadow:0 24px 55px rgba(15,23,42,.20)!important;border:1px solid rgba(255,255,255,.12)!important}
+        .lesson-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(129,140,248,.34),transparent 30%),radial-gradient(circle at 15% 100%,rgba(20,184,166,.20),transparent 28%);z-index:-2}
+        .lesson-hero:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(255,255,255,.10);border-radius:50%;right:-170px;bottom:-230px;box-shadow:0 0 0 42px rgba(255,255,255,.025),0 0 0 84px rgba(255,255,255,.018);z-index:-1}
+        .hero-topline{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.13);font-size:.7rem;font-weight:800;letter-spacing:.14em;color:rgba(255,255,255,.72)}
+        .hero-status{letter-spacing:.03em;text-transform:none;font-weight:700;color:#dbeafe}.hero-status i{font-size:.45rem;margin-right:7px;color:#5eead4;vertical-align:middle}
+        .hero-content{display:flex;align-items:center;gap:20px;padding:24px 0 20px}.hero-icon{width:68px;height:68px;flex:0 0 68px;border-radius:19px;display:grid;place-items:center;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.17);box-shadow:inset 0 1px rgba(255,255,255,.15),0 12px 30px rgba(0,0,0,.14);font-size:1.65rem;color:#a5f3fc}.hero-label{display:inline-block;color:#a5b4fc;font-size:.72rem;font-weight:900;letter-spacing:.18em;margin-bottom:7px}.lesson-hero h1{margin:0!important;color:#fff!important;font-size:clamp(2rem,4vw,3.15rem)!important;line-height:1.05!important;letter-spacing:-.04em!important;font-weight:900!important}.lesson-hero p{margin:10px 0 0!important;color:rgba(255,255,255,.76)!important;font-size:1rem!important;line-height:1.65!important;max-width:760px}.hero-emoji{font-size:.72em;vertical-align:middle;margin-left:5px}.hero-meta{display:flex;flex-wrap:wrap;gap:8px}.hero-meta span{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.085);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.86);font-size:.72rem;font-weight:700;backdrop-filter:blur(8px)}.hero-meta i{color:#a5f3fc}
+        @media(max-width:767px){.lesson-hero{padding:22px 20px 20px!important;border-radius:20px!important}.hero-topline{align-items:flex-start}.hero-content{gap:13px;padding:20px 0 18px}.hero-icon{width:54px;height:54px;flex-basis:54px;border-radius:15px;font-size:1.25rem}.lesson-hero h1{font-size:clamp(1.7rem,9vw,2.35rem)!important}.lesson-hero p{font-size:.9rem!important}.hero-meta span{font-size:.66rem;padding:7px 10px}}
+
     </style>
 </head>
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
@@ -53,13 +153,14 @@
         <div class="p-6 bg-indigo-950">
             <h1 class="text-xl font-bold tracking-wider mb-1">ENGLISH GRADE X</h1>
             <p class="text-indigo-300 text-xs uppercase font-semibold tracking-widest mb-1">SMA N 1 Banggai</p>
-            <p class="text-indigo-400 text-xs">Teacher: Mahfud S.P., M.Pd.</p>
+            <p class="text-indigo-400 text-xs">Teacher: Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</p>
             
             <!-- Lesson Switcher -->
             <div class="mt-4 bg-indigo-900 rounded-lg p-1 border border-indigo-700 flex text-sm font-semibold overflow-x-auto">
                 <button id="tab-l1" onclick="switchLesson(1)" class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition">Lesson 1</button>
                 <button id="tab-l2" onclick="switchLesson(2)" class="flex-1 py-2 px-3 text-center rounded-md bg-indigo-600 text-white shadow transition">Lesson 2</button>
                 <button id="tab-l3" onclick="switchLesson(3)" class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition">Lesson 3</button>
+                <button id="tab-l4" onclick="switchLesson(4)" class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition">Lesson 4</button>
             </div>
         </div>
         
@@ -78,6 +179,8 @@
                 <a href="#grammar" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-book w-6"></i> Grammar: To Be</a>
                 <a href="#classroom" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-chalkboard-teacher w-6"></i> Classroom English</a>
                 <a href="#dialogue" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-comments w-6"></i> Dialogue Practice</a>
+                <a href="#l1-practice" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-gamepad w-6"></i> Interactive Practice</a>
+                <a href="#l1-reflection" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-award w-6"></i> Reflection</a>
             </div>
 
             <!-- Nav for Lesson 2 -->
@@ -103,6 +206,23 @@
                 <a href="#l3-creative" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-paint-brush w-6"></i> Creative Tasks</a>
                 <a href="#l3-speaking" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-microphone w-6"></i> AI Speaking</a>
             </div>
+
+            <!-- Nav for Lesson 4 -->
+            <div id="nav-links-l4" class="hidden">
+                <a href="#l4-overview" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-clock w-6"></i> Overview & Goals</a>
+                <a href="#l4-starter" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-brain w-6"></i> Deep Learning Starter</a>
+                <a href="#l4-vocab" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-list w-6"></i> Daily Activities</a>
+                <a href="#l4-context" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-comment-dots w-6"></i> Vocabulary in Context</a>
+                <a href="#l4-grammar" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-book w-6"></i> Simple Present</a>
+                <a href="#l4-time" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-hourglass-half w-6"></i> Time & Sequence</a>
+                <a href="#l4-quizzes" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-gamepad w-6"></i> Interactive Practice</a>
+                <a href="#l4-reading" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-book-open w-6"></i> Reading</a>
+                <a href="#l4-speaking" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-microphone w-6"></i> Speaking</a>
+                <a href="#l4-deep" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-lightbulb w-6"></i> Deep Thinking</a>
+                <a href="#l4-creative" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-palette w-6"></i> Creative & Games</a>
+                <a href="#l4-assessment" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-clipboard-check w-6"></i> Assessment</a>
+                <a href="#l4-reflection" class="nav-link flex items-center p-3 rounded-lg hover:bg-indigo-800 transition-colors text-indigo-200"><i class="fas fa-seedling w-6"></i> Reflection</a>
+            </div>
         </div>
     </nav>
 
@@ -110,22 +230,117 @@
         <div class="max-w-4xl mx-auto pb-24">
             
             <!-- LESSON 1 CONTENT (Hidden by default to focus on Lesson 2) -->
-            <div id="lesson1-container" class="hidden">
-                <header class="text-center mb-10 animate-fade-in mt-4">
-                    <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Lesson 1</span>
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-2">Introduction & Classroom English</h1>
+            <div id="lesson1-container" class="hidden animate-fade-in">
+                <header class="lesson-hero">
+                    <div class="hero-topline"><span class="hero-kicker">ENGLISH • GRADE X</span><span class="hero-status"><i class="fas fa-circle"></i> Learning Module</span></div>
+                    <div class="hero-content">
+                        <div class="hero-icon"><i class="fas fa-comments"></i></div>
+                        <div>
+                            <span class="hero-label">LESSON 01</span>
+                            <h1>Introduction & Classroom English</h1>
+                            <p>Introduce yourself, greet others, and communicate confidently in the English classroom.</p>
+                        </div>
+                    </div>
+                    <div class="hero-meta"><span><i class="fas fa-user-tie"></i> Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</span><span><i class="fas fa-layer-group"></i> Pembelajaran Mendalam</span><span><i class="fas fa-sparkles"></i> Mindful • Meaningful • Joyful</span></div>
                 </header>
-                <!-- Placeholder for L1 content to keep file clean. In a real app, L1 HTML remains here. -->
-                <div class="section-card text-center p-10"><p class="text-gray-500">Lesson 1 Content is loaded. Switch back to Lesson 2 to view new content.</p></div>
+
+                <section id="overview" class="section-card">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4"><i class="fas fa-info-circle text-primary mr-3"></i>1. Lesson Overview</h2>
+                            <p class="text-sm text-gray-600 mb-4">In this lesson, students learn how to introduce themselves, greet others, use simple classroom English, and communicate politely in an English classroom.</p>
+                            <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4">
+                                <p class="font-bold text-indigo-800 mb-2">Deep Learning Approach</p>
+                                <div class="flex flex-wrap gap-2 text-xs">
+                                    <span class="px-3 py-1 rounded-full bg-white border">Mindful</span><span class="px-3 py-1 rounded-full bg-white border">Meaningful</span><span class="px-3 py-1 rounded-full bg-white border">Joyful</span><span class="px-3 py-1 rounded-full bg-white border">CLT</span><span class="px-3 py-1 rounded-full bg-white border">TBLT</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4"><i class="fas fa-bullseye text-accent mr-3"></i>2. Learning Objectives</h2>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li><i class="fas fa-check-circle text-secondary mr-2"></i>Introduce yourself and respond to introductions orally.</li>
+                                <li><i class="fas fa-check-circle text-secondary mr-2"></i>Complete basic personal information and write a short introduction.</li>
+                                <li><i class="fas fa-check-circle text-secondary mr-2"></i>Identify and use at least six classroom-English expressions.</li>
+                                <li><i class="fas fa-check-circle text-secondary mr-2"></i>Use <strong>I am, He is, She is, They are</strong> and <strong>my, your, his, her</strong>.</li>
+                                <li><i class="fas fa-check-circle text-secondary mr-2"></i>Interact politely, ask for clarification, and reflect on learning.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-xs">
+                        <div class="bg-gray-50 border rounded-lg p-3"><strong class="block text-primary">Fase</strong>E</div><div class="bg-gray-50 border rounded-lg p-3"><strong class="block text-primary">Level</strong>A1–A2</div><div class="bg-gray-50 border rounded-lg p-3"><strong class="block text-primary">Time</strong>135 minutes / 3 JP</div><div class="bg-gray-50 border rounded-lg p-3"><strong class="block text-primary">Mode</strong>Face-to-face</div>
+                    </div>
+                    <div class="mt-4 bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-900"><strong>Essential Understanding:</strong> Introducing yourself is not only about giving information; it is also about showing respect, listening, and building a positive connection.</div>
+                </section>
+
+                <section id="warmup" class="section-card border-l-4 border-l-yellow-400">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4"><i class="fas fa-fire text-yellow-500 mr-3"></i>3. Deep Learning Warm-Up</h2>
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">WHO AM I?</h3>
+                    <p class="text-sm text-gray-600 mb-5">Think about yourself as a new member of the English classroom. What information would you like your classmates to know?</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5 text-center"><i class="fas fa-lightbulb text-yellow-500 text-2xl mb-2"></i><h4 class="font-bold">MINDFUL</h4><p class="text-xs text-gray-600 mt-2">Think about one thing that makes you unique.</p></div>
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 text-center"><i class="fas fa-user-friends text-blue-500 text-2xl mb-2"></i><h4 class="font-bold">MEANINGFUL</h4><p class="text-xs text-gray-600 mt-2">Tell a partner one safe fact about yourself.</p></div>
+                        <div class="bg-green-50 border border-green-200 rounded-xl p-5 text-center"><i class="fas fa-smile text-green-500 text-2xl mb-2"></i><h4 class="font-bold">JOYFUL</h4><p class="text-xs text-gray-600 mt-2">Greet three classmates using different expressions.</p></div>
+                    </div>
+                    <div class="mt-5 bg-gray-50 border rounded-xl p-4"><p class="font-bold text-sm mb-3">Think → Pair → Share</p><ol class="list-decimal pl-5 text-sm text-gray-600 space-y-1"><li>Think: What can you say when meeting someone for the first time?</li><li>Pair: Practice with a partner.</li><li>Share: Volunteer to introduce yourself to the class.</li></ol></div>
+                </section>
+
+                <section id="greetings" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-hand-sparkles text-pink-500 mr-3"></i>4. Greetings & Self-Introduction</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div><h3 class="font-bold text-lg mb-3">Common Greetings</h3><div class="space-y-2 text-sm"><div class="p-3 bg-gray-50 rounded-lg border"><strong>Good morning.</strong> — Used in the morning.</div><div class="p-3 bg-gray-50 rounded-lg border"><strong>Good afternoon.</strong> — Used in the afternoon.</div><div class="p-3 bg-gray-50 rounded-lg border"><strong>Hello!</strong> / <strong>Hi!</strong> — Friendly greetings.</div><div class="p-3 bg-gray-50 rounded-lg border"><strong>Nice to meet you.</strong> — A polite expression when meeting someone for the first time.</div></div></div>
+                        <div class="bg-indigo-50 rounded-xl p-5 border border-indigo-100"><h3 class="font-bold text-lg text-indigo-900 mb-3">Useful Introduction Expressions</h3><ul class="text-sm text-gray-700 space-y-2"><li>• My name is __________.</li><li>• I am __________.</li><li>• You can call me __________.</li><li>• I am from __________.</li><li>• I am a student of Class X-____.</li><li>• Nice to meet you.</li><li>• Nice to meet you, too.</li></ul></div>
+                    </div>
+                    <div class="mt-6 bg-white border rounded-xl p-5 shadow-sm"><h3 class="font-bold mb-3">Identity Profile</h3><div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm"><div><label class="text-xs text-gray-500">Name</label><div class="border-b py-2">____________</div></div><div><label class="text-xs text-gray-500">Nickname</label><div class="border-b py-2">____________</div></div><div><label class="text-xs text-gray-500">Class</label><div class="border-b py-2">____________</div></div><div><label class="text-xs text-gray-500">Hobby</label><div class="border-b py-2">____________</div></div></div></div>
+                </section>
+
+                <section id="grammar" class="section-card bg-indigo-50 border-none">
+                    <div class="text-center mb-7"><span class="text-indigo-600 font-bold tracking-widest text-sm uppercase">5. Grammar Focus</span><h2 class="text-3xl font-black text-gray-900 mt-2">TO BE: AM • IS • ARE</h2><p class="text-gray-600 mt-2">Use <strong>am, is,</strong> and <strong>are</strong> to give basic information and describe people.</p></div>
+                    <div class="grid md:grid-cols-3 gap-4 mb-6"><div class="bg-white rounded-xl p-5 border-t-4 border-blue-500"><h3 class="text-2xl font-black text-blue-600">AM</h3><p class="text-xs text-gray-500 uppercase font-bold mb-3">I</p><p class="text-sm">I <strong>am</strong> a student.</p><p class="text-sm">I <strong>am</strong> from Banggai.</p></div><div class="bg-white rounded-xl p-5 border-t-4 border-green-500"><h3 class="text-2xl font-black text-green-600">IS</h3><p class="text-xs text-gray-500 uppercase font-bold mb-3">He / She / It</p><p class="text-sm">He <strong>is</strong> a student.</p><p class="text-sm">She <strong>is</strong> from Banggai.</p></div><div class="bg-white rounded-xl p-5 border-t-4 border-purple-500"><h3 class="text-2xl font-black text-purple-600">ARE</h3><p class="text-xs text-gray-500 uppercase font-bold mb-3">You / We / They</p><p class="text-sm">You <strong>are</strong> my friend.</p><p class="text-sm">They <strong>are</strong> students.</p></div></div>
+                    <div class="bg-white rounded-xl border overflow-hidden"><table class="w-full text-sm"><thead class="bg-gray-100"><tr><th class="p-3 text-left">Subject</th><th class="p-3 text-left">To Be</th><th class="p-3 text-left">Example</th></tr></thead><tbody><tr class="border-t"><td class="p-3">I</td><td class="p-3 font-bold">am</td><td class="p-3">I am a student.</td></tr><tr class="border-t"><td class="p-3">He / She / It</td><td class="p-3 font-bold">is</td><td class="p-3">She is my friend.</td></tr><tr class="border-t"><td class="p-3">You / We / They</td><td class="p-3 font-bold">are</td><td class="p-3">They are students.</td></tr></tbody></table></div>
+                    <div class="mt-5 grid md:grid-cols-2 gap-4"><div class="bg-red-50 border border-red-200 rounded-lg p-4 text-sm">❌ I <strong>is</strong> a student.</div><div class="bg-green-50 border border-green-200 rounded-lg p-4 text-sm">✅ I <strong>am</strong> a student.</div></div>
+                </section>
+
+                <section id="classroom" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-chalkboard-teacher text-blue-500 mr-3"></i>6. Classroom English</h2>
+                    <p class="text-sm text-gray-600 mb-5">Use these expressions to participate actively and politely in the English classroom.</p>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm"><div class="p-4 bg-blue-50 rounded-lg border">👋 <strong>Good morning, Sir/Ma'am.</strong></div><div class="p-4 bg-gray-50 rounded-lg border">🙋 <strong>May I come in?</strong></div><div class="p-4 bg-gray-50 rounded-lg border">✋ <strong>May I ask a question?</strong></div><div class="p-4 bg-gray-50 rounded-lg border">🔁 <strong>Could you repeat that, please?</strong></div><div class="p-4 bg-gray-50 rounded-lg border">🐢 <strong>Could you speak more slowly, please?</strong></div><div class="p-4 bg-gray-50 rounded-lg border">❓ <strong>What does ___ mean?</strong></div><div class="p-4 bg-gray-50 rounded-lg border">📝 <strong>How do you spell ___?</strong></div><div class="p-4 bg-gray-50 rounded-lg border">🙏 <strong>Thank you.</strong> / <strong>You're welcome.</strong></div></div>
+                    <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-xl p-5"><h3 class="font-bold text-yellow-900 mb-2">Mini Challenge</h3><p class="text-sm text-gray-700">Choose three expressions above. Practice them with a partner. Then use one expression in your own classroom situation.</p></div>
+                </section>
+
+                <section id="dialogue" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-comments text-primary mr-3"></i>7. Dialogue Practice</h2>
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 shadow-inner relative"><button onclick="readDialogueL1()" class="absolute top-4 right-4 bg-primary text-white rounded-full p-3 shadow hover:bg-indigo-700 transition" title="Listen"><i class="fas fa-volume-up"></i></button><div class="space-y-4 max-w-xl mx-auto text-sm md:text-base"><div class="flex items-start gap-3"><div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-800 shrink-0">A</div><div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border">Good morning! My name is Andi. What's your name?</div></div><div class="flex items-start gap-3 flex-row-reverse"><div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-800 shrink-0">R</div><div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-sm">Good morning. I'm Rina. Nice to meet you.</div></div><div class="flex items-start gap-3"><div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-800 shrink-0">A</div><div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border">Nice to meet you, too. I am a student of Class X-B. What class are you in?</div></div><div class="flex items-start gap-3 flex-row-reverse"><div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-800 shrink-0">R</div><div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-sm">I am in Class X-C. I like English and music.</div></div><div class="flex items-start gap-3"><div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-800 shrink-0">A</div><div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border">That's nice! See you in class.</div></div><div class="flex items-start gap-3 flex-row-reverse"><div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-800 shrink-0">R</div><div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-sm">See you!</div></div></div></div>
+                    <div class="mt-6 grid md:grid-cols-2 gap-5"><div class="bg-gray-50 border rounded-xl p-5"><h3 class="font-bold mb-3">Pair Task: Information Gap</h3><ol class="list-decimal pl-5 text-sm text-gray-600 space-y-2"><li>Student A asks three questions.</li><li>Student B answers using complete sentences.</li><li>Swap roles.</li><li>Give one kind peer-feedback comment.</li></ol></div><div class="bg-green-50 border border-green-200 rounded-xl p-5"><h3 class="font-bold text-green-900 mb-3">Volunteer Performance</h3><p class="text-sm text-gray-700">Introduce yourself to the class in 30–45 seconds. Speak clearly, make eye contact, and listen respectfully.</p></div></div>
+                </section>
+
+                <section id="l1-practice" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-gamepad text-secondary mr-3"></i>8. Interactive Practice</h2>
+                    <div class="grid md:grid-cols-2 gap-6"><div class="border rounded-xl p-5 bg-white"><h3 class="font-bold text-lg mb-4 text-primary">Choose: AM, IS, or ARE</h3><div class="space-y-4"><div class="tb-q" data-ans="am"><p class="font-medium mb-2">1. I ___ a student.</p><div class="flex gap-2"><button onclick="checkTB(this,'is')" class="flex-1 py-2 border rounded">is</button><button onclick="checkTB(this,'am')" class="flex-1 py-2 border rounded">am</button><button onclick="checkTB(this,'are')" class="flex-1 py-2 border rounded">are</button></div></div><div class="tb-q" data-ans="are"><p class="font-medium mb-2">2. They ___ classmates.</p><div class="flex gap-2"><button onclick="checkTB(this,'am')" class="flex-1 py-2 border rounded">am</button><button onclick="checkTB(this,'is')" class="flex-1 py-2 border rounded">is</button><button onclick="checkTB(this,'are')" class="flex-1 py-2 border rounded">are</button></div></div><div class="tb-q" data-ans="is"><p class="font-medium mb-2">3. She ___ my friend.</p><div class="flex gap-2"><button onclick="checkTB(this,'are')" class="flex-1 py-2 border rounded">are</button><button onclick="checkTB(this,'is')" class="flex-1 py-2 border rounded">is</button><button onclick="checkTB(this,'am')" class="flex-1 py-2 border rounded">am</button></div></div></div><div id="tb-feedback" class="mt-4 hidden p-3 rounded text-sm font-bold"></div></div><div class="bg-gray-900 text-white rounded-xl p-5"><h3 class="font-bold text-lg mb-3 text-yellow-400">Build Your Introduction</h3><p class="text-xs text-gray-400 mb-4">Use the prompts below to rehearse your 30–45 second introduction.</p><div class="space-y-2 text-sm"><div class="bg-gray-700 px-3 py-2 rounded">👋 Good morning, everyone.</div><div class="bg-gray-700 px-3 py-2 rounded">👤 My name is __________.</div><div class="bg-gray-700 px-3 py-2 rounded">📍 I am from __________.</div><div class="bg-gray-700 px-3 py-2 rounded">⭐ My hobby is __________.</div><div class="bg-gray-700 px-3 py-2 rounded">🎓 I am a student of Class X-____.</div><div class="bg-gray-700 px-3 py-2 rounded">🙏 Thank you.</div></div></div></div>
+                </section>
+
+                <section id="l1-reflection" class="section-card bg-gradient-to-br from-white to-gray-100 mb-20">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-award text-yellow-500 mr-3"></i>9. Reflection & Self-Assessment</h2>
+                    <div class="space-y-3 max-w-2xl mx-auto text-sm"><div class="flex justify-between border-b pb-2"><span>I can greet someone politely.</span><span>⭐ ⭐ ⭐ ⭐ ⭐</span></div><div class="flex justify-between border-b pb-2"><span>I can introduce myself.</span><span>⭐ ⭐ ⭐ ⭐ ⭐</span></div><div class="flex justify-between border-b pb-2"><span>I can use am, is, and are.</span><span>⭐ ⭐ ⭐ ⭐ ⭐</span></div><div class="flex justify-between border-b pb-2"><span>I can use classroom English.</span><span>⭐ ⭐ ⭐ ⭐ ⭐</span></div><div class="flex justify-between"><span>I can ask for clarification politely.</span><span>⭐ ⭐ ⭐ ⭐ ⭐</span></div></div>
+                    <div class="mt-8 bg-indigo-50 border border-indigo-100 rounded-xl p-5 max-w-2xl mx-auto"><h3 class="font-bold text-indigo-900 mb-2">Deep Reflection</h3><p class="text-sm text-gray-700 mb-3">Complete: <em>“Today I learned that good communication is…”</em></p><div class="border-b-2 border-gray-300 h-8"></div><div class="border-b-2 border-gray-300 h-8"></div></div>
+                    <div class="text-center pt-8 mt-8 border-t"><p class="italic text-gray-600 mb-5">“A confident speaker is not someone who never makes mistakes, but someone who keeps communicating, listening, and learning.”</p><button onclick="completeLesson1()" class="bg-gradient-to-r from-primary to-indigo-700 text-white font-black py-4 px-10 rounded-xl shadow-xl transition transform hover:scale-105 text-lg"><i class="fas fa-check-circle mr-2"></i> COMPLETE LESSON 1</button></div>
+                </section>
             </div>
 
             <!-- LESSON 2 CONTENT -->
             <div id="lesson2-container" class="animate-fade-in">
                 <!-- Hero Header -->
-                <header class="text-center mb-10 mt-4">
-                    <span class="bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Lesson 2</span>
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-2">Personal Information</h1>
-                    <p class="text-gray-500 text-lg">Master asking and giving personal info, WH-questions, and digital safety.</p>
+                <header class="lesson-hero">
+                    <div class="hero-topline"><span class="hero-kicker">ENGLISH • GRADE X</span><span class="hero-status"><i class="fas fa-circle"></i> Learning Module</span></div>
+                    <div class="hero-content">
+                        <div class="hero-icon"><i class="fas fa-id-card"></i></div>
+                        <div>
+                            <span class="hero-label">LESSON 02</span>
+                            <h1>Personal Information</h1>
+                            <p>Master asking and giving personal info, WH-questions, and digital safety.</p>
+                        </div>
+                    </div>
+                    <div class="hero-meta"><span><i class="fas fa-user-tie"></i> Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</span><span><i class="fas fa-layer-group"></i> Pembelajaran Mendalam</span><span><i class="fas fa-shield-halved"></i> Communication • Digital Safety</span></div>
                 </header>
 
                 <section id="l2-overview" class="section-card">
@@ -562,10 +777,17 @@
             <!-- LESSON 3 CONTENT -->
             <div id="lesson3-container" class="hidden animate-fade-in">
                 <!-- Hero Header -->
-                <header class="text-center mb-10 mt-4">
-                    <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Lesson 3</span>
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-2">Family Members 👨‍👩‍👧‍👦</h1>
-                    <p class="text-gray-500 text-lg">Master talking about family, relationships, and possessive adjectives.</p>
+                <header class="lesson-hero">
+                    <div class="hero-topline"><span class="hero-kicker">ENGLISH • GRADE X</span><span class="hero-status"><i class="fas fa-circle"></i> Learning Module</span></div>
+                    <div class="hero-content">
+                        <div class="hero-icon"><i class="fas fa-people-roof"></i></div>
+                        <div>
+                            <span class="hero-label">LESSON 03</span>
+                            <h1>Family Members <span class="hero-emoji">👨‍👩‍👧‍👦</span></h1>
+                            <p>Master talking about family, relationships, and possessive adjectives.</p>
+                        </div>
+                    </div>
+                    <div class="hero-meta"><span><i class="fas fa-user-tie"></i> Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</span><span><i class="fas fa-layer-group"></i> Pembelajaran Mendalam</span><span><i class="fas fa-users"></i> Family • Relationships • Grammar</span></div>
                 </header>
 
                 <section id="l3-overview" class="section-card">
@@ -964,8 +1186,145 @@
 
             </div>
 
+
+            <!-- LESSON 4 CONTENT -->
+            <div id="lesson4-container" class="hidden animate-fade-in">
+                <header class="lesson-hero">
+                    <div class="hero-topline"><span class="hero-kicker">ENGLISH • GRADE X</span><span class="hero-status"><i class="fas fa-circle"></i> Learning Module</span></div>
+                    <div class="hero-content">
+                        <div class="hero-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <span class="hero-label">LESSON 04</span>
+                            <h1>Daily Routines <span class="hero-emoji">⏰</span></h1>
+                            <p>Build confidence in describing daily activities using the Simple Present Tense.</p>
+                        </div>
+                    </div>
+                    <div class="hero-meta"><span><i class="fas fa-user-tie"></i> Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</span><span><i class="fas fa-layer-group"></i> Pembelajaran Mendalam</span><span><i class="fas fa-clock"></i> Simple Present • Daily Activities • Speaking</span></div>
+                </header>
+
+                <section id="l4-overview" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">1–2. Lesson Overview & Learning Objectives</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm text-gray-600 leading-7">Everyone has a daily routine. We wake up, take a shower, have breakfast, go to school, study, spend time with our family, and finally go to bed.</p>
+                            <p class="text-sm text-gray-600 leading-7 mt-3">In this lesson, students learn how to talk about their everyday activities using the <b>Simple Present Tense</b>.</p>
+                            <div class="mt-5 bg-orange-50 border border-orange-200 rounded-xl p-5"><b class="text-orange-900">Students will learn to:</b><p class="text-sm text-orange-800 mt-2">wake up, take a shower, have breakfast, go to school, study, have lunch, go home, do homework, help parents, have dinner, and go to bed.</p><p class="text-sm text-orange-800 mt-2"><b>Sequence:</b> first • then • next • after that • finally</p></div>
+                            <div class="mt-4 bg-gray-900 text-white rounded-xl p-5"><b>Essential Understanding</b><p class="italic mt-2">“A good daily routine helps us manage our time, become responsible, and achieve our goals.”</p></div>
+                        </div>
+                        <div class="bg-white border rounded-xl p-5 shadow-sm">
+                            <h3 class="font-black text-gray-800 mb-3">Learning Objectives</h3>
+                            <ul class="text-sm text-gray-600 space-y-2 leading-6">
+                                <li>✓ identify common daily activities in English;</li><li>✓ understand daily-routine vocabulary;</li><li>✓ understand the function of the Simple Present Tense;</li><li>✓ use Simple Present for habits and routines;</li><li>✓ use do/does in negative and interrogative sentences;</li><li>✓ use every day, usually, always, sometimes;</li><li>✓ organize activities using sequence words;</li><li>✓ describe routines in writing;</li><li>✓ ask and answer about daily activities;</li><li>✓ talk about routines confidently.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="l4-starter" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">3. Deep Learning Starter 🧠</h2>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="p-5 rounded-xl bg-orange-50 border border-orange-200"><b>MORNING 🌅</b><p class="text-sm mt-2">What do you usually do after you wake up?</p></div>
+                        <div class="p-5 rounded-xl bg-yellow-50 border border-yellow-200"><b>AFTERNOON ☀️</b><p class="text-sm mt-2">What do you usually do after school?</p></div>
+                        <div class="p-5 rounded-xl bg-purple-50 border border-purple-200"><b>EVENING 🌆</b><p class="text-sm mt-2">What do you usually do before going to bed?</p></div>
+                    </div>
+                    <div class="mt-5 grid md:grid-cols-3 gap-4 text-sm"><div class="p-4 bg-indigo-50 rounded-xl"><b>THINK</b><p class="mt-2">Which activity is the most important part of your day? Why?</p></div><div class="p-4 bg-green-50 rounded-xl"><b>PAIR</b><p class="mt-2">Discuss your daily routine with a partner.</p></div><div class="p-4 bg-pink-50 rounded-xl"><b>SHARE</b><p class="mt-2">Every day, I usually __________________.</p></div></div>
+                </section>
+
+                <section id="l4-vocab" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">4. Vocabulary — Daily Activities ⏰</h2>
+                    <div class="grid md:grid-cols-3 gap-5">
+                        <div><h3 class="font-bold text-orange-700 mb-2">Morning Activities</h3><div class="overflow-hidden rounded-xl border"><table class="w-full text-sm"><tbody>
+                        <tr><td>wake up</td><td>bangun tidur</td></tr><tr><td>get up</td><td>bangun dari tempat tidur</td></tr><tr><td>make my bed</td><td>merapikan tempat tidur</td></tr><tr><td>brush my teeth</td><td>menggosok gigi</td></tr><tr><td>wash my face</td><td>mencuci muka</td></tr><tr><td>take a shower</td><td>mandi</td></tr><tr><td>get dressed</td><td>berpakaian</td></tr><tr><td>have breakfast</td><td>sarapan</td></tr><tr><td>prepare my school bag</td><td>menyiapkan tas sekolah</td></tr><tr><td>go to school</td><td>pergi ke sekolah</td></tbody></table></div></div>
+                        <div><h3 class="font-bold text-indigo-700 mb-2">School Activities</h3><div class="overflow-hidden rounded-xl border"><table class="w-full text-sm"><tbody><tr><td>study</td><td>belajar</td></tr><tr><td>read a book</td><td>membaca buku</td></tr><tr><td>listen to the teacher</td><td>mendengarkan guru</td></tr><tr><td>take notes</td><td>mencatat</td></tr><tr><td>answer questions</td><td>menjawab pertanyaan</td></tr><tr><td>work in groups</td><td>bekerja dalam kelompok</td></tr><tr><td>have a break</td><td>beristirahat</td></tr><tr><td>have lunch</td><td>makan siang</td></tr><tr><td>go home</td><td>pulang</td></tr></tbody></table></div></div>
+                        <div><h3 class="font-bold text-green-700 mb-2">Afternoon & Evening</h3><div class="overflow-hidden rounded-xl border"><table class="w-full text-sm"><tbody><tr><td>take a rest</td><td>beristirahat</td></tr><tr><td>do my homework</td><td>mengerjakan PR</td></tr><tr><td>study at home</td><td>belajar di rumah</td></tr><tr><td>help my parents</td><td>membantu orang tua</td></tr><tr><td>play with my friends</td><td>bermain dengan teman</td></tr><tr><td>exercise</td><td>berolahraga</td></tr><tr><td>watch television</td><td>menonton televisi</td></tr><tr><td>use the internet</td><td>menggunakan internet</td></tr><tr><td>have dinner</td><td>makan malam</td></tr><tr><td>prepare for tomorrow</td><td>mempersiapkan hari esok</td></tr><tr><td>go to bed</td><td>pergi tidur</td></tbody></table></div></div>
+                    </div>
+                </section>
+
+                <section id="l4-context" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">5. Vocabulary in Context</h2>
+                    <div class="grid sm:grid-cols-2 gap-3 text-sm"><div class="p-3 bg-gray-50 rounded-lg border">I wake up at 5 a.m.</div><div class="p-3 bg-gray-50 rounded-lg border">I take a shower before breakfast.</div><div class="p-3 bg-gray-50 rounded-lg border">I go to school at 7 a.m.</div><div class="p-3 bg-gray-50 rounded-lg border">I study English at school.</div><div class="p-3 bg-gray-50 rounded-lg border">I do my homework in the afternoon.</div><div class="p-3 bg-gray-50 rounded-lg border">I help my parents at home.</div><div class="p-3 bg-gray-50 rounded-lg border">I have dinner with my family.</div><div class="p-3 bg-gray-50 rounded-lg border">I go to bed at 10 p.m.</div></div>
+                </section>
+
+                <section id="l4-grammar" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">7–14. Grammar Focus — Simple Present Tense</h2>
+                    <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-5 mb-5"><p class="font-bold">The Simple Present Tense is used to talk about:</p><p class="text-sm mt-2">✓ daily routines; ✓ habits; ✓ repeated activities; ✓ general facts.</p><div class="grid md:grid-cols-2 gap-3 mt-4 text-sm"><div>I go to school every day.</div><div>She studies English every morning.</div><div>They play football after school.</div><div>He helps his parents at home.</div></div></div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div class="border rounded-xl overflow-hidden"><div class="bg-gray-900 text-white p-3 font-bold">I / YOU / WE / THEY</div><div class="p-4 text-sm"><b>Subject + Verb 1 + Object</b><p class="mt-3">I study English every day.</p><p>You go to school every morning.</p><p>We play football after school.</p><p>They watch television at night.</p></div></div>
+                        <div class="border rounded-xl overflow-hidden"><div class="bg-orange-500 text-white p-3 font-bold">HE / SHE / IT</div><div class="p-4 text-sm"><b>Subject + Verb 1 + s/es + Object</b><p class="mt-3">He studies English every day.</p><p>She goes to school every morning.</p><p>He plays football after school.</p><p>She watches television at night.</p></div></div>
+                    </div>
+                    <div class="mt-5"><h3 class="font-bold mb-3">Verb Changes</h3><div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2 text-sm"><div class="p-3 bg-gray-50 rounded border"><b>play</b> → plays</div><div class="p-3 bg-gray-50 rounded border"><b>read</b> → reads</div><div class="p-3 bg-gray-50 rounded border"><b>work</b> → works</div><div class="p-3 bg-gray-50 rounded border"><b>eat</b> → eats</div><div class="p-3 bg-gray-50 rounded border"><b>go</b> → goes</div><div class="p-3 bg-gray-50 rounded border"><b>do</b> → does</div><div class="p-3 bg-gray-50 rounded border"><b>watch</b> → watches</div><div class="p-3 bg-gray-50 rounded border"><b>wash</b> → washes</div><div class="p-3 bg-gray-50 rounded border"><b>study</b> → studies</div><div class="p-3 bg-gray-50 rounded border"><b>have</b> → has</div></div><div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-sm"><b>Important:</b> I have breakfast. But: <b>She has breakfast.</b></div></div>
+                    <div class="mt-5 grid md:grid-cols-2 gap-5"><div class="p-4 bg-red-50 border border-red-100 rounded-xl text-sm"><h3 class="font-bold text-red-800 mb-2">Negative Sentences</h3><p>I / You / We / They + <b>do not</b> + Verb 1</p><p>He / She / It + <b>does not</b> + Verb 1</p><p class="mt-3">I do not watch television every day.</p><p>He does not play football every afternoon.</p><p class="mt-2"><span class="line-through">She doesn't goes to school.</span> → <b>She doesn't go to school.</b></p></div><div class="p-4 bg-green-50 border border-green-100 rounded-xl text-sm"><h3 class="font-bold text-green-800 mb-2">Questions</h3><p><b>Do</b> + I/you/we/they + Verb 1...?</p><p><b>Does</b> + he/she/it + Verb 1...?</p><p class="mt-3">Do you go to school every day? — Yes, I do.</p><p>Does she study English every day? — Yes, she does.</p><p>Do they play football after school? — No, they don't.</p><p>Does he help his parents? — Yes, he does.</p></div></div>
+                </section>
+
+                <section id="l4-time" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">13–14. Time Expressions & Sequence Words</h2>
+                    <div class="grid md:grid-cols-2 gap-5"><div class="overflow-hidden rounded-xl border"><table class="w-full text-sm"><thead><tr><th>Expression</th><th>Example</th></tr></thead><tbody><tr><td>every day</td><td>I study every day.</td></tr><tr><td>every morning</td><td>I exercise every morning.</td></tr><tr><td>every afternoon</td><td>I play football every afternoon.</td></tr><tr><td>every evening</td><td>I help my parents every evening.</td></tr><tr><td>every night</td><td>I read every night.</td></tr><tr><td>on weekdays</td><td>I go to school on weekdays.</td></tr><tr><td>usually</td><td>I usually wake up at 5 a.m.</td></tr><tr><td>always</td><td>I always brush my teeth.</td></tr><tr><td>sometimes</td><td>I sometimes watch television.</td></tr><tr><td>often</td><td>I often read books.</td></tr><tr><td>never</td><td>I never go to school on Sunday.</td></tr></tbody></table></div><div class="p-5 bg-orange-50 rounded-xl border border-orange-200"><h3 class="font-bold mb-3">🔄 Organize Your Routine</h3><div class="flex flex-wrap gap-2 mb-4"><span class="tag">First</span><span class="tag">Then</span><span class="tag">Next</span><span class="tag">After that</span><span class="tag">Finally</span></div><p class="text-sm leading-7">First, I wake up at 5 a.m.<br>Then, I brush my teeth.<br>Next, I take a shower.<br>After that, I have breakfast.<br>Finally, I go to school.</p></div></div>
+                </section>
+
+                <section id="l4-quizzes" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">6 & 15–16. Interactive Practice 🎯</h2>
+                    <div class="mb-7"><h3 class="font-bold mb-3">What Activity Is It?</h3><div id="vocab-quiz-l4" class="grid md:grid-cols-2 gap-4"></div><div id="vocab-score-l4" class="mt-3 text-sm font-bold"></div></div>
+                    <div class="mb-7"><h3 class="font-bold mb-3">Interactive Grammar Quiz</h3><div id="grammar-quiz-l4" class="grid md:grid-cols-2 gap-4"></div><div id="grammar-score-l4" class="mt-3 text-sm font-bold"></div></div>
+                    <div><h3 class="font-bold mb-3">Sentence Builder — Arrange the Words</h3><div class="space-y-3 text-sm"><div class="p-4 border rounded-xl">Challenge 1: every / I / school / go / day / to <input class="w-full mt-2 p-2 border rounded" placeholder="Write your sentence"></div><div class="p-4 border rounded-xl">Challenge 2: English / she / studies / morning / every <input class="w-full mt-2 p-2 border rounded" placeholder="Write your sentence"></div><div class="p-4 border rounded-xl">Challenge 3: football / they / after school / play <input class="w-full mt-2 p-2 border rounded" placeholder="Write your sentence"></div><div class="p-4 border rounded-xl">Challenge 4: homework / he / his / does / evening / every <input class="w-full mt-2 p-2 border rounded" placeholder="Write your sentence"></div><div class="p-4 border rounded-xl">Challenge 5: my / I / parents / help <input class="w-full mt-2 p-2 border rounded" placeholder="Write your sentence"></div></div></div>
+                </section>
+
+                <section id="l4-reading" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">17–19. Reading & Deep Thinking 📖</h2>
+                    <div class="bg-white border rounded-xl p-6 shadow-sm"><h3 class="text-xl font-black mb-4">My Daily Routine</h3><p class="text-sm leading-7">My name is Andi. I am a student of Class X at SMA Negeri 1 Banggai.<br>I usually wake up at five o'clock in the morning. First, I make my bed and brush my teeth. Then, I take a shower and get dressed.<br>After that, I have breakfast with my family. I usually eat rice and eggs for breakfast. I leave home at 6:30 a.m. and go to school.<br>At school, I study different subjects. I listen to my teachers, take notes, and work with my classmates. I have lunch at school.<br>I go home in the afternoon. After arriving home, I take a short rest. Then, I do my homework. Sometimes, I help my parents at home.<br>In the evening, I have dinner with my family. After dinner, I usually review my lessons or read a book.<br>Finally, I brush my teeth and go to bed at 10 p.m.<br>I try to follow my daily routine because it helps me manage my time and become a responsible student.</p></div>
+                    <div class="mt-5 grid md:grid-cols-2 gap-3 text-sm"><div class="p-4 bg-gray-50 border rounded-xl"><b>1.</b> What time does Andi usually wake up?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>2.</b> What does he do after waking up?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>3.</b> What time does he leave home?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>4.</b> Where does he have lunch?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>5.</b> What does he do after arriving home?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>6.</b> What does he sometimes do at home?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>7.</b> What does he do after dinner?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>8.</b> What time does he go to bed?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div><div class="p-4 bg-gray-50 border rounded-xl"><b>9.</b> Why does Andi try to follow his daily routine?<br><input class="w-full mt-2 p-2 border rounded" placeholder="Your answer"></div></div>
+                    <div id="l4-deep" class="mt-6 bg-indigo-50 border border-indigo-200 rounded-xl p-5"><h3 class="font-bold mb-3">🔎 Why Is a Daily Routine Important?</h3><p class="text-sm italic mb-3">“I try to follow my daily routine because it helps me manage my time and become a responsible student.”</p><ol class="text-sm space-y-3 list-decimal list-inside"><li>Why is time management important for students?</li><li>What happens if we don't manage our time well?</li><li>Which part of your routine would you like to improve?</li></ol></div>
+                </section>
+
+                <section id="l4-speaking" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">20–23. Speaking & Communicative Practice 🎤</h2>
+                    <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 mb-5"><h3 class="font-bold">Model Dialogue</h3><div class="text-sm leading-7 mt-3"><b>A:</b> What time do you usually wake up?<br><b>B:</b> I usually wake up at five o'clock.<br><b>A:</b> What do you do after you wake up?<br><b>B:</b> I brush my teeth and take a shower.<br><b>A:</b> What time do you go to school?<br><b>B:</b> I go to school at seven o'clock.<br><b>A:</b> What do you do after school?<br><b>B:</b> I go home and take a rest.<br><b>A:</b> Do you do your homework every day?<br><b>B:</b> Yes, I do.<br><b>A:</b> What time do you go to bed?<br><b>B:</b> I usually go to bed at ten o'clock.</div><button onclick="readDialogueL4()" class="mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg font-bold"><i class="fas fa-volume-up mr-2"></i>Listen to Dialogue</button></div>
+                    <div class="grid md:grid-cols-2 gap-5"><div class="border rounded-xl p-5"><h3 class="font-bold">Useful Speaking Expressions</h3><ul class="text-sm mt-3 space-y-2"><li>I usually wake up at...</li><li>I always have breakfast.</li><li>I go to school at...</li><li>I study English every...</li><li>After school, I...</li><li>In the afternoon, I...</li><li>In the evening, I...</li><li>Before going to bed, I...</li><li>I usually go to bed at...</li></ul></div><div class="border rounded-xl p-5"><h3 class="font-bold">Ask About Daily Routines</h3><ul class="text-sm mt-3 space-y-2"><li>What time do you wake up?</li><li>What do you do in the morning?</li><li>What time do you go to school?</li><li>What do you do after school?</li><li>Do you study at home?</li><li>Do you help your parents?</li><li>What do you usually do in the evening?</li><li>What time do you go to bed?</li></ul></div></div>
+                    <div class="mt-5 bg-gray-900 text-white rounded-xl p-5"><h3 class="font-bold">🎤 Daily Routine Interview</h3><p class="text-sm mt-2">Interview your partner. Ask all eight questions and give complete answers.</p><ol class="text-sm mt-3 space-y-1 list-decimal list-inside"><li>What time do you usually wake up?</li><li>What do you do after waking up?</li><li>What time do you go to school?</li><li>What is your favorite school activity?</li><li>What do you usually do after school?</li><li>Do you help your parents at home?</li><li>What do you usually do in the evening?</li><li>What time do you go to bed?</li></ol></div>
+                </section>
+
+                <section id="l4-creative" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">24–28. Creative Tasks & Joyful Learning 🎮</h2>
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-5 mb-5"><h3 class="font-bold">⏰ My 24-Hour Routine</h3><p class="text-sm mt-2">Create your own daily routine timeline.</p><div class="mt-4 grid grid-cols-2 md:grid-cols-5 gap-2 text-sm"><div class="p-3 bg-white rounded-lg border"><b>05:00 🌅</b><br>Wake up</div><div class="p-3 bg-white rounded-lg border"><b>05:15</b><br>Brush my teeth</div><div class="p-3 bg-white rounded-lg border"><b>05:30</b><br>Take a shower</div><div class="p-3 bg-white rounded-lg border"><b>06:00</b><br>Have breakfast</div><div class="p-3 bg-white rounded-lg border"><b>07:00 🏫</b><br>Go to school</div><div class="p-3 bg-white rounded-lg border"><b>12:00</b><br>Have lunch</div><div class="p-3 bg-white rounded-lg border"><b>15:00</b><br>Go home</div><div class="p-3 bg-white rounded-lg border"><b>16:00</b><br>Do homework</div><div class="p-3 bg-white rounded-lg border"><b>19:00</b><br>Have dinner</div><div class="p-3 bg-white rounded-lg border"><b>20:00</b><br>Study / Read</div><div class="p-3 bg-white rounded-lg border"><b>22:00 🌙</b><br>Go to bed</div></div></div>
+                    <div class="grid md:grid-cols-2 gap-5"><div class="border rounded-xl p-5"><h3 class="font-bold">🎨 My Daily Routine Profile</h3><div class="text-sm space-y-2 mt-3">Wake-up time: <input class="border rounded p-1" /><br>Breakfast time: <input class="border rounded p-1" /><br>School time: <input class="border rounded p-1" /><br>Lunch time: <input class="border rounded p-1" /><br>Go-home time: <input class="border rounded p-1" /><br>Homework time: <input class="border rounded p-1" /><br>Dinner time: <input class="border rounded p-1" /><br>Bedtime: <input class="border rounded p-1" /></div><p class="text-sm mt-4 leading-7">My name is __________. I am a student of Class X. I usually wake up at __________. First, I __________. Then, I __________. After that, I __________. I go to school at __________. After school, I __________. In the evening, I __________. Finally, I go to bed at __________.</p></div><div class="border rounded-xl p-5"><h3 class="font-bold">🧩 Differentiated Learning</h3><div class="text-sm mt-3 space-y-4"><div><b>🟢 Level 1 — Beginner</b><p>I wake up at ____.<br>I have breakfast at ____.<br>I go to school at ____.<br>I go home at ____.<br>I do my homework at ____.<br>I go to bed at ____.</p></div><div><b>🟡 Level 2 — Developing</b><p>Write 8–10 sentences. Use at least: usually; every day; first; then; after that; finally.</p></div><div><b>🔵 Level 3 — Advanced</b><p>Describe your daily routine and explain how it helps you achieve your goals.</p></div></div></div></div>
+                    <div class="mt-5 grid md:grid-cols-2 gap-5"><div class="p-5 bg-pink-50 border border-pink-200 rounded-xl"><h3 class="font-bold">🎮 Routine Charades</h3><p class="text-sm mt-2">One student acts out a daily activity without speaking. Others guess: “Are you brushing your teeth?” The student answers: “Yes, I am!” or “No, I'm not!”</p><p class="text-sm mt-2">Activities: wake up; brush teeth; take a shower; eat breakfast; go to school; study; play football; do homework; sleep.</p></div><div class="p-5 bg-yellow-50 border border-yellow-200 rounded-xl"><h3 class="font-bold">⚡ Daily Routine Race</h3><p class="text-sm mt-2">Teacher gives a time. Students create a grammatically correct sentence. Example: 6:00 a.m. → I have breakfast at 6 a.m.</p><p class="text-sm mt-2">🏆 Score: Team A: 8 points • Team B: 7 points • Team C: 9 points</p></div></div>
+                </section>
+
+                <section class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">29–34. Deep Thinking, Speaking & Healthy Habits</h2>
+                    <div class="grid md:grid-cols-2 gap-5"><div class="p-5 bg-indigo-50 rounded-xl border"><h3 class="font-bold">🧠 My Routine and My Future</h3><p class="text-sm italic mt-2">Small daily actions can create big results.</p><ol class="text-sm mt-3 space-y-2 list-decimal list-inside"><li>What good habit do you have?</li><li>What habit do you want to improve?</li><li>How can your daily routine help you achieve your future goals?</li><li>What will you change starting tomorrow?</li></ol></div><div class="p-5 bg-green-50 rounded-xl border"><h3 class="font-bold">🌱 My Healthy Habits</h3><ul class="text-sm mt-3 space-y-2"><li>✓ getting enough sleep;</li><li>✓ eating a healthy breakfast;</li><li>✓ drinking enough water;</li><li>✓ exercising regularly;</li><li>✓ studying regularly;</li><li>✓ taking breaks;</li><li>✓ spending time with family;</li><li>✓ limiting unnecessary screen time.</li></ul><p class="text-sm mt-3">Which healthy habit is already part of your routine? Which habit do you want to develop?</p></div></div>
+                    <div class="mt-5 p-5 bg-orange-50 rounded-xl border border-orange-200"><h3 class="font-bold">⏳ Use Your Time Wisely</h3><div class="grid md:grid-cols-4 gap-3 mt-3 text-sm"><div><b>🌅 MORNING</b><p>School preparation and learning.</p></div><div><b>☀️ AFTERNOON</b><p>School, rest, exercise, and homework.</p></div><div><b>🌆 EVENING</b><p>Family time, studying, and relaxation.</p></div><div><b>🌙 NIGHT</b><p>Prepare for tomorrow and get enough sleep.</p></div></div><p class="font-bold mt-4">“Good time management helps us balance study, family, health, rest, and personal goals.”</p></div>
+                    <div class="mt-5 p-5 bg-gray-900 text-white rounded-xl"><h3 class="font-bold">🎙️ Speaking Challenge — 60–90 Seconds</h3><p class="text-sm mt-2">Include your wake-up time, morning activities, school activities, afternoon activities, evening activities, and bedtime.</p><p class="text-sm mt-3 leading-7">Good morning, everyone.<br>My name is __________.<br>I am a student of Class X.<br>I usually wake up at __________.<br>First, I __________.<br>Then, I __________.<br>After that, I __________.<br>I go to school at __________.<br>After school, I __________.<br>In the evening, I __________.<br>Finally, I go to bed at __________.<br>This is my daily routine. Thank you.</p></div>
+                    <div class="mt-5 grid md:grid-cols-2 gap-5"><div class="p-5 border rounded-xl"><h3 class="font-bold">Partner Challenge</h3><p class="text-sm mt-2"><b>Student A:</b> What time do you wake up?<br><b>Student B:</b> I usually wake up at 5 a.m.</p><p class="text-sm mt-2">Then change roles. Ask at least six questions and give complete answers.</p></div><div class="p-5 border rounded-xl"><h3 class="font-bold">🤖 AI Speaking Practice</h3><p class="text-sm mt-2">Practice speaking your routine. Example feedback:</p><div class="text-sm mt-3 space-y-1">Grammar: ⭐⭐⭐⭐⭐<br>Vocabulary: ⭐⭐⭐⭐☆<br>Fluency: ⭐⭐⭐⭐☆<br>Pronunciation: ⭐⭐⭐⭐☆<br>Organization: ⭐⭐⭐⭐⭐</div><p class="text-sm mt-3">🌟 Excellent! Your daily routine is well organized. You used sequence words such as first, then, after that, and finally. Grammar tip: Remember to add -s/-es when the subject is he, she, or it.</p></div></div>
+                </section>
+
+                <section id="l4-assessment" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">35–40. Final Challenge & Assessment 🏆</h2>
+                    <div class="p-5 bg-orange-50 rounded-xl border border-orange-200 mb-5"><h3 class="font-bold">My Day, My Responsibility</h3><p class="text-sm mt-2"><b>Task 1 — Vocabulary:</b> Write at least 15 daily activities in English.</p><p class="text-sm mt-2"><b>Task 2 — Grammar:</b> Write 10 Simple Present sentences about your routine. Use I + Verb 1 and He/She + Verb-s/es.</p><p class="text-sm mt-2"><b>Task 3 — Speaking:</b> Describe your daily routine for 1–2 minutes.</p></div>
+                    <div class="grid md:grid-cols-2 gap-5"><div class="border rounded-xl p-5"><h3 class="font-bold">38. Final Assessment — Part A: Vocabulary</h3><p class="text-sm mt-3">1. I do this activity with a toothbrush every morning.</p><div class="space-y-2 mt-2 text-sm"><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="False">take a shower</button><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="True">brush my teeth</button><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="False">have lunch</button><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="False">go home</button></div><p class="text-sm mt-4">2. I do this activity before going to school.</p><div class="space-y-2 mt-2 text-sm"><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="True">have breakfast</button><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="False">go to bed</button><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="False">have dinner</button><button class="quiz-opt-l4 w-full text-left p-2 border rounded" data-correct="False">play football</button></div></div><div class="border rounded-xl p-5"><h3 class="font-bold">Part B — Grammar</h3><p class="text-sm mt-2">Complete the sentences.</p><div class="space-y-2 text-sm mt-3"><label class="block">1. I ______ to school every day. <input class="w-full mt-1 p-2 border rounded" /></label><label class="block">2. She ______ English every morning. <input class="w-full mt-1 p-2 border rounded" /></label><label class="block">3. They ______ football after school. <input class="w-full mt-1 p-2 border rounded" /></label><label class="block">4. He ______ his homework every evening. <input class="w-full mt-1 p-2 border rounded" /></label><label class="block">5. My mother ______ breakfast at 6 a.m. <input class="w-full mt-1 p-2 border rounded" /></label><label class="block">6. We ______ our parents at home. <input class="w-full mt-1 p-2 border rounded" /></label><label class="block">7. She ______ television at night. <input class="w-full mt-1 p-2 border rounded" /></label><label class="block">8. I ______ to bed at 10 p.m. <input class="w-full mt-1 p-2 border rounded" /></label></div></div></div>
+                    <div class="mt-5 p-5 border rounded-xl"><h3 class="font-bold">39. Writing Assessment</h3><p class="text-sm mt-2">Write 10–12 sentences about your daily routine. Include morning routine, school activities, afternoon routine, evening routine, and bedtime. Use at least three sequence words: First • Then • Next • After that • Finally.</p><textarea class="w-full mt-3 p-3 border rounded-xl h-40" placeholder="Write your paragraph here..."></textarea></div>
+                    <div class="mt-5 overflow-hidden rounded-xl border"><h3 class="font-bold p-4">40. Speaking Rubric — Maximum Score: 24</h3><table class="w-full text-sm"><thead><tr><th>Criteria</th><th>4 — Excellent</th><th>3 — Good</th><th>2 — Developing</th><th>1 — Beginning</th></tr></thead><tbody><tr><td><b>Pronunciation</b></td><td>Very clear</td><td>Mostly clear</td><td>Sometimes unclear</td><td>Difficult to understand</td></tr><tr><td><b>Grammar</b></td><td>Accurate</td><td>Minor errors</td><td>Several errors</td><td>Frequent errors</td></tr><tr><td><b>Vocabulary</b></td><td>Varied</td><td>Appropriate</td><td>Limited</td><td>Very limited</td></tr><tr><td><b>Fluency</b></td><td>Very fluent</td><td>Mostly fluent</td><td>Some pauses</td><td>Very hesitant</td></tr><tr><td><b>Organization</b></td><td>Very organized</td><td>Organized</td><td>Somewhat organized</td><td>Disorganized</td></tr><tr><td><b>Confidence</b></td><td>Very confident</td><td>Confident</td><td>Somewhat nervous</td><td>Very nervous</td></tr></tbody></table></div>
+                </section>
+
+                <section id="l4-reflection" class="section-card">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-5">36–37 & 41. Reflection, Self-Assessment & Key Takeaways 🌱</h2>
+                    <div class="grid md:grid-cols-2 gap-5"><div class="p-5 bg-green-50 rounded-xl border"><h3 class="font-bold">My Learning Journey</h3><div class="text-sm space-y-3 mt-3">Today I learned... <input class="w-full p-2 border rounded" />I can name these daily activities... <input class="w-full p-2 border rounded" />I can use the Simple Present Tense to... <input class="w-full p-2 border rounded" />I can describe... <input class="w-full p-2 border rounded" />The most difficult part was... <input class="w-full p-2 border rounded" />I want to improve... <input class="w-full p-2 border rounded" />Starting tomorrow, I will... <input class="w-full p-2 border rounded" /></div></div><div class="p-5 bg-indigo-50 rounded-xl border"><h3 class="font-bold">Self-Assessment</h3><div class="text-sm space-y-3 mt-3"><div class="flex justify-between items-center"><span>I can name daily activities in English.</span><span class="text-yellow-400 cursor-pointer">⭐⭐⭐⭐⭐</span></div><div class="flex justify-between items-center"><span>I can use the Simple Present Tense.</span><span class="text-yellow-400 cursor-pointer">⭐⭐⭐⭐⭐</span></div><div class="flex justify-between items-center"><span>I can use do/does correctly.</span><span class="text-yellow-400 cursor-pointer">⭐⭐⭐⭐⭐</span></div><div class="flex justify-between items-center"><span>I can use -s/-es with he/she/it.</span><span class="text-yellow-400 cursor-pointer">⭐⭐⭐⭐⭐</span></div><div class="flex justify-between items-center"><span>I can ask about someone's routine.</span><span class="text-yellow-400 cursor-pointer">⭐⭐⭐⭐⭐</span></div><div class="flex justify-between items-center"><span>I can describe my daily routine.</span><span class="text-yellow-400 cursor-pointer">⭐⭐⭐⭐⭐</span></div></div></div></div>
+                    <div class="mt-5 bg-gray-900 text-white rounded-xl p-6"><h3 class="font-bold">LESSON 4 — KEY TAKEAWAYS</h3><div class="grid md:grid-cols-2 gap-5 mt-4 text-sm leading-6"><div><b>DAILY ACTIVITIES</b><p>wake up • brush my teeth • take a shower • have breakfast • go to school • study • have lunch • go home • do homework • help parents • have dinner • go to bed</p></div><div><b>SIMPLE PRESENT</b><p>I / YOU / WE / THEY → Verb 1<br>I go to school. They study English.<br>HE / SHE / IT → Verb + s/es<br>She goes to school. He studies English.</p></div><div><b>NEGATIVE</b><p>I/You/We/They do not + Verb 1<br>He/She/It does not + Verb 1</p></div><div><b>QUESTIONS</b><p>Do + I/you/we/they + Verb 1...?<br>Does + he/she/it + Verb 1...?</p></div></div><div class="mt-4"><b>SEQUENCE WORDS</b><p>First → Then → Next → After that → Finally</p></div><div class="mt-6 p-5 bg-white/10 rounded-xl"><b>🌟 FINAL MESSAGE</b><p class="italic mt-2">“Your daily habits shape your future. Small actions done consistently can lead to great achievements.”</p><p class="mt-3">Wake up with purpose.<br>Study with focus.<br>Use your time wisely.<br>Help others.<br>Rest well.<br>Keep improving every day. 🌱</p></div></div>
+                    <div class="text-center pt-8 mt-8 border-t border-gray-200"><button onclick="completeLesson4()" class="bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-orange-500 text-white font-black py-4 px-10 rounded-xl shadow-xl transition-all transform hover:scale-105 text-xl"><i class="fas fa-trophy mr-3 text-yellow-200"></i> COMPLETE LESSON 4</button></div>
+                </section>
+            </div>
+
         </div>
     </main>
+
+    <!-- Modal for Completion Lesson 1 -->
+    <div id="completion-modal-l1" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center transform scale-95 transition-transform" id="modal-content-l1">
+            <div class="text-6xl mb-4">🎉</div><h2 class="text-3xl font-black text-gray-800 mb-2">GREAT JOB!</h2>
+            <p class="text-gray-600 mb-6">You have successfully completed Lesson 1: Introduction & Classroom English.</p>
+            <div class="bg-indigo-50 rounded-lg p-4 text-left text-sm mb-6 border border-indigo-100"><p class="font-bold text-indigo-900 mb-2">You practiced:</p><ul class="space-y-2 text-indigo-800"><li>✓ Greetings & self-introduction</li><li>✓ To Be: am, is, are</li><li>✓ Classroom English</li><li>✓ Dialogue and speaking practice</li><li>✓ Mindful, Meaningful & Joyful reflection</li></ul></div>
+            <button onclick="closeModalL1()" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition">Return to Modules</button>
+        </div>
+    </div>
 
     <!-- Modal for Completion Lesson 2 -->
     <div id="completion-modal-l2" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center backdrop-blur-sm">
@@ -1007,39 +1366,54 @@
         </div>
     </div>
 
+
+    <!-- Modal for Completion Lesson 4 -->
+    <div id="completion-modal-l4" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center transform scale-95 transition-transform" id="modal-content-l4">
+            <div class="text-6xl mb-4">🏆</div><h2 class="text-3xl font-black text-gray-800 mb-2">GREAT JOB!</h2>
+            <p class="text-gray-600 mb-6">You have successfully completed Lesson 4: Daily Routines.</p>
+            <div class="bg-orange-50 rounded-lg p-4 text-left text-sm mb-6 border border-orange-100"><p class="font-bold text-orange-900 mb-2">You practiced:</p><ul class="space-y-2 text-orange-800"><li>✓ Daily-routine vocabulary</li><li>✓ Simple Present: positive, negative, questions</li><li>✓ Time expressions & sequence words</li><li>✓ Reading, writing, and speaking about routines</li></ul></div>
+            <button onclick="closeModalL4()" class="w-full bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition">Return to Modules</button>
+        </div>
+    </div>
+
     <!-- Canvas for Confetti -->
     <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full hidden"></canvas>
 
     <script>
         // --- Navigation & Lesson Switching Logic ---
-        let currentLesson = 3; // Default to showing the newly added lesson
+        let currentLesson = 1; // Start with Lesson 1
 
         function switchLesson(lessonNum) {
             currentLesson = lessonNum;
             const l1Container = document.getElementById('lesson1-container');
             const l2Container = document.getElementById('lesson2-container');
             const l3Container = document.getElementById('lesson3-container'); // NEW
+            const l4Container = document.getElementById('lesson4-container');
             
             const navL1 = document.getElementById('nav-links-l1');
             const navL2 = document.getElementById('nav-links-l2');
             const navL3 = document.getElementById('nav-links-l3'); // NEW
+            const navL4 = document.getElementById('nav-links-l4');
             
             const tabL1 = document.getElementById('tab-l1');
             const tabL2 = document.getElementById('tab-l2');
             const tabL3 = document.getElementById('tab-l3'); // NEW
+            const tabL4 = document.getElementById('tab-l4');
 
-            window.scrollTo({ top: 0, behavior: 'auto' });
+            const mainScrollEl = document.getElementById('main-scroll');
+            if (mainScrollEl) mainScrollEl.scrollTo({ top: 0, behavior: 'auto' });
 
             // Helper to reset tabs
-            [tabL1, tabL2, tabL3].forEach(tab => {
+            [tabL1, tabL2, tabL3, tabL4].forEach(tab => {
                 if(tab) {
                     tab.classList.remove('bg-indigo-600', 'text-white', 'shadow');
                     tab.classList.add('text-indigo-300');
                 }
             });
             // Helper to hide all containers and navs
-            [l1Container, l2Container, l3Container].forEach(c => c && c.classList.add('hidden'));
-            [navL1, navL2, navL3].forEach(n => n && n.classList.add('hidden'));
+            [l1Container, l2Container, l3Container, l4Container].forEach(c => c && c.classList.add('hidden'));
+            [navL1, navL2, navL3, navL4].forEach(n => n && n.classList.add('hidden'));
 
             // Show selected
             if(lessonNum === 1) {
@@ -1057,41 +1431,84 @@
                 navL3.classList.remove('hidden');
                 tabL3.classList.add('bg-indigo-600', 'text-white', 'shadow');
                 tabL3.classList.remove('text-indigo-300');
+            } else if(lessonNum === 4) {
+                l4Container.classList.remove('hidden');
+                navL4.classList.remove('hidden');
+                tabL4.classList.add('bg-indigo-600', 'text-white', 'shadow');
+                tabL4.classList.remove('text-indigo-300');
+            }
+        }
+
+        // Mobile navigation toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (!menu) return;
+            menu.classList.toggle('hidden');
+            if (icon) {
+                const isOpen = !menu.classList.contains('hidden');
+                icon.classList.toggle('fa-chevron-down', !isOpen);
+                icon.classList.toggle('fa-chevron-up', isOpen);
             }
         }
 
         // Initialize display based on default
-        switchLesson(3); 
+        switchLesson(1);
+
+        // Smooth, reliable section navigation inside the main scroll container
+        document.querySelectorAll('#nav-menu .nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (!targetId || !targetId.startsWith('#')) return;
+                const target = document.querySelector(targetId);
+                if (!target) return;
+                e.preventDefault();
+                const scroller = document.getElementById('main-scroll');
+                if (scroller) {
+                    const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - 20;
+                    scroller.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+                }
+                history.replaceState(null, '', targetId);
+            });
+        });
 
         // Active Navigation Highlighting based on scroll
         const mainScroll = document.getElementById('main-scroll');
-        mainScroll.addEventListener('scroll', () => {
-            let selector = '#lesson2-container section';
-            let navSelector = '#nav-links-l2 .nav-link';
-            
-            if(currentLesson === 1) { selector = '#lesson1-container section'; navSelector = '#nav-links-l1 .nav-link'; }
-            if(currentLesson === 3) { selector = '#lesson3-container section'; navSelector = '#nav-links-l3 .nav-link'; } // NEW
+        if (mainScroll) {
+            mainScroll.addEventListener('scroll', () => {
+                let selector = '#lesson2-container section';
+                let navSelector = '#nav-links-l2 .nav-link';
 
-            const sections = document.querySelectorAll(selector);
-            const navLinks = document.querySelectorAll(navSelector);
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (mainScroll.scrollTop >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
+                if(currentLesson === 1) { selector = '#lesson1-container section'; navSelector = '#nav-links-l1 .nav-link'; }
+                if(currentLesson === 3) { selector = '#lesson3-container section'; navSelector = '#nav-links-l3 .nav-link'; }
+                if(currentLesson === 4) { selector = '#lesson4-container section'; navSelector = '#nav-links-l4 .nav-link'; }
 
-            navLinks.forEach(link => {
-                link.classList.remove('bg-indigo-800', 'font-medium', 'text-white');
-                link.classList.add('text-indigo-200');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('bg-indigo-800', 'font-medium', 'text-white');
-                    link.classList.remove('text-indigo-200');
-                }
+                const sections = document.querySelectorAll(selector);
+                const navLinks = document.querySelectorAll(navSelector);
+                const scrollTop = mainScroll.getBoundingClientRect().top;
+                const threshold = 170;
+                let current = '';
+                let closestDistance = Infinity;
+
+                sections.forEach(section => {
+                    const distance = section.getBoundingClientRect().top - scrollTop - threshold;
+                    if (distance <= 0 && Math.abs(distance) < closestDistance) {
+                        closestDistance = Math.abs(distance);
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                if (!current && sections.length) current = sections[0].getAttribute('id');
+
+                navLinks.forEach(link => {
+                    const active = link.getAttribute('href') === `#${current}`;
+                    link.classList.toggle('bg-indigo-800', active);
+                    link.classList.toggle('font-medium', active);
+                    link.classList.toggle('text-white', active);
+                    link.classList.toggle('text-indigo-200', !active);
+                });
             });
-        });
+        }
 
         // --- Lesson 2 Specific Interactive Logic ---
 
@@ -1323,6 +1740,77 @@
             
             document.getElementById('ai-feedback-l3').classList.remove('hidden');
         }
+
+        // --- Lesson 1 interactions ---
+        function checkTB(btn, answer) {
+            const q = btn.closest('.tb-q');
+            const correct = q.dataset.ans.toLowerCase() === answer.toLowerCase();
+            const feedback = document.getElementById('tb-feedback');
+            q.querySelectorAll('button').forEach(b => b.classList.remove('bg-green-100','text-green-700','bg-red-100','text-red-700'));
+            if (correct) { btn.classList.add('bg-green-100','text-green-700'); feedback.textContent='✓ Correct! Keep going.'; feedback.className='mt-4 p-3 rounded text-sm font-bold bg-green-50 text-green-700 border border-green-200'; }
+            else { btn.classList.add('bg-red-100','text-red-700'); feedback.textContent='Try again. Think about the subject.'; feedback.className='mt-4 p-3 rounded text-sm font-bold bg-red-50 text-red-700 border border-red-200'; }
+            feedback.classList.remove('hidden');
+        }
+        function readDialogueL1() {
+            if (!('speechSynthesis' in window)) return;
+            const text = "Good morning! My name is Andi. What's your name? Good morning. I'm Rina. Nice to meet you. Nice to meet you, too. I am a student of Class X-B. What class are you in? I am in Class X-C. I like English and music. That's nice! See you in class. See you!";
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.9; window.speechSynthesis.speak(u);
+        }
+        function completeLesson1() {
+            document.getElementById('completion-modal-l1').classList.remove('hidden');
+            setTimeout(() => document.getElementById('modal-content-l1').classList.replace('scale-95','scale-100'), 10);
+            triggerConfetti();
+        }
+        function closeModalL1() {
+            document.getElementById('completion-modal-l1').classList.add('hidden');
+            document.getElementById('modal-content-l1').classList.replace('scale-100','scale-95');
+            document.getElementById('confetti-canvas').classList.add('hidden');
+            window.scrollTo({top:0, behavior:'smooth'});
+        }
+
+
+        // --- Lesson 4 interactions ---
+        const vocabQuizL4 = [
+            {q:'I do this after I wake up. I use a toothbrush.',opts:['take a shower','brush my teeth','have lunch','go to bed'],a:1},
+            {q:'I do this before going to school. I eat bread and drink milk.',opts:['take a rest','go home','have breakfast','do homework'],a:2},
+            {q:'I do this when I arrive at school.',opts:['go to bed','study','have dinner','wake up'],a:1},
+            {q:'I do this at night when I am ready to sleep.',opts:['have breakfast','go to school','do homework','go to bed'],a:3}
+        ];
+        const grammarQuizL4 = [
+            {q:'I ___ to school every morning.',opts:['go','goes','going','gone'],a:0},
+            {q:'She ___ breakfast at 6 a.m.',opts:['have','has','having','had'],a:1},
+            {q:'They ___ football after school.',opts:['play','plays','playing','played'],a:0},
+            {q:'He ___ his homework every evening.',opts:['do','does','doing','did'],a:1},
+            {q:'My sister ___ television at night.',opts:['watch','watches','watching','watched'],a:1},
+            {q:'We ___ English every day.',opts:['study','studies','studying','studied'],a:0}
+        ];
+        function renderQuizL4(id, data, scoreId){
+            const box=document.getElementById(id); if(!box) return;
+            box.innerHTML=data.map((x,i)=>`<div class="p-4 border rounded-xl bg-white"><p class="font-semibold text-sm mb-3">${i+1}. ${x.q}</p><div class="space-y-2">${x.opts.map((o,j)=>`<button onclick="answerQuizL4(this,${j===x.a},'${scoreId}')" class="w-full text-left p-2 border rounded-lg hover:bg-gray-50">${o}</button>`).join('')}</div></div>`).join('');
+        }
+        let quizScoresL4={};
+        function answerQuizL4(btn,correct,scoreId){
+            const parent=btn.parentElement; if(parent.dataset.done) return; parent.dataset.done='1';
+            parent.querySelectorAll('button').forEach(b=>b.disabled=true);
+            if(correct){btn.classList.add('bg-green-100','text-green-700','border-green-300'); quizScoresL4[scoreId]=(quizScoresL4[scoreId]||0)+1;}
+            else btn.classList.add('bg-red-100','text-red-700','border-red-300');
+            const total=parent.parentElement.parentElement.querySelectorAll('.space-y-2').length;
+            document.getElementById(scoreId).textContent=`Score: ${quizScoresL4[scoreId]||0} / ${total}`;
+        }
+        function readDialogueL4(){
+            if(!('speechSynthesis' in window)) return alert('Browser does not support text-to-speech.');
+            speechSynthesis.cancel(); const text="A: What time do you usually wake up? B: I usually wake up at five o'clock. A: What do you do after you wake up? B: I brush my teeth and take a shower. A: What time do you go to school? B: I go to school at seven o'clock. A: What do you do after school? B: I go home and take a rest. A: Do you do your homework every day? B: Yes, I do. A: What time do you go to bed? B: I usually go to bed at ten o'clock.";
+            const u=new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=.9; speechSynthesis.speak(u);
+        }
+        function completeLesson4(){
+            document.getElementById('completion-modal-l4').classList.remove('hidden');
+            setTimeout(()=>document.getElementById('modal-content-l4').classList.replace('scale-95','scale-100'),10); triggerConfetti();
+        }
+        function closeModalL4(){
+            document.getElementById('completion-modal-l4').classList.add('hidden'); document.getElementById('modal-content-l4').classList.replace('scale-100','scale-95'); document.getElementById('confetti-canvas').classList.add('hidden'); window.scrollTo({top:0,behavior:'smooth'});
+        }
+        document.addEventListener('DOMContentLoaded',()=>{renderQuizL4('vocab-quiz-l4',vocabQuizL4,'vocab-score-l4');renderQuizL4('grammar-quiz-l4',grammarQuizL4,'grammar-score-l4');});
 
         // Completion Logic
         function completeLesson2() {
