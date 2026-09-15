@@ -269,35 +269,263 @@ main#main-scroll { flex:1 1 0% !important; min-width:0 !important; min-height:0 
   main#main-scroll { height:auto !important; max-height:none !important; overflow:visible !important; }
 }
 </style>
+
+<style id="professional-lesson-navigation">
+/* ===== PROFESSIONAL LESSON NAVIGATION ===== */
+nav{isolation:isolate;}
+nav > div:first-child{flex:0 0 auto!important;}
+/* Lesson selector becomes a compact vertical rail instead of an overflowing horizontal strip. */
+nav > div:first-child > .mt-4{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+  max-height:250px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  scrollbar-width:thin;
+  overscroll-behavior:contain;
+}
+nav > div:first-child > .mt-4::-webkit-scrollbar{width:6px;}
+nav > div:first-child > .mt-4::-webkit-scrollbar-thumb{background:rgba(165,180,252,.35);border-radius:999px;}
+nav > div:first-child > .mt-4 button{
+  flex:0 0 auto!important;
+  width:100%!important;
+  min-height:40px;
+  display:flex!important;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
+  text-align:left!important;
+  padding:9px 12px!important;
+  border:1px solid transparent!important;
+  transition:all .18s ease!important;
+}
+nav > div:first-child > .mt-4 button::before{
+  content:attr(data-lesson);
+  width:24px;height:24px;display:grid;place-items:center;
+  border-radius:8px;background:rgba(255,255,255,.07);
+  font-size:10px;font-weight:900;color:#c7d2fe;flex:none;
+}
+nav > div:first-child > .mt-4 button.active-lesson,
+nav > div:first-child > .mt-4 button.bg-indigo-600{
+  background:linear-gradient(135deg,#4f46e5,#312e81)!important;
+  color:#fff!important;
+  border-color:rgba(165,180,252,.28)!important;
+  box-shadow:0 8px 22px rgba(49,46,129,.30), inset 3px 0 #67e8f9!important;
+}
+nav > div:first-child > .mt-4 button.active-lesson::before,
+nav > div:first-child > .mt-4 button.bg-indigo-600::before{
+  background:rgba(255,255,255,.16);color:#fff;
+}
+nav > div:first-child > .mt-4 button:hover{background:rgba(255,255,255,.08)!important;transform:translateX(2px);}
+#nav-menu{
+  scroll-behavior:smooth!important;
+  scrollbar-width:thin;
+  overscroll-behavior:contain!important;
+}
+#nav-menu .nav-link{scroll-margin-block:72px;}
+#nav-menu .nav-link.nav-current{
+  background:linear-gradient(90deg,rgba(79,70,229,.72),rgba(49,46,129,.28))!important;
+  color:#fff!important;border-color:rgba(129,140,248,.30)!important;
+  box-shadow:inset 3px 0 #22d3ee,0 5px 16px rgba(15,23,42,.12)!important;
+  font-weight:800!important;
+}
+#nav-menu .nav-link.nav-current i{color:#67e8f9!important;}
+#nav-menu > [id^="nav-links-l"]{scroll-margin-top:72px;}
+@media(max-width:767px){
+  nav > div:first-child > .mt-4{max-height:190px!important;}
+  nav > div:first-child > .mt-4 button{min-height:38px;padding:8px 10px!important;font-size:.76rem!important;}
+}
+</style>
+
+
+<style id="lesson-dropdown-enhancement">
+  .lesson-dropdown-item.is-active {
+    background: linear-gradient(135deg, rgba(34,211,238,.18), rgba(99,102,241,.20));
+    color: #fff;
+    box-shadow: inset 3px 0 0 rgba(34,211,238,.9);
+  }
+  .lesson-dropdown-item.is-active .lesson-number {
+    background: rgba(34,211,238,.18);
+    color: #67e8f9;
+  }
+  #lessonDropdownMenu {
+    animation: lessonDropdownIn .16s ease-out;
+  }
+  @keyframes lessonDropdownIn {
+    from { opacity: 0; transform: translateY(-6px) scale(.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .lesson-dropdown-wrapper.is-open #lessonDropdownChevron {
+    transform: rotate(180deg);
+  }
+  @media (max-width: 767px) {
+    #lessonDropdownMenu { position: fixed; left: 1rem; right: 1rem; top: auto; width: auto; }
+  }
+</style>
+
+
+<style id="dropdown-progress-final-fix">
+/* Robust lesson dropdown: rendered in the document layer so nav overflow cannot clip it. */
+.lesson-dropdown-wrapper{position:relative!important;z-index:100!important}
+.lesson-dropdown-wrapper #lessonDropdownMenu{display:none!important}
+#lessonDropdownMenu.lesson-dropdown-floating{display:block!important;position:fixed!important;z-index:100000!important;max-height:70vh!important;overflow:hidden!important;width:280px!important;margin:0!important}
+#lessonDropdownMenu.lesson-dropdown-floating > div{max-height:70vh!important;overflow-y:auto!important}
+.lesson-dropdown-item.is-active{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(99,102,241,.28))!important;color:#fff!important;box-shadow:inset 3px 0 #22d3ee}
+.lesson-dropdown-item.is-active .lesson-number{background:rgba(34,211,238,.18);color:#67e8f9}
+.lesson-dropdown-wrapper.is-open #lessonDropdownChevron{transform:rotate(180deg)}
+.lesson-progress-inline{position:relative!important;top:auto!important;left:auto!important;right:auto!important;float:none!important;width:100%!important;margin:0 0 14px!important;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.86);border:1px solid rgba(99,102,241,.13);box-shadow:0 5px 18px rgba(15,23,42,.06);backdrop-filter:blur(8px);z-index:1}
+.lesson-inline-progress-track{height:6px;border-radius:999px;background:#e2e8f0;overflow:hidden}
+.lesson-inline-progress-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#4f46e5,#06b6d4,#14b8a6);transition:width .35s ease}
+.dark-mode .lesson-progress-inline{background:rgba(15,23,42,.88);border-color:rgba(148,163,184,.18)}
+.dark-mode .lesson-inline-progress-track{background:#334155}
+/* The lesson progress is part of the lesson flow, never a floating/sticky bar. */
+#lms-topbar{position:relative!important;top:auto!important;box-shadow:none!important}
+@media(max-width:767px){
+  #lessonDropdownMenu.lesson-dropdown-floating{left:12px!important;right:12px!important;width:auto!important;max-height:60vh!important}
+}
+</style>
+
+<style id="final-topbar-lock-and-hide-progress">
+/* FINAL UI: remove all Learning Progress UI */
+.lesson-progress-inline,
+.lms-progress-wrap,
+#global-progress-bar,
+#global-progress-text,
+#global-progress-meta { display:none !important; }
+
+/* Keep the top learning toolbar locked at the top while lesson content scrolls */
+#main-scroll {
+  position:relative;
+  overflow-y:auto !important;
+  overscroll-behavior:contain;
+}
+#lms-topbar {
+  position:sticky !important;
+  top:0 !important;
+  z-index:200 !important;
+  flex-shrink:0 !important;
+  width:100% !important;
+  margin:0 0 18px 0 !important;
+  background:rgba(255,255,255,.96) !important;
+  backdrop-filter:blur(14px) saturate(150%) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(150%) !important;
+  box-shadow:0 6px 18px rgba(15,23,42,.10) !important;
+}
+.dark-mode #lms-topbar {
+  background:rgba(15,23,42,.96) !important;
+  box-shadow:0 6px 18px rgba(0,0,0,.28) !important;
+}
+</style>
+<style id="topbar-attached-final">
+#main-scroll{position:relative!important;overflow-y:auto!important;overflow-x:hidden!important;padding-top:0!important;}
+#lms-topbar{position:sticky!important;top:0!important;z-index:2000!important;width:100%!important;margin:0 0 18px 0!important;border-radius:0!important;border:0!important;box-shadow:none!important;transform:none!important;background:rgba(255,255,255,.98)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+.dark-mode #lms-topbar{background:rgba(15,23,42,.98)!important;box-shadow:none!important;}
+</style>
 </head>
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+
+
 <nav class="bg-indigo-900 text-white w-full md:w-72 md:h-screen flex-shrink-0 flex flex-col shadow-xl z-20 transition-all duration-300">
 <div class="p-6 bg-indigo-950">
 <h1 class="text-xl font-bold tracking-wider mb-1">ENGLISH GRADE X</h1>
 <p class="text-indigo-300 text-xs uppercase font-semibold tracking-widest mb-1">SMA N 1 Banggai</p>
 <p class="text-indigo-400 text-xs">Teacher: Mahfud S. Paukunding, S.Pd., Gr., M.Pd.</p>
 <!-- Lesson Switcher -->
-<div class="mt-4 bg-indigo-900 rounded-lg p-1 border border-indigo-700 flex text-sm font-semibold overflow-x-auto">
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l1" onclick="switchLesson(1)">Lesson 1</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md bg-indigo-600 text-white shadow transition" id="tab-l2" onclick="switchLesson(2)">Lesson 2</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l3" onclick="switchLesson(3)">Lesson 3</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l4" onclick="switchLesson(4)">Lesson 4</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l5" onclick="switchLesson(5)">Lesson 5</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l6" onclick="switchLesson(6)">Lesson 6</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l7" onclick="switchLesson(7)">Lesson 7</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l8" onclick="switchLesson(8)">Lesson 8</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l9" onclick="switchLesson(9)">Lesson 9</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l10" onclick="switchLesson(10)">Lesson 10</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l11" onclick="switchLesson(11)">Lesson 11</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l12" onclick="switchLesson(12)">Lesson 12</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l13" onclick="switchLesson(13)">Lesson 13</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l14" onclick="switchLesson(14)">Lesson 14</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l15" onclick="switchLesson(15)">Lesson 15</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l16" onclick="switchLesson(16)">Lesson 16</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l17" onclick="switchLesson(17)">Lesson 17</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l18" onclick="switchLesson(18)">Lesson 18</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l19" onclick="switchLesson(19)">Lesson 19</button>
-<button class="flex-1 py-2 px-3 text-center rounded-md text-indigo-300 hover:text-white transition" id="tab-l20" onclick="switchLesson(20)">Lesson 20</button>
+<div class="mt-4 lesson-dropdown-wrapper relative z-[80]">
+  <button id="lessonDropdownToggle" type="button" aria-expanded="false" aria-controls="lessonDropdownMenu"
+    class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-indigo-900 hover:bg-indigo-800 border border-indigo-700 text-white font-semibold transition-all">
+    <span class="flex items-center gap-3 min-w-0">
+      <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-cyan-400/15 text-cyan-300"><i class="fas fa-book-open"></i></span>
+      <span class="min-w-0 text-left"><span class="block text-[10px] uppercase tracking-widest text-indigo-300">Current Lesson</span><span id="lessonDropdownLabel" class="block text-sm truncate">Lesson 1</span></span>
+    </span>
+    <i id="lessonDropdownChevron" class="fas fa-chevron-down text-xs transition-transform"></i>
+  </button>
+  <div id="lessonDropdownMenu" class="hidden absolute left-0 right-0 top-full mt-2 z-[9999] rounded-2xl border border-indigo-700 bg-indigo-950 shadow-2xl overflow-hidden">
+    <div class="p-2 max-h-[60vh] overflow-y-auto">
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="01">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">1</span>
+        <span>Lesson 1</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="02">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">2</span>
+        <span>Lesson 2</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="03">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">3</span>
+        <span>Lesson 3</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="04">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">4</span>
+        <span>Lesson 4</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="05">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">5</span>
+        <span>Lesson 5</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="06">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">6</span>
+        <span>Lesson 6</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="07">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">7</span>
+        <span>Lesson 7</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="08">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">8</span>
+        <span>Lesson 8</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="09">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">9</span>
+        <span>Lesson 9</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="10">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">10</span>
+        <span>Lesson 10</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="11">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">11</span>
+        <span>Lesson 11</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="12">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">12</span>
+        <span>Lesson 12</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="13">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">13</span>
+        <span>Lesson 13</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="14">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">14</span>
+        <span>Lesson 14</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="15">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">15</span>
+        <span>Lesson 15</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="16">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">16</span>
+        <span>Lesson 16</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="17">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">17</span>
+        <span>Lesson 17</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="18">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">18</span>
+        <span>Lesson 18</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="19">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">19</span>
+        <span>Lesson 19</span>
+      </button>
+      <button type="button" class="lesson-dropdown-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-indigo-100 hover:bg-indigo-800 transition" data-lesson="20">
+        <span class="lesson-number w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-xs font-bold bg-indigo-900">20</span>
+        <span>Lesson 20</span>
+      </button>
+    </div>
+  </div>
 </div>
 </div>
 <!-- Mobile Menu Toggle -->
@@ -590,6 +818,18 @@ main#main-scroll { flex:1 1 0% !important; min-width:0 !important; min-height:0 
 </div>
 </div></nav>
 <main class="flex-1 overflow-y-auto h-screen p-4 md:p-8 bg-gray-50 scroll-smooth" id="main-scroll">
+<!-- ===== LMS TOPBAR ===== -->
+<header id="lms-topbar" class="lms-topbar" aria-label="Global learning toolbar">
+  <div class="lms-brand-mini">
+    <div class="lms-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+    <div class="hidden sm:block"><div class="lms-brand-title">English Learning</div><div class="lms-brand-sub">Grade X • SMA Negeri 1 Banggai</div></div>
+  </div>
+  <div class="lms-actions">
+    <button id="spotlight-trigger" class="lms-icon-btn lms-search-btn" type="button" aria-label="Open Spotlight Search" title="Search (Ctrl+K)"><i class="fa-solid fa-magnifying-glass"></i><span class="hidden md:inline">Search</span><kbd>Ctrl K</kbd></button>
+    <button id="tools-trigger" class="lms-icon-btn" type="button" aria-label="Open learning tools" title="Learning Tools"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+    <button id="theme-toggle" class="lms-icon-btn" type="button" aria-label="Toggle dark mode" title="Dark / Light mode"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
 <div class="max-w-4xl mx-auto pb-24">
 <!-- LESSON 1 CONTENT (Hidden by default to focus on Lesson 2) -->
 <div class="hidden animate-fade-in" id="lesson1-container">
@@ -2575,7 +2815,7 @@ main#main-scroll { flex:1 1 0% !important; min-width:0 !important; min-height:0 
         // --- Lesson 20: Final Project & Review ---\n        const l20Answers = {};\n        const l20Correct = {1:'visited',2:'went',3:'is',4:'are',5:'should',6:'am going to'};\n        function selectL20(button, answer) {\n            const group=button.parentElement;\n            group.querySelectorAll('.l20-option').forEach(btn=>{btn.classList.remove('bg-indigo-600','text-white','border-indigo-600','ring-2','ring-indigo-300');btn.classList.add('bg-white');});\n            button.classList.remove('bg-white'); button.classList.add('bg-indigo-600','text-white','border-indigo-600','ring-2','ring-indigo-300');\n            const box=button.closest('.p-5'); const boxes=Array.from(document.querySelectorAll('#l20-practice .p-5')); const i=boxes.indexOf(box)+1; if(i>=1&&i<=6) l20Answers[i]=answer;\n        }\n        function checkLesson20Practice() {\n            let score=0; for(let i=1;i<=6;i++) if(l20Answers[i]===l20Correct[i]) score++;\n            const f=document.getElementById('l20-practice-feedback'); if(!f)return;\n            f.classList.remove('hidden','bg-green-50','text-green-800','border-green-200','bg-yellow-50','text-yellow-800','border-yellow-200','bg-red-50','text-red-800','border-red-200'); f.classList.add('border');\n            if(score===6){f.classList.add('bg-green-50','text-green-800','border-green-200');f.innerHTML='<i class="fas fa-star mr-2"></i>Excellent! 6/6. You are ready for the final project!';}\n            else if(score>=4){f.classList.add('bg-yellow-50','text-yellow-800','border-yellow-200');f.innerHTML='<i class="fas fa-thumbs-up mr-2"></i>Good work! '+score+'/6. Review the items you missed and try again.';}\n            else{f.classList.add('bg-red-50','text-red-800','border-red-200');f.innerHTML='<i class="fas fa-book-open mr-2"></i>'+score+'/6. Keep practicing before your final presentation.';}\n        }\n        function completeLesson20(){const m=document.getElementById('completion-modal-l20'),c=document.getElementById('modal-content-l20');if(!m)return;m.classList.remove('hidden');setTimeout(()=>{if(c)c.classList.remove('scale-95');if(typeof triggerConfetti==='function')triggerConfetti();},30);}\n        function closeModalL20(){const m=document.getElementById('completion-modal-l20'),c=document.getElementById('modal-content-l20');if(c)c.classList.add('scale-95');if(m)m.classList.add('hidden');}\n\n        // --- Navigation & Lesson Switching Logic ---
         let currentLesson = 1; // Start with Lesson 1
 
-        function switchLesson(lessonNum) {
+        function legacySwitchLesson(lessonNum) {
             currentLesson = lessonNum;
             const scroller=document.getElementById('main-scroll'); if(scroller) scroller.scrollTo({top:0,behavior:'auto'});
             const l1Container = document.getElementById('lesson1-container');
@@ -2768,176 +3008,187 @@ main#main-scroll { flex:1 1 0% !important; min-width:0 !important; min-height:0 
         // ===== FINAL SIDEBAR / LESSON NAVIGATION CONTROLLER =====
         let sidebarNavFrame = 0;
         let lastActiveSection = '';
+        currentLesson = Number(window.currentLesson || currentLesson || 1);
 
-        function getLessonParts(lessonNum) {
+        function getLessonParts(lessonNum){
             return {
-                container: document.getElementById('lesson' + lessonNum + '-container'),
-                nav: document.getElementById('nav-links-l' + lessonNum),
-                tab: document.getElementById('tab-l' + lessonNum)
+                container: document.getElementById('lesson'+lessonNum+'-container'),
+                nav: document.getElementById('nav-links-l'+lessonNum),
+                tab: document.getElementById('tab-l'+lessonNum)
             };
         }
 
-        function ensureSidebarLessonVisible(lessonNum) {
-            const parts = getLessonParts(lessonNum);
-            const navMenu = document.getElementById('nav-menu');
-            if (parts.tab) {
-                parts.tab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
-            }
-            if (parts.nav && navMenu && !parts.nav.classList.contains('hidden')) {
-                const firstLink = parts.nav.querySelector('.nav-link');
-                if (firstLink) {
-                    const menuRect = navMenu.getBoundingClientRect();
-                    const linkRect = firstLink.getBoundingClientRect();
-                    if (linkRect.top < menuRect.top || linkRect.bottom > menuRect.bottom) {
-                        firstLink.scrollIntoView({behavior:'smooth', block:'nearest', inline:'nearest'});
-                    }
-                }
-            }
-        }
-
-        function clearActiveSidebarLinks() {
-            document.querySelectorAll('#nav-menu .nav-link').forEach(link => {
+        function clearActiveSidebarLinks(){
+            document.querySelectorAll('#nav-menu .nav-link').forEach(link=>{
                 link.classList.remove('nav-current','bg-indigo-800','font-medium','text-white');
                 link.classList.add('text-indigo-200');
+                link.removeAttribute('aria-current');
             });
         }
 
-        function setActiveSidebarLink(link, shouldScroll) {
-            if (!link) return;
-            clearActiveSidebarLinks();
-            link.classList.add('nav-current','bg-indigo-800','font-medium','text-white');
-            link.classList.remove('text-indigo-200');
-            if (shouldScroll) {
-                link.scrollIntoView({behavior:'smooth', block:'nearest', inline:'nearest'});
-            }
-            lastActiveSection = link.getAttribute('href') || '';
-        }
-
-        function updateActiveSidebarLink(force) {
-            const main = document.getElementById('main-scroll');
-            const parts = getLessonParts(currentLesson);
-            if (!main || !parts.nav || !parts.container || parts.container.classList.contains('hidden')) return;
-
-            const sections = Array.from(parts.container.querySelectorAll('section[id]'));
-            const links = Array.from(parts.nav.querySelectorAll('.nav-link'));
-            if (!sections.length || !links.length) return;
-
-            const mainRect = main.getBoundingClientRect();
-            const activationLine = mainRect.top + Math.min(190, main.clientHeight * 0.22);
-            let activeSection = sections[0];
-            let bestDistance = Infinity;
-
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                const distance = Math.abs(rect.top - activationLine);
-                if (rect.top <= activationLine + 40 && distance < bestDistance) {
-                    bestDistance = distance;
-                    activeSection = section;
-                }
-            });
-
-            const targetHref = '#' + activeSection.id;
-            const activeLink = links.find(link => link.getAttribute('href') === targetHref);
-            if (!activeLink) return;
-
-            const changed = lastActiveSection !== targetHref || force;
-            if (changed) setActiveSidebarLink(activeLink, true);
-            else {
-                activeLink.classList.add('nav-current','bg-indigo-800','font-medium','text-white');
-                activeLink.classList.remove('text-indigo-200');
-            }
-        }
-
-        function switchLesson(lessonNum) {
-            currentLesson = Number(lessonNum);
-            const scroller = document.getElementById('main-scroll');
-            if (scroller) scroller.scrollTo({top:0, behavior:'auto'});
-
-            const containers = [];
-            const navs = [];
-            const tabs = [];
-            for (let n = 1; n <= 20; n++) {
-                const parts = getLessonParts(n);
-                containers.push(parts.container);
-                navs.push(parts.nav);
-                tabs.push(parts.tab);
-            }
-
-            tabs.forEach(tab => {
-                if (!tab) return;
-                tab.classList.remove('bg-indigo-600','text-white','shadow');
+        function setActiveLessonTab(lessonNum){
+            document.querySelectorAll('[id^="tab-l"]').forEach(tab=>{
+                tab.classList.remove('active-lesson','bg-indigo-600','text-white','shadow');
                 tab.classList.add('text-indigo-300');
                 tab.setAttribute('aria-current','false');
             });
-            containers.forEach(el => el && el.classList.add('hidden'));
-            navs.forEach(el => el && el.classList.add('hidden'));
-            clearActiveSidebarLinks();
-            lastActiveSection = '';
-
-            const selected = getLessonParts(currentLesson);
-            if (selected.container) selected.container.classList.remove('hidden');
-            if (selected.nav) selected.nav.classList.remove('hidden');
-            if (selected.tab) {
-                selected.tab.classList.add('bg-indigo-600','text-white','shadow');
-                selected.tab.classList.remove('text-indigo-300');
-                selected.tab.setAttribute('aria-current','true');
+            const tab=document.getElementById('tab-l'+lessonNum);
+            if(tab){
+                tab.classList.add('active-lesson','bg-indigo-600','text-white','shadow');
+                tab.classList.remove('text-indigo-300');
+                tab.setAttribute('aria-current','true');
+                tab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});
             }
+        }
 
-            requestAnimationFrame(() => {
-                ensureSidebarLessonVisible(currentLesson);
+        function setActiveSidebarLink(link, shouldScroll=true){
+            if(!link) return;
+            clearActiveSidebarLinks();
+            link.classList.add('nav-current','bg-indigo-800','font-medium','text-white');
+            link.classList.remove('text-indigo-200');
+            link.setAttribute('aria-current','location');
+            lastActiveSection=link.getAttribute('href')||'';
+            if(shouldScroll){
+                const navMenu=document.getElementById('nav-menu');
+                const menuRect=navMenu?.getBoundingClientRect();
+                const linkRect=link.getBoundingClientRect();
+                if(navMenu && menuRect && (linkRect.top<menuRect.top+12 || linkRect.bottom>menuRect.bottom-12)){
+                    link.scrollIntoView({behavior:'smooth',block:'center',inline:'nearest'});
+                }
+            }
+        }
+
+        function ensureSidebarLessonVisible(lessonNum){
+            const parts=getLessonParts(lessonNum);
+            const tab=parts.tab;
+            if(tab) tab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});
+            if(parts.nav){
+                const first=parts.nav.querySelector('.nav-link');
+                const menu=document.getElementById('nav-menu');
+                if(first && menu){
+                    requestAnimationFrame(()=>first.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'}));
+                }
+            }
+        }
+
+        function updateActiveSidebarLink(force=false){
+            const main=document.getElementById('main-scroll');
+            const parts=getLessonParts(currentLesson);
+            if(!main || !parts.container || !parts.nav || parts.container.classList.contains('hidden')) return;
+            const sections=Array.from(parts.container.querySelectorAll('section[id]'));
+            const links=Array.from(parts.nav.querySelectorAll('.nav-link'));
+            if(!sections.length || !links.length) return;
+            const mainRect=main.getBoundingClientRect();
+            const activationLine=mainRect.top+Math.min(180,main.clientHeight*.24);
+            let activeSection=sections[0];
+            for(const section of sections){
+                const rect=section.getBoundingClientRect();
+                if(rect.top<=activationLine+30) activeSection=section;
+                else break;
+            }
+            const link=links.find(a=>a.getAttribute('href')==='#'+activeSection.id);
+            if(!link) return;
+            const href='#'+activeSection.id;
+            if(force || lastActiveSection!==href) setActiveSidebarLink(link,true);
+        }
+
+        function switchLesson(lessonNum){
+            lessonNum=Math.max(1,Math.min(20,Number(lessonNum)||1));
+            currentLesson=lessonNum;
+            window.currentLesson=lessonNum;
+            const main=document.getElementById('main-scroll');
+            if(main) main.scrollTo({top:0,behavior:'auto'});
+
+            for(let n=1;n<=20;n++){
+                const parts=getLessonParts(n);
+                parts.container?.classList.add('hidden');
+                parts.nav?.classList.add('hidden');
+            }
+            clearActiveSidebarLinks();
+            lastActiveSection='';
+
+            const selected=getLessonParts(lessonNum);
+            if(!selected.container){
+                console.warn('Lesson container not found:',lessonNum);
+                return;
+            }
+            selected.container.classList.remove('hidden');
+            selected.nav?.classList.remove('hidden');
+            setActiveLessonTab(lessonNum);
+
+            requestAnimationFrame(()=>{
+                ensureSidebarLessonVisible(lessonNum);
                 updateActiveSidebarLink(true);
             });
         }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('nav-menu');
-            const icon = document.getElementById('mobile-menu-icon');
-            if (!menu) return;
+        // Expose the lesson controller so the dropdown can switch lessons reliably.
+        window.switchLesson = switchLesson;
+
+        function toggleMobileMenu(){
+            const menu=document.getElementById('nav-menu');
+            const icon=document.getElementById('mobile-menu-icon');
+            if(!menu) return;
             menu.classList.toggle('hidden');
-            if (icon) {
-                const isOpen = !menu.classList.contains('hidden');
-                icon.classList.toggle('fa-chevron-down', !isOpen);
-                icon.classList.toggle('fa-chevron-up', isOpen);
-            }
+            const open=!menu.classList.contains('hidden');
+            icon?.classList.toggle('fa-chevron-down',!open);
+            icon?.classList.toggle('fa-chevron-up',open);
         }
 
-        // Ensure all lesson containers live in the same scrolling content area.
-        (function repairLessonContainers(){
-            const main = document.getElementById('main-scroll');
-            const content = main ? main.querySelector('.max-w-4xl') : null;
-            if (!content) return;
-            for (let n = 1; n <= 20; n++) {
-                const el = document.getElementById('lesson' + n + '-container');
-                if (el && !content.contains(el)) content.appendChild(el);
+        // Move any lesson containers accidentally placed outside the main scroll area.
+        (function normalizeLessonContainers(){
+            const main=document.getElementById('main-scroll');
+            const content=main?.querySelector('.max-w-4xl');
+            if(!content) return;
+            for(let n=1;n<=20;n++){
+                const el=document.getElementById('lesson'+n+'-container');
+                if(el && !content.contains(el)) content.appendChild(el);
             }
         })();
 
-        // One delegated handler: reliable even when lesson navigation is rebuilt/hidden.
-        document.getElementById('nav-menu')?.addEventListener('click', function(e) {
-            const link = e.target.closest('.nav-link');
-            if (!link) return;
-            const targetId = link.getAttribute('href');
-            if (!targetId || !targetId.startsWith('#')) return;
-            const target = document.querySelector(targetId);
-            const scroller = document.getElementById('main-scroll');
-            if (!target || !scroller) return;
+        // One click handler for all lesson section links.
+        document.getElementById('nav-menu')?.addEventListener('click',e=>{
+            const link=e.target.closest('.nav-link');
+            if(!link) return;
+            const targetId=link.getAttribute('href');
+            const scroller=document.getElementById('main-scroll');
+            const target=targetId?.startsWith('#')?document.querySelector(targetId):null;
+            if(!target || !scroller) return;
             e.preventDefault();
-            const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - 24;
-            scroller.scrollTo({top:Math.max(0, top), behavior:'smooth'});
-            history.replaceState(null, '', targetId);
-            setActiveSidebarLink(link, true);
+            const top=target.getBoundingClientRect().top-scroller.getBoundingClientRect().top+scroller.scrollTop-24;
+            scroller.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+            history.replaceState(null,'',targetId);
+            setActiveSidebarLink(link,true);
         });
 
-        const mainScrollController = document.getElementById('main-scroll');
-        if (mainScrollController) {
-            mainScrollController.addEventListener('scroll', function() {
+        // Lesson buttons also work with keyboard and always keep the selected lesson visible.
+        document.querySelectorAll('[id^="tab-l"]').forEach(tab=>{
+            tab.setAttribute('role','tab');
+            tab.addEventListener('keydown',e=>{
+                if(e.key==='ArrowDown' || e.key==='ArrowRight'){
+                    e.preventDefault(); document.getElementById('tab-l'+Math.min(20,currentLesson+1))?.focus();
+                } else if(e.key==='ArrowUp' || e.key==='ArrowLeft'){
+                    e.preventDefault(); document.getElementById('tab-l'+Math.max(1,currentLesson-1))?.focus();
+                }
+            });
+        });
+
+        const mainScrollController=document.getElementById('main-scroll');
+        if(mainScrollController){
+            mainScrollController.addEventListener('scroll',()=>{
                 cancelAnimationFrame(sidebarNavFrame);
-                sidebarNavFrame = requestAnimationFrame(() => updateActiveSidebarLink(false));
-            }, {passive:true});
+                sidebarNavFrame=requestAnimationFrame(()=>updateActiveSidebarLink(false));
+            },{passive:true});
         }
 
-        // Initialize with Lesson 1 and keep the selected lesson tab visible.
-        switchLesson(1);
+        // Restore last selected lesson if available; default to Lesson 1.
+        const savedLesson=Number(localStorage.getItem('materiajar-current-lesson'));
+        const initialLesson=(savedLesson>=1 && savedLesson<=20)?savedLesson:1;
+        switchLesson(initialLesson);
+
+        document.querySelectorAll('[id^="tab-l"]').forEach(tab=>{
+            tab.addEventListener('click',()=>localStorage.setItem('materiajar-current-lesson',String(currentLesson)));
+        });
 
         // --- Lesson 2 Specific Interactive Logic ---
 
@@ -3539,5 +3790,253 @@ function closeModalL19(){const m=document.getElementById('completion-modal-l19')
 
 
 </script>
+
+<!-- ===== SPOTLIGHT SEARCH ===== -->
+<div id="spotlight-overlay" class="lms-overlay hidden" aria-hidden="true">
+  <div class="spotlight-modal" role="dialog" aria-modal="true" aria-labelledby="spotlight-title">
+    <div class="spotlight-head"><div><span class="eyebrow">SPOTLIGHT</span><h2 id="spotlight-title">What are you looking for?</h2></div><button class="lms-close" data-close="spotlight-overlay" aria-label="Close search">×</button></div>
+    <div class="spotlight-input-wrap"><i class="fa-solid fa-magnifying-glass"></i><input id="spotlight-input" type="search" placeholder="Search lessons, topics, sections..." autocomplete="off"><kbd>ESC</kbd></div>
+    <div id="spotlight-results" class="spotlight-results"></div>
+  </div>
+</div>
+
+<!-- ===== LEARNING TOOLS ===== -->
+<div id="tools-overlay" class="lms-overlay hidden" aria-hidden="true">
+  <div class="tools-modal" role="dialog" aria-modal="true" aria-labelledby="tools-title">
+    <div class="spotlight-head"><div><span class="eyebrow">LEARNING LAB</span><h2 id="tools-title">Interactive Learning Tools</h2></div><button class="lms-close" data-close="tools-overlay" aria-label="Close tools">×</button></div>
+    <div class="tools-tabs" role="tablist">
+      <button class="tool-tab active" data-tool="flashcards" role="tab"><i class="fa-solid fa-clone"></i> Flashcards</button>
+      <button class="tool-tab" data-tool="matching" role="tab"><i class="fa-solid fa-puzzle-piece"></i> Matching Game</button>
+      <button class="tool-tab" data-tool="reflection" role="tab"><i class="fa-solid fa-face-smile"></i> Reflection</button>
+    </div>
+    <section id="tool-flashcards" class="tool-panel active"></section>
+    <section id="tool-matching" class="tool-panel"></section>
+    <section id="tool-reflection" class="tool-panel"></section>
+  </div>
+</div>
+
+<!-- ===== TOOLKIT CSS/JS ===== -->
+<style>
+  :root{--lms-topbar-h:76px;--lms-indigo:#4f46e5;--lms-cyan:#06b6d4;--lms-teal:#14b8a6;--lms-amber:#f59e0b;--lms-surface:rgba(255,255,255,.90);--lms-line:rgba(148,163,184,.22);--lms-ink:#172033;--lms-muted:#64748b}
+  #lms-topbar{position:sticky;top:0;z-index:80;height:var(--lms-topbar-h);min-height:var(--lms-topbar-h);display:flex;align-items:center;gap:18px;padding:10px 18px;margin:-28px -28px 22px;background:rgba(255,255,255,.78);border-bottom:1px solid var(--lms-line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 8px 28px rgba(15,23,42,.06)}
+  .lms-brand-mini{display:flex;align-items:center;gap:10px;min-width:245px}.lms-brand-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:white;background:linear-gradient(135deg,#312e81,#4f46e5 55%,#06b6d4);box-shadow:0 8px 20px rgba(79,70,229,.25)}.lms-brand-title{font-weight:800;font-size:.9rem;color:var(--lms-ink)}.lms-brand-sub{font-size:.68rem;color:var(--lms-muted);margin-top:2px}
+  .lms-progress-wrap{flex:1;max-width:560px;min-width:180px}.lms-progress-label{display:flex;justify-content:space-between;font-size:.68rem;color:var(--lms-muted);margin-bottom:5px}.lms-progress-label strong{color:var(--lms-indigo)}.lms-progress-track{height:7px;border-radius:999px;background:#e2e8f0;overflow:hidden}.lms-progress-bar{height:100%;border-radius:999px;background:linear-gradient(90deg,#4f46e5,#06b6d4,#14b8a6);transition:width .45s ease}.lms-progress-meta{font-size:.62rem;color:#94a3b8;margin-top:4px}
+  .lms-actions{display:flex;align-items:center;gap:7px;margin-left:auto}.lms-icon-btn{height:40px;border:1px solid var(--lms-line);background:rgba(255,255,255,.72);color:#334155;border-radius:12px;padding:0 11px;display:flex;align-items:center;gap:7px;cursor:pointer;transition:.2s;font-weight:700}.lms-icon-btn:hover{transform:translateY(-1px);border-color:rgba(79,70,229,.3);box-shadow:0 8px 18px rgba(15,23,42,.08);color:var(--lms-indigo)}.lms-icon-btn kbd,.spotlight-input-wrap kbd{font:600 .62rem Inter,sans-serif;background:#eef2ff;border:1px solid #c7d2fe;color:#4338ca;padding:3px 6px;border-radius:6px}
+  .lms-overlay{position:fixed;inset:0;z-index:200;background:rgba(15,23,42,.48);backdrop-filter:blur(7px);display:grid;place-items:start center;padding:9vh 16px 30px}.lms-overlay.hidden{display:none!important}.spotlight-modal,.tools-modal{width:min(760px,100%);max-height:82vh;overflow:auto;background:var(--lms-surface);border:1px solid rgba(255,255,255,.55);border-radius:24px;box-shadow:0 30px 90px rgba(15,23,42,.25);animation:toolPop .22s ease-out}.tools-modal{width:min(920px,100%)}@keyframes toolPop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+  .spotlight-head{display:flex;justify-content:space-between;align-items:flex-start;padding:24px 24px 16px}.spotlight-head h2{margin:4px 0 0;font-size:1.25rem;color:var(--lms-ink)}.eyebrow{font-size:.62rem;font-weight:800;letter-spacing:.14em;color:var(--lms-cyan)}.lms-close{width:34px;height:34px;border:0;border-radius:10px;background:#f1f5f9;color:#475569;font-size:1.4rem;cursor:pointer}.spotlight-input-wrap{margin:0 24px 14px;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:14px;background:#fff}.spotlight-input-wrap i{color:#6366f1}.spotlight-input-wrap input{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;flex:1;font-size:.95rem}.spotlight-results{padding:4px 14px 18px}.spot-result{display:flex;align-items:center;gap:12px;padding:12px;border-radius:13px;cursor:pointer}.spot-result:hover,.spot-result.active{background:#eef2ff}.spot-result-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#e0e7ff;color:#4f46e5}.spot-result-title{font-weight:750;color:var(--lms-ink);font-size:.84rem}.spot-result-meta{font-size:.67rem;color:#94a3b8;margin-top:2px}
+  .tools-tabs{display:flex;gap:8px;padding:0 24px 16px;border-bottom:1px solid var(--lms-line);overflow:auto}.tool-tab{border:1px solid var(--lms-line);background:rgba(255,255,255,.7);padding:10px 13px;border-radius:12px;color:#64748b;font-weight:750;white-space:nowrap;cursor:pointer}.tool-tab.active{background:linear-gradient(135deg,#eef2ff,#ecfeff);border-color:#a5b4fc;color:#4338ca}.tool-panel{display:none;padding:22px 24px 28px}.tool-panel.active{display:block}.flashcard-stage{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px}.fc-nav{width:40px;height:40px;border:1px solid var(--lms-line);border-radius:12px;background:#fff;cursor:pointer}.flashcard{height:230px;perspective:1000px;cursor:pointer}.flashcard-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}.flashcard.flipped .flashcard-inner{transform:rotateY(180deg)}.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#312e81,#4f46e5 52%,#0891b2);color:white;box-shadow:0 18px 40px rgba(49,46,129,.2)}.fc-back{transform:rotateY(180deg);background:linear-gradient(135deg,#0f766e,#0891b2)}.fc-word{font-size:clamp(1.8rem,5vw,2.7rem);font-weight:850}.fc-hint{font-size:.7rem;opacity:.75;margin-top:10px}.fc-example{font-size:1rem;font-weight:650}.fc-counter{text-align:center;font-size:.7rem;color:#94a3b8;margin-top:12px}.fc-controls{display:flex;justify-content:center;gap:8px;margin-top:12px}.mini-btn{border:1px solid var(--lms-line);border-radius:10px;padding:8px 11px;background:#fff;cursor:pointer;font-weight:700;color:#475569}.mini-btn:hover{border-color:#818cf8;color:#4338ca}
+  .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.match-col{display:grid;gap:8px}.match-card{padding:13px;border:1px solid #dbe2ef;border-radius:13px;background:#fff;cursor:pointer;text-align:left;font-weight:700;color:#334155;transition:.18s}.match-card:hover{transform:translateY(-1px);box-shadow:0 7px 16px rgba(15,23,42,.07)}.match-card.selected{background:#eef2ff;border-color:#818cf8;color:#4338ca}.match-card.matched{background:#ecfdf5;border-color:#5eead4;color:#047857;opacity:.72;pointer-events:none}.match-card.wrong{animation:shake .35s;background:#fef2f2;border-color:#fca5a5}.match-score{text-align:center;margin:12px 0;font-weight:800;color:#4338ca}.reflection-card{border-radius:18px;padding:20px;background:linear-gradient(135deg,#eef2ff,#ecfeff);border:1px solid #c7d2fe}.reflection-card h3{margin:0 0 5px;color:#312e81}.reflection-card p{font-size:.8rem;color:#64748b}.emoji-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.emoji-choice{font-size:1.5rem;width:48px;height:48px;border:1px solid #cbd5e1;border-radius:13px;background:#fff;cursor:pointer}.emoji-choice.active{outline:3px solid #a5b4fc;background:#eef2ff}.reflection-card textarea{width:100%;min-height:100px;resize:vertical;padding:12px;border:1px solid #cbd5e1;border-radius:13px;background:#fff}.reflection-actions{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.save-reflection{border:0;border-radius:12px;padding:10px 15px;background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;font-weight:800;cursor:pointer}.saved-note{font-size:.68rem;color:#059669;font-weight:700}
+  body.dark-mode{--lms-surface:rgba(15,23,42,.94);--lms-line:rgba(148,163,184,.18);--lms-ink:#f8fafc;--lms-muted:#94a3b8;background:linear-gradient(135deg,#080d1f,#111936 55%,#0b1228)!important;color:#e5e7eb}body.dark-mode #lms-topbar{background:rgba(15,23,42,.78);border-color:rgba(148,163,184,.15)}body.dark-mode .lms-icon-btn,body.dark-mode .spotlight-input-wrap,body.dark-mode .tool-tab,body.dark-mode .mini-btn,body.dark-mode .fc-nav,body.dark-mode .match-card,body.dark-mode .emoji-choice,body.dark-mode .reflection-card textarea{background:#111827;color:#e5e7eb;border-color:#334155}body.dark-mode .lms-progress-track{background:#334155}body.dark-mode .spot-result:hover,body.dark-mode .spot-result.active{background:#1e293b}body.dark-mode .spotlight-input-wrap input{color:#e5e7eb}body.dark-mode .lms-close{background:#1e293b;color:#cbd5e1}body.dark-mode .reflection-card{background:linear-gradient(135deg,#172554,#164e63)}
+  @media(max-width:767px){#lms-topbar{margin:-14px -14px 14px;height:66px;min-height:66px;padding:8px 10px;gap:8px}.lms-brand-mini{min-width:auto}.lms-brand-icon{width:38px;height:38px}.lms-progress-wrap{max-width:none}.lms-progress-meta{display:none}.lms-progress-label{font-size:.6rem}.lms-actions{gap:4px}.lms-icon-btn{width:38px;padding:0;justify-content:center}.lms-icon-btn span,.lms-icon-btn kbd{display:none}.flashcard-stage{grid-template-columns:34px 1fr 34px}.flashcard{height:220px}.spotlight-modal,.tools-modal{max-height:88vh}.match-grid{grid-template-columns:1fr 1fr;gap:7px}.match-card{padding:10px;font-size:.72rem}}
+</style>
+<script>
+(function(){
+  'use strict';
+  const PROGRESS_KEY='materiajar-progress-v1', THEME_KEY='materiajar-theme-v1', REFLECTION_KEY='materiajar-reflection-v1';
+  const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+  let progress=JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{}');
+  let currentCard=0, matched=0, selected=null, reflectionMood='';
+  const cards=[
+    ['introduce','memperkenalkan','I introduce myself to my new classmates.'],['weather','cuaca','The weather is sunny today.'],['journey','perjalanan','Our journey was exciting.'],['healthy','sehat','Regular exercise keeps us healthy.'],['visited','mengunjungi (lampau)','We visited our grandparents yesterday.'],['future','masa depan','She is planning her future.'],['environment','lingkungan','We should protect the environment.'],['achievement','pencapaian','Graduation is an important achievement.']
+  ];
+  const pairs=[['sunny','cerah'],['journey','perjalanan'],['healthy','sehat'],['visited','mengunjungi'],['future','masa depan'],['environment','lingkungan']];
+  function updateProgress(){const done=Object.values(progress).filter(Boolean).length;const pct=Math.round(done/20*100);const b=$('#global-progress-bar'),t=$('#global-progress-text'),m=$('#global-progress-meta');if(b)b.style.width=pct+'%';if(t)t.textContent=pct+'%';if(m)m.textContent=`${done} of 20 lessons completed`; $$('#nav-menu [id^="nav-links-l"]').forEach((block,i)=>{const n=i+1;const tab=$(`#tab-l${n}`);if(tab){let badge=tab.querySelector('.lms-done-dot');if(progress[n]&&!badge){badge=document.createElement('span');badge.className='lms-done-dot';badge.innerHTML='<i class="fa-solid fa-check"></i>';tab.appendChild(badge)}if(!progress[n]&&badge)badge.remove();}})}
+  function markLessonDone(n){progress[n]=true;localStorage.setItem(PROGRESS_KEY,JSON.stringify(progress));updateProgress();}
+  function observeCompletionModals(){
+    for(let n=1;n<=20;n++){const modal=$(`#completion-modal-l${n}`);if(!modal)continue;const obs=new MutationObserver(()=>{if(!modal.classList.contains('hidden'))markLessonDone(n)});obs.observe(modal,{attributes:true,attributeFilter:['class']});}
+  }
+  function renderFlashcard(){const c=cards[currentCard],p=$('#tool-flashcards');if(!p)return;p.innerHTML=`<div class="flashcard-stage"><button class="fc-nav" id="fc-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button><div><div class="flashcard" id="flashcard"><div class="flashcard-inner"><div class="fc-face"><div class="eyebrow" style="color:#a5f3fc">VOCABULARY</div><div class="fc-word">${c[0]}</div><div class="fc-hint">Click to flip • Tap speaker to hear</div></div><div class="fc-face fc-back"><div class="fc-example">${c[2]}</div><div class="fc-hint">Indonesian: ${c[1]}</div></div></div></div><div class="fc-counter">${currentCard+1} / ${cards.length}</div><div class="fc-controls"><button class="mini-btn" id="fc-speak"><i class="fa-solid fa-volume-high"></i> Listen</button><button class="mini-btn" id="fc-shuffle"><i class="fa-solid fa-shuffle"></i> Shuffle</button></div></div><button class="fc-nav" id="fc-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button></div>`;$('#flashcard').onclick=()=>$('#flashcard').classList.toggle('flipped');$('#fc-prev').onclick=()=>{currentCard=(currentCard-1+cards.length)%cards.length;renderFlashcard()};$('#fc-next').onclick=()=>{currentCard=(currentCard+1)%cards.length;renderFlashcard()};$('#fc-shuffle').onclick=()=>{currentCard=Math.floor(Math.random()*cards.length);renderFlashcard()};$('#fc-speak').onclick=e=>{e.stopPropagation();if('speechSynthesis' in window){speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(c[0]));}}}
+  function renderMatching(){const p=$('#tool-matching');if(!p)return;const left=[...pairs].sort(()=>Math.random()-.5),right=[...pairs].sort(()=>Math.random()-.5);matched=0;selected=null;p.innerHTML=`<div class="match-score" id="match-score">Match the English words with their Indonesian meanings • 0/${pairs.length}</div><div class="match-grid"><div class="match-col" id="match-left">${left.map((x,i)=>`<button class="match-card" data-side="en" data-value="${x[0]}" data-id="l${i}">${x[0]}</button>`).join('')}</div><div class="match-col" id="match-right">${right.map((x,i)=>`<button class="match-card" data-side="id" data-value="${x[1]}" data-id="r${i}">${x[1]}</button>`).join('')}</div></div><div style="text-align:center;margin-top:14px"><button class="mini-btn" id="match-reset"><i class="fa-solid fa-rotate"></i> New Game</button></div>`;$$('#tool-matching .match-card').forEach(btn=>btn.onclick=()=>pickMatch(btn));$('#match-reset').onclick=renderMatching}
+  function pickMatch(btn){if(btn.classList.contains('matched'))return;const side=btn.dataset.side;if(selected&&selected.side===side){selected.btn.classList.remove('selected');selected=null}btn.classList.add('selected');if(!selected){selected={side,value:btn.dataset.value,btn};return}if(selected.side!==side){const en=side==='en'?btn.dataset.value:selected.value;const id=side==='id'?btn.dataset.value:selected.value;const ok=pairs.some(x=>x[0]===en&&x[1]===id);if(ok){btn.classList.add('matched');selected.btn.classList.add('matched');matched++;$('#match-score').textContent=`Match the English words with their Indonesian meanings • ${matched}/${pairs.length}`;if(matched===pairs.length){$('#match-score').textContent='🎉 Excellent! All pairs matched.'}}else{btn.classList.add('wrong');selected.btn.classList.add('wrong');setTimeout(()=>{btn.classList.remove('wrong','selected');selected.btn.classList.remove('wrong','selected');},400)}selected=null}}
+  function renderReflection(){const p=$('#tool-reflection'),saved=JSON.parse(localStorage.getItem(REFLECTION_KEY)||'{}');reflectionMood=saved.mood||'';p.innerHTML=`<div class="reflection-card"><h3>Pause • Think • Reflect</h3><p>After learning today, how do you feel? Choose an emoji and write one meaningful takeaway. Your reflection is saved in this browser.</p><div class="emoji-row">${[['😄','Confident'],['🙂','Good'],['🤔','Still learning'],['😕','Need help'],['🔥','Motivated']].map(x=>`<button class="emoji-choice ${reflectionMood===x[0]?'active':''}" data-mood="${x[0]}" title="${x[1]}">${x[0]}</button>`).join('')}</div><textarea id="reflection-text" placeholder="Today I learned... / I still wonder... / I will practice..."></textarea><div class="reflection-actions"><span id="reflection-status" class="saved-note">${saved.text?'Last reflection saved locally.':''}</span><button class="save-reflection" id="save-reflection"><i class="fa-solid fa-floppy-disk"></i> Save Reflection</button></div></div>`;$('#reflection-text').value=saved.text||'';$$('.emoji-choice').forEach(b=>b.onclick=()=>{$$('.emoji-choice').forEach(x=>x.classList.remove('active'));b.classList.add('active');reflectionMood=b.dataset.mood});$('#save-reflection').onclick=()=>{localStorage.setItem(REFLECTION_KEY,JSON.stringify({mood:reflectionMood,text:$('#reflection-text').value,updated:new Date().toISOString()}));$('#reflection-status').textContent='✓ Reflection saved on this device.'}}
+  function openOverlay(id){const o=$('#'+id);if(o){o.classList.remove('hidden');o.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}}
+  function closeOverlay(id){const o=$('#'+id);if(o){o.classList.add('hidden');o.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}}
+  function initSearch(){const input=$('#spotlight-input'),results=$('#spotlight-results');function render(q=''){const term=q.trim().toLowerCase();const out=[];$$('[id^="tab-l"],#nav-menu .nav-link').forEach(el=>{const txt=(el.textContent||'').trim().replace(/\s+/g,' ');if(!txt)return;if(!term||txt.toLowerCase().includes(term)){const lesson=el.id.match(/(?:tab-l|nav-links-l)(\d+)/)?.[1]||'';out.push({el,txt,lesson,kind:el.id.startsWith('tab-')?'Lesson':'Section'})}});results.innerHTML=out.slice(0,18).map((x,i)=>`<div class="spot-result" data-i="${i}"><div class="spot-result-icon"><i class="fa-solid ${x.kind==='Lesson'?'fa-book-open':'fa-bookmark'}"></i></div><div><div class="spot-result-title">${x.txt}</div><div class="spot-result-meta">${x.kind}${x.lesson?' • Lesson '+x.lesson:''}</div></div></div>`).join('')||(term?'<div style="padding:22px;text-align:center;color:#94a3b8">No results found.</div>':'<div style="padding:22px;text-align:center;color:#94a3b8">Type to search across lessons and sections.</div>');$$('.spot-result').forEach((r,i)=>r.onclick=()=>{const x=out[i];closeOverlay('spotlight-overlay');if(x.kind==='Lesson'){const n=parseInt(x.lesson);if(typeof window.switchLesson==='function')window.switchLesson(n)}else{x.el.click()}})}input.addEventListener('input',()=>render(input.value));document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openOverlay('spotlight-overlay');input.value='';render('');setTimeout(()=>input.focus(),40)}if(e.key==='Escape'){closeOverlay('spotlight-overlay');closeOverlay('tools-overlay')}});$('#spotlight-trigger').onclick=()=>{openOverlay('spotlight-overlay');input.value='';render('');setTimeout(()=>input.focus(),40)}}
+  function initTools(){renderFlashcard();renderMatching();renderReflection();$('#tools-trigger').onclick=()=>openOverlay('tools-overlay');$$('.tool-tab').forEach(tab=>tab.onclick=()=>{$$('.tool-tab').forEach(t=>t.classList.remove('active'));$$('.tool-panel').forEach(p=>p.classList.remove('active'));tab.classList.add('active');$('#tool-'+tab.dataset.tool).classList.add('active')})}
+  function initTheme(){const apply=mode=>{document.body.classList.toggle('dark-mode',mode==='dark');localStorage.setItem(THEME_KEY,mode);const i=$('#theme-toggle i');if(i)i.className='fa-solid '+(mode==='dark'?'fa-sun':'fa-moon')};const saved=localStorage.getItem(THEME_KEY);apply(saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));$('#theme-toggle').onclick=()=>apply(document.body.classList.contains('dark-mode')?'light':'dark')}
+  function initCloseButtons(){$$('[data-close]').forEach(b=>b.onclick=()=>closeOverlay(b.dataset.close));$$('.lms-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeOverlay(o.id)}))}
+  function init(){updateProgress();observeCompletionModals();initSearch();initTools();initTheme();initCloseButtons();window.materiajarMarkLessonDone=markLessonDone;setTimeout(updateProgress,600)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+
+
+
+
+<script id="dropdown-progress-final-controller">
+(function(){
+  'use strict';
+  const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+  const toggle=$('#lessonDropdownToggle'), menu=$('#lessonDropdownMenu'), wrap=document.querySelector('.lesson-dropdown-wrapper');
+  if(!toggle || !menu || !wrap) return;
+  const originalParent=menu.parentElement;
+  const originalNext=menu.nextSibling;
+  let openState=false;
+
+  function positionMenu(){
+    if(!openState) return;
+    const r=toggle.getBoundingClientRect();
+    const gap=8;
+    const menuW=Math.min(300, Math.max(260, r.width));
+    let left=r.left;
+    let top=r.bottom+gap;
+    if(left+menuW>window.innerWidth-10) left=Math.max(10,window.innerWidth-menuW-10);
+    const maxH=Math.min(window.innerHeight*.70,520);
+    if(top+maxH>window.innerHeight-10){
+      const above=r.top-gap-maxH;
+      top=above>10?above:Math.min(top,window.innerHeight-maxH-10);
+    }
+    menu.style.left=Math.round(left)+'px';
+    menu.style.top=Math.round(top)+'px';
+    menu.style.width=Math.round(Math.min(menuW,window.innerWidth-20))+'px';
+  }
+
+  function open(){
+    if(openState) return;
+    openState=true;
+    document.body.appendChild(menu);
+    menu.classList.add('lesson-dropdown-floating');
+    wrap.classList.add('is-open');
+    toggle.setAttribute('aria-expanded','true');
+    positionMenu();
+  }
+  function close(){
+    if(!openState) return;
+    openState=false;
+    menu.classList.remove('lesson-dropdown-floating');
+    menu.style.left='';menu.style.top='';menu.style.width='';
+    if(originalNext) originalParent.insertBefore(menu,originalNext); else originalParent.appendChild(menu);
+    wrap.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded','false');
+  }
+
+  toggle.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openState?close():open();});
+  document.addEventListener('click',function(e){
+    const item=e.target.closest('.lesson-dropdown-item');
+    if(item){
+      e.preventDefault();e.stopPropagation();
+      const n=Number(item.dataset.lesson)||1;
+      if(typeof window.switchLesson==='function') window.switchLesson(n);
+      localStorage.setItem('materiajar-current-lesson',String(n).padStart(2,'0'));
+      update(n);close();return;
+    }
+    if(e.target===toggle || wrap.contains(e.target) || menu.contains(e.target)) return;
+    close();
+  },true);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  window.addEventListener('resize',positionMenu,{passive:true});
+  document.querySelector('#main-scroll')?.addEventListener('scroll',()=>{if(openState)positionMenu();},{passive:true});
+
+  function update(n){
+    n=String(n).padStart(2,'0');
+    const lab=$('#lessonDropdownLabel');
+    if(lab) lab.textContent='Lesson '+parseInt(n,10);
+    $$('.lesson-dropdown-item').forEach(x=>x.classList.toggle('is-active',x.dataset.lesson===n));
+  }
+  window.updateLessonDropdown=update;
+  update(localStorage.getItem('materiajar-current-lesson')||'01');
+
+  function refresh(){
+    let data={};
+    try{data=JSON.parse(localStorage.getItem('materiajar-progress-v1')||'{}')}catch(e){}
+    $$('[data-lesson-inline-progress]').forEach(box=>{
+      const n=box.dataset.lessonInlineProgress;
+      let v=data[n]||0;
+      if(v===true)v=100;
+      if(typeof v!=='number')v=0;
+      v=Math.max(0,Math.min(100,v));
+      const fill=box.querySelector('.lesson-inline-progress-fill');
+      const txt=box.querySelector('.lesson-inline-progress-text');
+      if(fill)fill.style.width=v+'%';
+      if(txt)txt.textContent=v+'%';
+    });
+  }
+  refresh();setInterval(refresh,800);
+})();
+</script>
 </body>
 </html>
+
+<style id="topbar-attached-above-lessonbar">
+/* TOPBAR MENEMPEL: flush di paling atas area utama, tepat di atas lesson/content bar */
+#main-scroll{
+  padding-top:0 !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+  position:relative !important;
+  overflow-y:auto !important;
+}
+#lms-topbar{
+  position:sticky !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  width:100% !important;
+  height:auto !important;
+  margin:0 !important;
+  border-radius:0 !important;
+  border-top:0 !important;
+  border-left:0 !important;
+  border-right:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  z-index:999 !important;
+}
+#lms-topbar + .max-w-4xl{
+  margin-top:0 !important;
+  padding-top:18px !important;
+  padding-left:28px !important;
+  padding-right:28px !important;
+}
+@media(max-width:767px){
+  #lms-topbar + .max-w-4xl{
+    padding-left:14px !important;
+    padding-right:14px !important;
+    padding-top:14px !important;
+  }
+}
+</style>
+
+<style id="topbar-fixed-above-lessonbar-final">
+/* TOP BAR BENAR-BENAR TETAP: terpisah dari scroll lesson */
+#lms-topbar{
+  position:fixed !important;
+  top:0 !important;
+  left:300px !important;
+  right:0 !important;
+  width:auto !important;
+  margin:0 !important;
+  border-radius:0 !important;
+  border:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  z-index:10000 !important;
+}
+#main-scroll{padding-top:0 !important;}
+#lms-topbar + .max-w-4xl{padding-top:76px !important;}
+@media(max-width:767px){
+  #lms-topbar{left:0 !important; right:0 !important; width:100% !important;}
+  #lms-topbar + .max-w-4xl{padding-top:70px !important;}
+}
+</style>
+<script id="topbar-fixed-height-sync">
+(function(){
+  function syncTopbarSpace(){
+    const bar=document.getElementById('lms-topbar');
+    const wrap=bar && bar.nextElementSibling;
+    if(!bar || !wrap) return;
+    const h=bar.getBoundingClientRect().height;
+    wrap.style.paddingTop=Math.ceil(h + (window.innerWidth<=767 ? 10 : 14))+'px';
+  }
+  window.addEventListener('load',syncTopbarSpace);
+  window.addEventListener('resize',syncTopbarSpace);
+  if(window.ResizeObserver){
+    const bar=document.getElementById('lms-topbar');
+    if(bar) new ResizeObserver(syncTopbarSpace).observe(bar);
+  }
+  setTimeout(syncTopbarSpace,100);
+})();
+</script>
